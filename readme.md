@@ -29,3 +29,8 @@ This reposository stores the source project for the BeeYou Games Project.
 ```
 
 5. Clone the project
+
+
+## Disclaimer
+
+The code in this repository is not allowed to be modified, used or shared anywhere outside of this project.
