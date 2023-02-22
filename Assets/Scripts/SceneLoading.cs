@@ -18,4 +18,6 @@ public class SceneLoading : MonoBehaviour, ISceneLoading
     public void LoadScene(int pSceneIndexNumber) => SceneManager.LoadScene(pSceneIndexNumber);
 
     public void ReloadScene() => SceneManager.LoadScene(currentScene.name);
+
+    public void ExitGame() => Application.Quit();
 }
