@@ -1,0 +1,31 @@
+name: Continious Deployment Unreal Prject
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  Build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          lfs: "true"
+      # - name: build-Project
+      #   run: |
+      #     cd AutomationScripts
+      #     ls
+      #     ./compile.bat "../UnrealProject/UnrealProject.uproject" "../UnrealProject/Build" "Win64"
+      - name: Download Butler
+        run: |
+          curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
+          powershell Expand-Archive butler.zip
+      # - name: Publish the build Folder
+      #   run: |
+      #     ./butler/butler.exe push .\UnrealProject\Build\Windows beeyougames/beeyou-games-test:win-64 --userversion ${{  github.ref_name }}
+      #   env:
+      #     BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
