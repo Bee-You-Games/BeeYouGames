@@ -1,1 +1,1 @@
-./buildAPK.bat "D:\Documents\Repos\BeeYouGames" "D:\Documents\Repos\BeeYouGames\CICDscripts\log.txt" "D:\\Documents\\Repos\\BeeYouGames\\Builds\\MyGame3.apk" "Android"
+./buildAPK.bat "..\" "/log.txt" "..\\Builds\\MyGame3.apk" "Android"
