@@ -26,17 +26,19 @@ namespace CICDUtils
 
         public static void BuildProject()
         {
+            var outputDir = GetArg("-outputPath");
+            BuildTarget platform = getBuildTarget(GetArg("-targetPlatform"));
+
             string[] defaultScene = GetAllActiveScenes();
 
-            BuildPipeline.BuildPlayer(defaultScene, "D:\\Documents\\Repos\\BeeYouGames\\Builds\\MyGame.apk",
-                BuildTarget.Android, BuildOptions.None);
+            BuildPipeline.BuildPlayer(defaultScene, outputDir,
+                platform, BuildOptions.None);
 
 
 
             //Console.WriteLine("Start script Execution");
 
-            //var outputDir = GetArg("-outputPath");
-            //Console.WriteLine(outputDir);
+          
             //BuildTarget platform = getBuildTarget(GetArg("-targetPlatform"));
             //Console.WriteLine(platform);
 
