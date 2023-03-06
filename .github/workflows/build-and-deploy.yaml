@@ -20,7 +20,7 @@ jobs:
         run: |
           cd CICDscripts
           ls
-          ./buildAPK.bat ../ .\log.txt ..\\Builds\\MyGame3.apk "Android"
+          ./buildAPK.bat ../ log.txt ..\\Builds\\MyGame3.apk "Android"
       - name: Download Butler
         run: |
           curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
