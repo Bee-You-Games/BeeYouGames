@@ -16,11 +16,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: "true"
-      # - name: build-Project
-      #   run: |
-      #     cd AutomationScripts
-      #     ls
-      #     ./compile.bat "../UnrealProject/UnrealProject.uproject" "../UnrealProject/Build" "Win64"
+      - name: build-Project
+        run: |
+          cd CICDscripts
+          ls
+          buildAPK.bat "D:\Documents\Repos\BeeYouGames" "D:\Documents\Repos\BeeYouGames\CICDscripts\log.txt" "D:\\Documents\\Repos\\BeeYouGames\\Builds\\MyGame4.apk" "android"
       - name: Download Butler
         run: |
           curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
