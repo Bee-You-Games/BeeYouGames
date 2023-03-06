@@ -8,6 +8,7 @@ public class CharacterController2D : MonoBehaviour
     [Range(0f, 100f)]
     private float speed = 5f;
     [SerializeField]
+    [Range(300f, 900f)]
     private float rotationSpeed = 600;
     private Camera cam;
     private Rigidbody playerBody;
