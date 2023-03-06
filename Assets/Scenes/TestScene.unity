@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.5
+  isRepeating: 1
 --- !u!1 &568171627
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.7
+  isRepeating: 1
 --- !u!1 &650042513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.3
+  isRepeating: 1
 --- !u!1 &964989491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,6 +1426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.1
+  isRepeating: 1
 --- !u!1 &1569417204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.8
+  isRepeating: 1
 --- !u!1 &2069821660
 GameObject:
   m_ObjectHideFlags: 0
