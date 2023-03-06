@@ -1,0 +1,1 @@
+"C:\Program Files\Unity\Hub\Editor\2021.3.15f1\Editor\Unity.exe" -quit -batchmode -buildTarget Android -projectPath "D:\Documents\Repos\BeeYouGames" -logFile "D:\Documents\Repos\BeeYouGames\CICDscripts\log.txt" -executeMethod CICDUtils.Builder.BuildProject
