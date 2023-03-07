@@ -24,7 +24,7 @@ echo %outputPath%
 
 @REM call:joinpath "C:\trunk\" "..\Project.txt"
 
-Unity -quit -batchmode -buildTarget Android -projectPath %projectPathFull% -logFile - -executeMethod CICDUtils.Builder.BuildProject -outputPath %outputPathFull% -targetPlatform %buildTarget%
+Unity -quit -batchmode -buildTarget Android -projectPath %projectPathFull% -logFile "log.txt" -executeMethod CICDUtils.Builder.BuildProject -outputPath %outputPathFull% -targetPlatform %buildTarget%
 
 :joinpath
 set Path1=%~1
