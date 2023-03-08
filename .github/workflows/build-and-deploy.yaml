@@ -25,8 +25,9 @@ jobs:
         run: |
           curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
           powershell Expand-Archive butler.zip
-      # - name: Publish the build Folder
-      #   run: |
-      #     ./butler/butler.exe push .\UnrealProject\Build\Windows beeyougames/beeyou-games-test:win-64 --userversion ${{  github.ref_name }}
-      #   env:
-      #     BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
+      - name: Publish the build Folder
+        run: |
+          ./butler/butler.exe push .\UnrealProject\Builds beeyougames/beeyou-games-test:android --userversion ${{  github.ref_name }}
+        env:
+          BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
+s
