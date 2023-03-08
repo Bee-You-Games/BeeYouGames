@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerInput))]
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -12,23 +16,23 @@ public class CharacterController2D : MonoBehaviour
     private float rotationSpeed = 600;
     private Camera cam;
     private Rigidbody playerBody;
+    private PlayerInput playerInput;
     // Start is called before the first frame update
-    void Start()
-    {
+	private void Awake()
+	{
         playerBody = GetComponent<Rigidbody>();
+        playerInput = GetComponent<PlayerInput>();
+        
         cam = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+	void Update()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float verticalMovement = Input.GetAxis("Vertical");
-        
+        Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
 
-        if (horizontalMovement != 0 || verticalMovement != 0)
+        if (input.magnitude != 0)
         {
-            Vector3 velocity = new Vector3(horizontalMovement, 0, verticalMovement);
+            Vector3 velocity = new Vector3(input.x, 0, input.y);
             Movement(velocity);
         }
 
@@ -41,8 +45,15 @@ public class CharacterController2D : MonoBehaviour
     private void Movement(Vector3 pMovementVelocity)
     {
         playerBody.velocity = pMovementVelocity * speed;
+
         //Rotation with movement
         Quaternion toRotation = Quaternion.LookRotation(pMovementVelocity, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    //OnInteract is called when the Input System gets an input for Interact (check input actions)
+    private void OnInteract()
+    {
+        Debug.Log("Interact!!!");
     }
 }
