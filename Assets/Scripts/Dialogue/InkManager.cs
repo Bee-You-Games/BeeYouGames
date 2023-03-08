@@ -112,6 +112,7 @@ public class InkManager : MonoBehaviour
     public void EndDialogue()
     {
         Debug.Log("Ending dialogue");
+        EraseUI();
         gameObject.SetActive(false);
         isDialogueActive = false;
         OnDialogueEnd?.Invoke();
