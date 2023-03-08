@@ -27,6 +27,6 @@ jobs:
           powershell Expand-Archive butler.zip
       - name: Publish the build Folder
         run: |
-          ./butler/butler.exe push .\UnrealProject\Builds beeyougames/beeyou-games-test:android --userversion ${{  github.ref_name }}
+          ./butler/butler.exe push .\Builds beeyougames/beeyou-games-test:android --userversion ${{  github.ref_name }}
         env:
           BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
