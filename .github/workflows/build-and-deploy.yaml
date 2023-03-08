@@ -30,4 +30,3 @@ jobs:
           ./butler/butler.exe push .\UnrealProject\Builds beeyougames/beeyou-games-test:android --userversion ${{  github.ref_name }}
         env:
           BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
-s
