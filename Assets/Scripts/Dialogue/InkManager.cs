@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Collections.Generic;
 
 public class InkManager : MonoBehaviour
 {
@@ -41,8 +42,15 @@ public class InkManager : MonoBehaviour
     {
         Debug.Log("Updating text");
         EraseUI();
-        
-        dialogueText.text = GetDialogueText();
+
+        string text = GetDialogueText();
+
+        //TODO: implement system to go through tags in JSON file
+        List<string> tags = story.currentTags;
+        if(tags.Count > 0)
+            text = tags[0] + " - " + text;
+
+        dialogueText.text = text;
 
         if (story != null && story.currentChoices.Count > 0)
             InstantiateChoiceButtons();
@@ -52,6 +60,7 @@ public class InkManager : MonoBehaviour
     {
         for (int i = 0; i < choiceButtonParent.childCount; i++)
         {
+            choiceButtonParent.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
             Destroy(choiceButtonParent.GetChild(i).gameObject);
         }
     }
@@ -92,16 +101,18 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    private void StartDialogue()
+    public void StartDialogue()
     {
         Debug.Log("Starting Dialogue");
+        gameObject.SetActive(true);
         isDialogueActive = true;
         OnDialogueStart?.Invoke();
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
         Debug.Log("Ending dialogue");
+        gameObject.SetActive(false);
         isDialogueActive = false;
         OnDialogueEnd?.Invoke();
     }
