@@ -1,10 +1,8 @@
 name: Continious Deployment Unreal Prject
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} builds the app
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - "*"
-      - "feature/*"
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+.[0-9]+"
 
@@ -20,7 +18,7 @@ jobs:
         run: |
           cd CICDscripts
           ls
-          ./buildAPK.bat "..\"  "..\\Builds\\MyGame4.apk" "Android"
+          ./buildAPK.bat "..\"  "..\\Builds\\beeyougames.apk" "Android"
       - name: Download Butler
         run: |
           curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
