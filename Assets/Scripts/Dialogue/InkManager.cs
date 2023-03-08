@@ -19,13 +19,22 @@ public class InkManager : MonoBehaviour
     private Story story;
     private bool isDialogueActive = false;
 
+    public static InkManager Instance { get; private set; }
+
     public event Action OnDialogueStart;
     public event Action OnDialogueEnd;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Debug.LogError("Multiple instances of InkManager have been found", this);
+    }
+
     private void Start()
     {
-        StartDialogue();
-        story = new Story(inkJSON.text);
+        StartDialogue(inkJSON);
         UpdateDialogueText();
     }
 
@@ -101,9 +110,10 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue()
+    public void StartDialogue(TextAsset pDialogueFile)
     {
         Debug.Log("Starting Dialogue");
+        story = new Story(pDialogueFile.text);
         gameObject.SetActive(true);
         isDialogueActive = true;
         OnDialogueStart?.Invoke();
