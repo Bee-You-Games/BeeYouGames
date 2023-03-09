@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Interactor))]
+
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -17,11 +19,13 @@ public class CharacterController2D : MonoBehaviour
     private Camera cam;
     private Rigidbody playerBody;
     private PlayerInput playerInput;
+    private Interactor interactor;
     // Start is called before the first frame update
 	private void Awake()
 	{
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        interactor = GetComponent<Interactor>();
         
         cam = Camera.main;
     }
@@ -54,6 +58,6 @@ public class CharacterController2D : MonoBehaviour
     //OnInteract is called when the Input System gets an input for Interact (check input actions)
     private void OnInteract()
     {
-        Debug.Log("Interact!!!");
+        interactor.Interact();
     }
 }
