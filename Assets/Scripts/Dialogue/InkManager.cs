@@ -19,6 +19,10 @@ public class InkManager : MonoBehaviour
     private Story story;
     private bool isDialogueActive = false;
 
+    private const string testTag = "testTag";
+
+    private const string lockedBtnTag = "locked";
+
     public static InkManager Instance { get; private set; }
 
     public event Action OnDialogueStart;
@@ -54,13 +58,10 @@ public class InkManager : MonoBehaviour
 
         string text = GetDialogueText();
 
-        //TODO: implement system to go through tags in JSON file
-        List<string> tags = story.currentTags;
-        if(tags.Count > 0)
-            text = tags[0] + " - " + text;
+        HandleTextTags(text);
 
         dialogueText.text = text;
-
+        
         if (story != null && story.currentChoices.Count > 0)
             InstantiateChoiceButtons();
     }
@@ -94,12 +95,60 @@ public class InkManager : MonoBehaviour
         foreach (Choice choice in story.currentChoices)
         {
             Button button = Instantiate(choiceButtonPrefab) as Button;
-            TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = choice.text;
+            TextMeshProUGUI tmProText = button.GetComponentInChildren<TextMeshProUGUI>();
+
+            string text = HandleButtonTag(choice.text, button, choice);
+
+            tmProText.text = text;
             button.transform.SetParent(choiceButtonParent, false);
 
-            button.onClick.AddListener(delegate { ChooseStoryChoice(choice); });
         }
+    }
+
+    private void HandleTextTags(string pText)
+    {
+        List<string> tags = story.currentTags;
+        if (tags.Count > 0)
+            pText = tags[0] + " - " + pText;
+
+        foreach (string tag in tags)
+        {
+            //You can implement more tags here
+            //Would like to sometime make a system to use a txt or json file to handle the logic for button tags
+            switch (tag)
+            {
+                case testTag:
+                    Debug.Log("testing Tag");
+                    break;
+            }
+        }
+    }
+
+    private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
+    {
+        string choiceText = pTag;
+        int stringIndex = pTag.IndexOf('$', 0);
+
+        if (stringIndex >= 0)
+        {
+            string tagText = choiceText.Substring(stringIndex).Replace("$", "");
+            tagText.ToLower();
+
+            choiceText.Replace(" $locked", "");
+            Debug.Log(choiceText);
+
+            //You can implement more tags here
+            //Would like to sometime make a system to use a txt or json file to handle the logic for button tags
+            switch (pTag)
+            {
+                case lockedBtnTag:
+                    return choiceText;
+            }
+        }
+
+        Debug.Log("No tag was found");
+        pButton.onClick.AddListener(delegate { ChooseStoryChoice(pChoice); });
+        return choiceText;
     }
 
     private void ChooseStoryChoice(Choice pChoice)
