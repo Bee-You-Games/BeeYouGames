@@ -15,6 +15,8 @@ public class InkManager : MonoBehaviour
     private Button choiceButtonPrefab;
     [SerializeField]
     private Transform choiceButtonParent;
+    [SerializeField]
+    private Image playerImage, npcImage;
 
     private Story story;
     private bool isDialogueActive = false;
@@ -110,7 +112,7 @@ public class InkManager : MonoBehaviour
         List<string> tags = story.currentTags;
         if (tags.Count > 0)
             pText = tags[0] + " - " + pText;
-
+        
         foreach (string tag in tags)
         {
             //You can implement more tags here
@@ -150,6 +152,13 @@ public class InkManager : MonoBehaviour
         pButton.onClick.AddListener(delegate { ChooseStoryChoice(pChoice); });
         return choiceText;
     }
+
+    private void ChangeInkVariable(string pVariableName, string pValue) => story.variablesState[pVariableName] = pValue;
+    private void ChangeInkVariable(string pVariableName, int pValue) => story.variablesState[pVariableName] = pValue;
+    private void ChangeInkVariable(string pVariableName, bool pValue) => story.variablesState[pVariableName] = pValue;
+    private void ChangeInkVariable(string pVariableName, float pValue) => story.variablesState[pVariableName] = pValue;
+
+    private VariablesState GetInkVariable(string pVariableName) => story.variablesState[pVariableName] as VariablesState;
 
     private void ChooseStoryChoice(Choice pChoice)
     {
