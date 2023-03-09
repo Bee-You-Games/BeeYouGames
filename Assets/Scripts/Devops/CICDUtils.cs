@@ -1,11 +1,8 @@
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
-//using UnityEditor.Build.Reporting;
 
 namespace CICDUtils
 {
@@ -27,45 +24,15 @@ namespace CICDUtils
         public static void BuildProject()
         {
             var outputDir = GetArg("-outputPath");
-            BuildTarget platform = getBuildTarget(GetArg("-targetPlatform"));
+            BuildTarget platform = GetBuildTarget(GetArg("-targetPlatform"));
 
             string[] defaultScene = GetAllActiveScenes();
 
             BuildPipeline.BuildPlayer(defaultScene, outputDir,
                 platform, BuildOptions.None);
-
-
-
-            //Console.WriteLine("Start script Execution");
-
-          
-            //BuildTarget platform = getBuildTarget(GetArg("-targetPlatform"));
-            //Console.WriteLine(platform);
-
-
-            //BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-            //buildPlayerOptions.scenes = GetAllActiveScenes();
-            //buildPlayerOptions.locationPathName = "/builds";
-            //buildPlayerOptions.target = BuildTarget.StandaloneWindows;
-            //buildPlayerOptions.options = BuildOptions.None;
-
-            //BuildPipeline.BuildPlayer(buildPlayerOptions);
-
-
-            //BuildSummary summary = report.summary;
-
-            //if (summary.result == BuildResult.Succeeded)
-            //{
-            //    Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
-            //}
-
-            //if (summary.result == BuildResult.Failed)
-            //{
-            //    Debug.Log("Build failed");
-            //}
         }
 
-        private static BuildTarget getBuildTarget(string pBuildTargetname)
+        private static BuildTarget GetBuildTarget(string pBuildTargetname)
         {
             if (pBuildTargetname.ToLower().Contains("windows64")) {
                 return BuildTarget.StandaloneWindows64;
@@ -88,7 +55,6 @@ namespace CICDUtils
             {
                 scenes[i] = SceneUtility.GetScenePathByBuildIndex(i);
             }
-
             return scenes;
         }
     }
