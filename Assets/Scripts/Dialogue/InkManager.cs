@@ -17,13 +17,16 @@ public class InkManager : MonoBehaviour
     private Transform choiceButtonParent;
     [SerializeField]
     private Image playerImage, npcImage;
+    [SerializeField]
+    private List<CharacterSpriteSO> characterSprites = new List<CharacterSpriteSO>();
 
     private Story story;
     private bool isDialogueActive = false;
 
-    private const string testTag = "testTag";
+    private const string TEST_TAG = "testTag";
+    private const string SPEAKER_TAG = "speaker";
 
-    private const string lockedBtnTag = "locked";
+    private const string LOCKED_BTNTAG = "locked";
 
     public static InkManager Instance { get; private set; }
 
@@ -103,26 +106,56 @@ public class InkManager : MonoBehaviour
 
             tmProText.text = text;
             button.transform.SetParent(choiceButtonParent, false);
-
         }
     }
 
     private void HandleTextTags(string pText)
     {
         List<string> tags = story.currentTags;
-        if (tags.Count > 0)
-            pText = tags[0] + " - " + pText;
-        
+        if (tags.Count <= 0) return;
+
         foreach (string tag in tags)
         {
             //You can implement more tags here
-            //Would like to sometime make a system to use a txt or json file to handle the logic for button tags
             switch (tag)
             {
-                case testTag:
+                case TEST_TAG:
                     Debug.Log("testing Tag");
                     break;
+                case SPEAKER_TAG:
+                    //implement text file with names and corresponding image locations
+                    Debug.Log("Checking speaker tag");
+
+                    SetCharacterSprite(GetSpeakerTagValue(tag));
+                    break;
             }
+        }
+    }
+
+    private string GetSpeakerTagValue(string pTag)
+    {
+        if (tag.Contains("speaker"))
+        {
+            string[] speakerTagContent = tag.Split(':');
+
+            if (speakerTagContent.Length != 2) Debug.LogError("Speaker tag can't be read", this);
+
+            return speakerTagContent[1];
+        }
+        else
+        {
+            Debug.LogError("Given tag isn't a speaker tag", this);
+            return "Given tag isn't a speaker tag";
+        } 
+    }
+
+    private void SetCharacterSprite(string pCharacterName)
+    {
+        foreach (CharacterSpriteSO character in characterSprites)
+        {
+            if (pCharacterName.ToLower() != character.CharacterName.ToLower()) continue;
+
+            npcImage.sprite = character.CharacterSprite;
         }
     }
 
@@ -143,7 +176,7 @@ public class InkManager : MonoBehaviour
             //Would like to sometime make a system to use a txt or json file to handle the logic for button tags
             switch (pTag)
             {
-                case lockedBtnTag:
+                case LOCKED_BTNTAG:
                     return choiceText;
             }
         }
