@@ -1,0 +1,1 @@
+./buildAPK.bat "..\" "/log.txt" "..\\Builds\\MyGame3.apk" "Android"
