@@ -63,6 +63,7 @@ public class InkManager : MonoBehaviour
 
         string text = GetDialogueText();
 
+        Debug.Log("Calling HandleTextTags method");
         HandleTextTags(text);
 
         dialogueText.text = text;
@@ -116,8 +117,11 @@ public class InkManager : MonoBehaviour
 
         foreach (string tag in tags)
         {
+            //Check tagtype
+            string tagType = GetSpeakerTagType(tag);
+
             //You can implement more tags here
-            switch (tag)
+            switch (tagType)
             {
                 case TEST_TAG:
                     Debug.Log("testing Tag");
@@ -125,18 +129,33 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-
                     SetCharacterSprite(GetSpeakerTagValue(tag));
                     break;
             }
         }
     }
 
+    private string GetSpeakerTagType(string pTag)
+    {
+        string[] tagContent = pTag.Split(':');
+
+        if (tagContent.Length <= 0)
+        {
+            Debug.LogError("Given tag is empty", this);
+            return "ERROR";
+        }
+        else if (tagContent.Length == 1)
+            return tagContent[0];
+        else
+            return tagContent[0];
+
+    }
+
     private string GetSpeakerTagValue(string pTag)
     {
-        if (tag.Contains("speaker"))
+        if (pTag.Contains("speaker"))
         {
-            string[] speakerTagContent = tag.Split(':');
+            string[] speakerTagContent = pTag.Split(':');
 
             if (speakerTagContent.Length != 2) Debug.LogError("Speaker tag can't be read", this);
 

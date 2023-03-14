@@ -2666,6 +2666,9 @@ MonoBehaviour:
   choiceButtonParent: {fileID: 1492817016}
   playerImage: {fileID: 367179239}
   npcImage: {fileID: 1203208761}
+  characterSprites:
+  - {fileID: 11400000, guid: cf9829a53750bfd4c99711608e40f37e, type: 2}
+  - {fileID: 11400000, guid: 9f90c9d2f7e3716469c3a97ccaea6820, type: 2}
 --- !u!114 &1761437410
 MonoBehaviour:
   m_ObjectHideFlags: 0
