@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Interactor : MonoBehaviour
+public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] private float interactRange;
     [SerializeField] private LayerMask interactLayer;
@@ -16,6 +16,18 @@ public class Interactor : MonoBehaviour
 
 
     void Update()
+    {
+        CheckInteractables();
+    }
+
+    //Debug gizmo to show interaction range
+	private void OnDrawGizmos()
+	{
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, interactRange);
+	}
+
+    private void CheckInteractables()
     {
         numFound = Physics.OverlapSphereNonAlloc(transform.position, interactRange, colliders, interactLayer);
 
@@ -34,13 +46,6 @@ public class Interactor : MonoBehaviour
             if (interactionUI.IsDisplayed) interactionUI.Close();
         }
     }
-
-    //Debug gizmo to show interaction range
-	private void OnDrawGizmos()
-	{
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, interactRange);
-	}
 
     public void Interact()
     {

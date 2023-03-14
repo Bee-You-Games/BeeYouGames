@@ -6,5 +6,5 @@ public interface IInteractable
 {
 	public string Prompt { get; }
 	public bool Available { get; set; }
-	public bool Interact(Interactor interactor);
+	public bool Interact(PlayerInteractor interactor);
 }

@@ -7,8 +7,7 @@ public class NPC : MonoBehaviour, IInteractable
     Animator animator;
     [SerializeField] private string _prompt;
     public string Prompt => _prompt;
-
-	public bool Available { get; set; }
+    public bool Available { get; set; }
 
 	private void Awake()
     {
@@ -18,7 +17,7 @@ public class NPC : MonoBehaviour, IInteractable
             Debug.LogWarning("interactable object doesn't have animator");
     }
 
-    public bool Interact(Interactor interactor)
+    public bool Interact(PlayerInteractor interactor)
     {
         Debug.Log(gameObject.name + " is being interacted with!");
         animator.SetBool("Interacting", true);

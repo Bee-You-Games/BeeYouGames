@@ -20,8 +20,7 @@ public class InteractionUI : MonoBehaviour
 
     void LateUpdate()
     {
-        Quaternion rotation = mainCamera.transform.rotation;
-        transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
+        TurnToCamera();
     }
 
     public void SetUp(string pPrompt, Vector3 pPosition)
@@ -44,4 +43,9 @@ public class InteractionUI : MonoBehaviour
 
     }
 
+    private void TurnToCamera()
+    {
+        Quaternion rotation = mainCamera.transform.rotation;
+        transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
+    }
 }
