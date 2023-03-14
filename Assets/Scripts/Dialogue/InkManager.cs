@@ -188,19 +188,20 @@ public class InkManager : MonoBehaviour
             string tagText = choiceText.Substring(stringIndex).Replace("$", "");
             tagText.ToLower();
 
-            choiceText.Replace(" $locked", "");
-            Debug.Log(choiceText);
+            choiceText = choiceText.Replace("$" + tagText, "");
+            Debug.Log(tagText);
 
             //You can implement more tags here
             //Would like to sometime make a system to use a txt or json file to handle the logic for button tags
-            switch (pTag)
+            switch (tagText)
             {
                 case LOCKED_BTNTAG:
+                    Debug.Log("ChoiceText: " + choiceText);
                     return choiceText;
             }
         }
 
-        Debug.Log("No tag was found");
+        Debug.Log("No tag was found " + choiceText);
         pButton.onClick.AddListener(delegate { ChooseStoryChoice(pChoice); });
         return choiceText;
     }
