@@ -5,9 +5,14 @@ using UnityEngine;
 public class NPC : MonoBehaviour, IInteractable
 {
     Animator animator;
+    [SerializeField] private string _prompt;
+    public string Prompt => _prompt;
 
-    private void Awake()
+	public bool Available { get; set; }
+
+	private void Awake()
     {
+        Available = true;
         animator = GetComponent<Animator>();
         if (animator == null)
             Debug.LogWarning("interactable object doesn't have animator");
@@ -17,6 +22,7 @@ public class NPC : MonoBehaviour, IInteractable
     {
         Debug.Log(gameObject.name + " is being interacted with!");
         animator.SetBool("Interacting", true);
+        Available = false;
         return true;
     }
 }

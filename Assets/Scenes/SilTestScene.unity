@@ -3846,6 +3846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31c52a9af1c7394ea19eac895e196e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prompt: Show me your moves
 --- !u!4 &5901452234879338163
 Transform:
   m_ObjectHideFlags: 0

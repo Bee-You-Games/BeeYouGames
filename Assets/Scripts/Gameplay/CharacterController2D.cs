@@ -10,12 +10,10 @@ using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField]
     [Range(0f, 100f)]
-    private float speed = 5f;
-    [SerializeField]
+    [SerializeField]  private float speed = 5f;
     [Range(300f, 900f)]
-    private float rotationSpeed = 600;
+    [SerializeField]  private float rotationSpeed = 600;
     private Camera cam;
     private Rigidbody playerBody;
     private PlayerInput playerInput;

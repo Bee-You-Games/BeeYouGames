@@ -10,15 +10,11 @@ public class Interactor : MonoBehaviour
 
     private float numFound;
     private readonly Collider[] colliders = new Collider[3];
-    IInteractable interactable;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    IInteractable interactable;
+    [SerializeField] private InteractionUI interactionUI;
 
-    // Update is called once per frame
+
     void Update()
     {
         numFound = Physics.OverlapSphereNonAlloc(transform.position, interactRange, colliders, interactLayer);
@@ -26,9 +22,20 @@ public class Interactor : MonoBehaviour
         if (numFound > 0)
         {
             interactable = colliders[0].GetComponent<IInteractable>();
+            Vector3 interactablePosition = colliders[0].gameObject.transform.position;
+            if (interactable != null && interactable.Available == true)
+            {
+                if (!interactionUI.IsDisplayed) interactionUI.SetUp(interactable.Prompt, interactablePosition);
+            }
+        }
+        else
+        {
+            if (interactable != null) interactable = null;
+            if (interactionUI.IsDisplayed) interactionUI.Close();
         }
     }
 
+    //Debug gizmo to show interaction range
 	private void OnDrawGizmos()
 	{
         Gizmos.color = Color.cyan;
@@ -37,9 +44,10 @@ public class Interactor : MonoBehaviour
 
     public void Interact()
     {
-        if (interactable != null)
+        if (interactable != null && interactable.Available == true)
         {
             interactable.Interact(this);
+            interactionUI.Close();
         }
     }
 }
