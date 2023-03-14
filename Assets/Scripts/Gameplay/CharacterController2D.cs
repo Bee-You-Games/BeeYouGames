@@ -5,23 +5,25 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInteractor))]
+
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField]
     [Range(0f, 100f)]
-    private float speed = 5f;
-    [SerializeField]
+    [SerializeField]  private float speed = 5f;
     [Range(300f, 900f)]
-    private float rotationSpeed = 600;
+    [SerializeField]  private float rotationSpeed = 600;
     private Camera cam;
     private Rigidbody playerBody;
     private PlayerInput playerInput;
+    private PlayerInteractor interactor;
     // Start is called before the first frame update
 	private void Awake()
 	{
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        interactor = GetComponent<PlayerInteractor>();
         
         cam = Camera.main;
     }
@@ -51,9 +53,11 @@ public class CharacterController2D : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 
-    //OnInteract is called when the Input System gets an input for Interact (check input actions)
+    /// <summary>
+    /// OnInteract is called when the Input System gets an input for Interact (check input actions)
+    /// </summary>
     private void OnInteract()
     {
-        Debug.Log("Interact!!!");
+        interactor.Interact();
     }
 }
