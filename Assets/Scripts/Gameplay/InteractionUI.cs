@@ -6,7 +6,7 @@ using TMPro;
 public class InteractionUI : MonoBehaviour
 {
     public bool IsDisplayed = false;
-    public IInteractable target { get; private set; }
+    public IInteractable Target { get; private set; }
     private Camera mainCamera;
     private Transform playerPosition;
     private CanvasGroup panelGroup;
@@ -34,7 +34,7 @@ public class InteractionUI : MonoBehaviour
 
     public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget)
     {
-        target = pTarget;
+        Target = pTarget;
         Vector3 interactablePos = pPosition;
         interactablePos.y += promptHeight;
         transform.position = interactablePos;
@@ -48,7 +48,7 @@ public class InteractionUI : MonoBehaviour
 
     public void Close()
     {
-        target = null;
+        Target = null;
         IsDisplayed = false;
         panelGroup.alpha = 1;
         panelGroup.LeanAlpha(0, fadeTime);

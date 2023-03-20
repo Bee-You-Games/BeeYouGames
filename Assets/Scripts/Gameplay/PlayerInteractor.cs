@@ -11,7 +11,7 @@ public class PlayerInteractor : MonoBehaviour
     private float numFound;
     private readonly Collider[] colliders = new Collider[5];
     
-    IInteractable interactable;
+    private IInteractable interactable;
     [SerializeField] private InteractionUI interactionUI;
 
 
@@ -51,7 +51,7 @@ public class PlayerInteractor : MonoBehaviour
             if (interactable != null && interactable.Available == true)
             {
                 //checks if either UI is inactive, or if the new target is a different interactable than the current interactionUI's target
-                if (!interactionUI.IsDisplayed || interactionUI.target != interactable) interactionUI.SetUp(interactable.Prompt, interactablePosition, interactable);
+                if (!interactionUI.IsDisplayed || interactionUI.Target != interactable) interactionUI.SetUp(interactable.Prompt, interactablePosition, interactable);
             }
         }
         else
