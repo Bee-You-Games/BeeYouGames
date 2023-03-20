@@ -6,16 +6,25 @@ using TMPro;
 public class InteractionUI : MonoBehaviour
 {
     public bool IsDisplayed = false;
+    public IInteractable Target { get; private set; }
     private Camera mainCamera;
+    private Transform playerPosition;
+    private CanvasGroup panelGroup;
     [SerializeField] private GameObject uiPanel;
     [SerializeField] private TextMeshProUGUI promptText;
     [Range(0f, 10f)]
     [SerializeField] private float promptHeight;
+    [Range(0, 1.5f)]
+    [SerializeField] private float fadeTime = 0.5f;
     
     void Start()
     {
         mainCamera = Camera.main;
-        uiPanel.SetActive(false);
+        playerPosition = transform.parent.transform;
+        panelGroup = uiPanel.GetComponent<CanvasGroup>();
+        uiPanel.transform.SetParent(null);
+        panelGroup.alpha = 0;
+
     }
 
     void LateUpdate()
@@ -23,25 +32,28 @@ public class InteractionUI : MonoBehaviour
         TurnToCamera();
     }
 
-    public void SetUp(string pPrompt, Vector3 pPosition)
+    public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget)
     {
-        /*
-         * Code to put interaction UI above target head, currently not possible as interaction UI is child of player
+        Target = pTarget;
         Vector3 interactablePos = pPosition;
         interactablePos.y += promptHeight;
         transform.position = interactablePos;
-        */
+
         promptText.text = pPrompt;
-        uiPanel.SetActive(true);
+
+        panelGroup.alpha = 0;
+        panelGroup.LeanAlpha(1, 0.5f);
         IsDisplayed = true;
     }
 
     public void Close()
     {
-        uiPanel.SetActive(false);
+        Target = null;
         IsDisplayed = false;
-
+        panelGroup.alpha = 1;
+        panelGroup.LeanAlpha(0, fadeTime);
     }
+
 
     private void TurnToCamera()
     {

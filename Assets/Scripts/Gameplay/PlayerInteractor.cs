@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Linq;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -9,9 +9,9 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private LayerMask interactLayer;
 
     private float numFound;
-    private readonly Collider[] colliders = new Collider[3];
+    private readonly Collider[] colliders = new Collider[5];
     
-    IInteractable interactable;
+    private IInteractable interactable;
     [SerializeField] private InteractionUI interactionUI;
 
 
@@ -33,11 +33,25 @@ public class PlayerInteractor : MonoBehaviour
 
         if (numFound > 0)
         {
-            interactable = colliders[0].GetComponent<IInteractable>();
-            Vector3 interactablePosition = colliders[0].gameObject.transform.position;
+            Collider closestTarget;
+            if (numFound > 1)
+            {
+                List<Collider> sortedColliders = colliders
+                    .Where(col => col != null)
+                    .OrderBy(col => Vector3.Distance(col.transform.position, transform.position))
+                    .ToList();
+
+                closestTarget = sortedColliders[0];
+            }
+            else
+                closestTarget = colliders[0];
+
+            interactable = closestTarget.GetComponent<IInteractable>();
+            Vector3 interactablePosition = closestTarget.gameObject.transform.position;
             if (interactable != null && interactable.Available == true)
             {
-                if (!interactionUI.IsDisplayed) interactionUI.SetUp(interactable.Prompt, interactablePosition);
+                //checks if either UI is inactive, or if the new target is a different interactable than the current interactionUI's target
+                if (!interactionUI.IsDisplayed || interactionUI.Target != interactable) interactionUI.SetUp(interactable.Prompt, interactablePosition, interactable);
             }
         }
         else
