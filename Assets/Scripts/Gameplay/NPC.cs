@@ -20,6 +20,7 @@ public class NPC : MonoBehaviour, IInteractable
     public bool Interact(PlayerInteractor interactor)
     {
         Debug.Log(gameObject.name + " is being interacted with!");
+        EventManager.Instance.TriggerProgression(1);
         animator.SetBool("Interacting", true);
         Available = false;
         return true;
