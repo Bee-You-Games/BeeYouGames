@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour, IInteractable
+public class NPC : AEventAgent, IInteractable
 {
     Animator animator;
     [SerializeField] private string _prompt;
@@ -19,10 +19,10 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
-        Debug.Log(gameObject.name + " is being interacted with!");
-        EventManager.Instance.TriggerProgression(1);
         animator.SetBool("Interacting", true);
         Available = false;
+        EventSend();
+
         return true;
     }
 }

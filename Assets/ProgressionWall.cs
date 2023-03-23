@@ -2,28 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgressionWall : MonoBehaviour
+public class ProgressionWall : AEventAgent
 {
-    [SerializeField]
-    private int id = 1;
     [SerializeField]
     private float wallMovement = -5;
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Instance.ProgressionEvent += MoveWall;
+        InitReceiver();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void EventReceive(int pID) 
     {
-        
-    }
-
-    private void MoveWall(int pID) 
-    {
-        if(pID == id)
+        if(pID == eventID)
         transform.LeanMoveLocalY(transform.position.y + wallMovement, 1);
     }
-
 }
