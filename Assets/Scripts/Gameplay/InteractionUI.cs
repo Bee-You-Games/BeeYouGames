@@ -42,7 +42,7 @@ public class InteractionUI : MonoBehaviour
         promptText.text = pPrompt;
 
         panelGroup.alpha = 0;
-        //panelGroup.LeanAlpha(1, 0.5f);
+        panelGroup.LeanAlpha(1, 0.5f);
         IsDisplayed = true;
     }
 
@@ -51,7 +51,7 @@ public class InteractionUI : MonoBehaviour
         Target = null;
         IsDisplayed = false;
         panelGroup.alpha = 1;
-        //panelGroup.LeanAlpha(0, fadeTime);
+        panelGroup.LeanAlpha(0, fadeTime);
     }
 
 
