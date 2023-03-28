@@ -31,11 +31,6 @@ public class NPC : AEventAgent, IInteractable
         return true;
     }
 
-	protected override void OnReceive()
-	{
-		
-	}
-
     IEnumerator DanceBreak()
     {
         animator.SetBool("Interacting", true);
