@@ -23,9 +23,7 @@ public class NPC : AEventAgent, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
-        animator.SetBool("Interacting", true);
-        Available = false;
-
+        StartCoroutine(DanceBreak());
         if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
         {
             EventSend();
@@ -37,4 +35,13 @@ public class NPC : AEventAgent, IInteractable
 	{
 		
 	}
+
+    IEnumerator DanceBreak()
+    {
+        animator.SetBool("Interacting", true);
+        Available = false;
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("Interacting", false);
+        Available = true;
+    }
 }
