@@ -323,7 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorRole: 1
-  eventID: 1
+  senderID: 0
+  receiverID: 2
   wallMovement: -5
 --- !u!65 &35278560
 BoxCollider:
@@ -2597,8 +2598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31c52a9af1c7394ea19eac895e196e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorRole: 0
-  eventID: 1
+  actorRole: 2
+  senderID: 2
+  receiverID: 1
   _prompt: Show me your moves
 --- !u!136 &1175004850
 CapsuleCollider:
@@ -2649,7 +2651,7 @@ Transform:
   - {fileID: 813106978}
   - {fileID: 22080779}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -6.144, y: 236.78, z: -9.282}
 --- !u!1 &1236886473
 GameObject:
@@ -4742,7 +4744,7 @@ Transform:
   - {fileID: 4844210747946418812}
   - {fileID: 5465940247472796836}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -11.116, y: 180, z: 0}
 --- !u!4 &608321762428573095
 Transform:
@@ -6090,7 +6092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorRole: 0
-  eventID: 1
+  senderID: 1
+  receiverID: 0
   _prompt: Show me your moves
 --- !u!4 &5901452234879338163
 Transform:
