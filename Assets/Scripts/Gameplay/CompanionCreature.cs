@@ -6,6 +6,7 @@ public class CompanionCreature : MonoBehaviour
 {
     [SerializeField] private Transform playerObject;
     [SerializeField] private float preferredDistance = 1;
+    [SerializeField] private float movementSpeed = 5;
     private bool moving = false;
     // Start is called before the first frame update
     void Start()
@@ -24,10 +25,11 @@ public class CompanionCreature : MonoBehaviour
     private IEnumerator MoveTowardsPlayer()
     {
         moving = true;
-        while (Vector3.Distance(transform.position, playerObject.position) > preferredDistance)
+        Vector3 initialTarget = new Vector3(playerObject.position.x, transform.position.y, playerObject.position.z);
+        while (Vector3.Distance(transform.position, initialTarget) > preferredDistance)
         {
             Vector3 targetPosition = new Vector3(playerObject.position.x, transform.position.y, playerObject.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 7 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, movementSpeed * Time.deltaTime);
             //transform.position -= (playerObject.position - transform.position) * 0.06f;
             yield return null;
         }
