@@ -10,7 +10,9 @@ on:
 
 jobs:
   Build-and-deploy:
-    runs-on: MatiomaMachine
+    runs-on:
+      group: Default
+      labels: [self-hosted, local-windows]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
