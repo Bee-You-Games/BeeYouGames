@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} builds the app
 on:
   push:
     branches:
-      - "*"
+      - "**"
 
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+.[0-9]+"
