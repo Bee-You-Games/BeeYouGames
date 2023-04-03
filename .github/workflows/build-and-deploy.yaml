@@ -2,12 +2,14 @@ name: Continious Deployment Unreal Prject
 run-name: ${{ github.actor }} builds the app
 on:
   push:
+    branches:
+      - "*"
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   Build-and-deploy:
-    runs-on: self-hosted
+    runs-on: local-windows
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
