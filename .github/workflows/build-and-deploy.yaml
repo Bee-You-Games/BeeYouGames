@@ -10,9 +10,7 @@ on:
 
 jobs:
   Build-and-deploy:
-    runs-on:
-      group: Default
-      labels: [self-hosted, local-windows]
+    runs-on: self-hosted
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
