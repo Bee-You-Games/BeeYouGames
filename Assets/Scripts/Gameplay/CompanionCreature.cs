@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CompanionCreature : MonoBehaviour
+public class CompanionCreature : AEventAgent, IInteractable
 {
+    [Header("Movement Settings")]
     [SerializeField] private Transform playerObject;
     [SerializeField] private float preferredDistance = 1;
     [SerializeField] private float movementSpeed = 5;
     private bool moving = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool following = false;
+    [Header("Interaction Settings")]
+    [SerializeField] private string _prompt;
+    public string Prompt => _prompt;
+    public bool Available { get; set; }
 
-    // Update is called once per frame
-    void Update()
+	private void Awake()
+	{
+		Available = true;
+	}
+	void Update()
     {
-        if (Vector3.Distance(transform.position, playerObject.position) > preferredDistance && !moving)
+        if (following && Vector3.Distance(transform.position, playerObject.position) > preferredDistance && !moving)
             StartCoroutine(MoveTowardsPlayer());
-        
     }
 
     private IEnumerator MoveTowardsPlayer()
@@ -35,4 +38,13 @@ public class CompanionCreature : MonoBehaviour
         }
         moving = false;
     }
+
+	public bool Interact(PlayerInteractor interactor)
+	{
+        EventSend();
+        following = true;
+        Available = false;
+        gameObject.layer = 0;
+        return true;
+	}
 }

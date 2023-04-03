@@ -7,8 +7,6 @@ public class InteractionUI : MonoBehaviour
 {
     public bool IsDisplayed = false;
     public IInteractable Target { get; private set; }
-    private Camera mainCamera;
-    private Transform playerPosition;
     private CanvasGroup panelGroup;
     [SerializeField] private GameObject uiPanel;
     [SerializeField] private TextMeshProUGUI promptText;
@@ -19,17 +17,10 @@ public class InteractionUI : MonoBehaviour
     
     void Start()
     {
-        mainCamera = Camera.main;
-        playerPosition = transform.parent.transform;
         panelGroup = uiPanel.GetComponent<CanvasGroup>();
         uiPanel.transform.SetParent(null);
         panelGroup.alpha = 0;
 
-    }
-
-    void LateUpdate()
-    {
-        TurnToCamera();
     }
 
     public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget)
@@ -54,10 +45,5 @@ public class InteractionUI : MonoBehaviour
         panelGroup.LeanAlpha(0, fadeTime);
     }
 
-
-    private void TurnToCamera()
-    {
-        Quaternion rotation = mainCamera.transform.rotation;
-        transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
-    }
+    
 }

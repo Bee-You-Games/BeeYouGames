@@ -10,6 +10,7 @@ public abstract class AEventAgent : MonoBehaviour
 		Receiver,
 		Both
 	}
+	[Header("Event Agent Settings")]
 	[Tooltip("'Sender' and 'Both' will send an event with the set ID when EventSend() is called")]
 	[SerializeField] protected Role actorRole;
 	[Tooltip("When an event is sent from this actor, all initialized receiver EventAgents with the same ID will be activated")]

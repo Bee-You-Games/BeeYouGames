@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 6805320700930573954}
   - component: {fileID: 6491436245637226295}
   - component: {fileID: 6884448386643999032}
+  - component: {fileID: 8310351208517125559}
   m_Layer: 5
   m_Name: InteractPanel
   m_TagString: Untagged
@@ -632,3 +633,16 @@ MonoBehaviour:
   uiPanel: {fileID: 3920508820439151008}
   promptText: {fileID: 5682320996201154224}
   promptHeight: 2.21
+  fadeTime: 0.5
+--- !u!114 &8310351208517125559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610204789500658927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eb03b8657644445abc39a54fae4566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
