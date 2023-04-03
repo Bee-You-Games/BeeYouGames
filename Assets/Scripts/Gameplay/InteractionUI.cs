@@ -20,7 +20,6 @@ public class InteractionUI : MonoBehaviour
         panelGroup = uiPanel.GetComponent<CanvasGroup>();
         uiPanel.transform.SetParent(null);
         panelGroup.alpha = 0;
-
     }
 
     public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget)
@@ -44,6 +43,4 @@ public class InteractionUI : MonoBehaviour
         panelGroup.alpha = 1;
         panelGroup.LeanAlpha(0, fadeTime);
     }
-
-    
 }

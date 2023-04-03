@@ -33,7 +33,6 @@ public class CompanionCreature : AEventAgent, IInteractable
         {
             Vector3 targetPosition = new Vector3(playerObject.position.x, transform.position.y, playerObject.position.z);
             transform.position = Vector3.Lerp(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-            //transform.position -= (playerObject.position - transform.position) * 0.06f;
             yield return null;
         }
         moving = false;
