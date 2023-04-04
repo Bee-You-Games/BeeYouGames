@@ -5,8 +5,8 @@ using UnityEngine;
 public class NPC : AEventAgent, IInteractable
 {
     Animator animator;
-    [SerializeField] private string _prompt;
-    public string Prompt => _prompt;
+    [SerializeField] private string prompt;
+    public string Prompt => prompt;
     public bool Available { get; set; }
 
 	private void Awake()

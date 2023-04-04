@@ -11,8 +11,8 @@ public class CompanionCreature : AEventAgent, IInteractable
     private bool moving = false;
     private bool following = false;
     [Header("Interaction Settings")]
-    [SerializeField] private string _prompt;
-    public string Prompt => _prompt;
+    [SerializeField] private string prompt;
+    public string Prompt => prompt;
     public bool Available { get; set; }
 
 	private void Awake()
