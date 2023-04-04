@@ -13,7 +13,7 @@ public class ParallaxTool : EditorWindow
     private SerializedProperty propLayerList;
 
     private Transform spawnPos;
-    private List<GameObject> parallaxLayers = new List<GameObject>();
+    private List<ParallaxEffect> parallaxLayers = new List<ParallaxEffect>();
 
     private GUIContent content = new GUIContent("editSpace");
     private ListView leftPane;
@@ -101,11 +101,11 @@ public class ParallaxTool : EditorWindow
     private void CreateObj(Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable, bool pRandom)
     {
         GameObject obj = new GameObject();
-        parallaxLayers.Add(obj);
         obj.name = "Parallax Layer " + parallaxLayers.Count;
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
         ParallaxEffect parEffect = obj.AddComponent<ParallaxEffect>();
 
+        parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += RemoveFromList;
 
         renderer.sprite = pSprite;
@@ -116,6 +116,7 @@ public class ParallaxTool : EditorWindow
         parEffect.isRepeatingRandom = pRandom;
 
         so.Update();
+        leftPane.onSelectionChange += OnItemSelectionChange;
     }
 
     private void DeleteEntireList()
@@ -133,7 +134,7 @@ public class ParallaxTool : EditorWindow
 
     private void RemoveFromList(ParallaxEffect pParEffect)
     {
-        parallaxLayers.Remove(pParEffect.gameObject);
+        parallaxLayers.Remove(pParEffect);
         so.Update();
         pParEffect.OnDestruction -= RemoveFromList;
         UpdateListView();
@@ -142,7 +143,7 @@ public class ParallaxTool : EditorWindow
     private void UpdateListView()
     {
         Debug.Log("Updating List view");
-        GameObject[] listObjects = parallaxLayers.ToArray();
+        ParallaxEffect[] listObjects = parallaxLayers.ToArray();
 
         if (listObjects.Length > 0)
         {
@@ -151,8 +152,69 @@ public class ParallaxTool : EditorWindow
             leftPane.itemsSource = listObjects;
         }
         else
+        {
+            rightPane.Clear();
             leftPane.itemsSource = listObjects;
+        }
     }
 
-    
+    private void OnItemSelectionChange(IEnumerable<object> pSelection)
+    {
+        rightPane.Clear();
+
+        ParallaxEffect selectedItem = pSelection.First() as ParallaxEffect;
+        if (selectedItem == null) return;
+
+        InitVariables(selectedItem);
+    }
+
+    private void InitVariables(ParallaxEffect pEffect)
+    {
+        //TODO: Show variables on screen
+        ObjectField spriteField = new ObjectField();
+        spriteField.label = "Sprite";
+        spriteField.objectType = typeof(Sprite);
+        spriteField.value = pEffect.GetComponent<SpriteRenderer>().sprite;
+
+        IntegerField layerField = new IntegerField();
+        layerField.label = "Layer";
+        layerField.value = pEffect.GetComponent<SpriteRenderer>().sortingOrder;
+
+        Slider speedField = new Slider();
+        speedField.label = "Speed";
+        speedField.showInputField = true;
+        speedField.value = pEffect.Speed;
+
+        Toggle repeatToggle = new Toggle();
+        repeatToggle.label = "Repeatable";
+        repeatToggle.value = pEffect.isRepeating;
+
+        Toggle randomToggle = new Toggle();
+        randomToggle.label = "Repeat Random";
+        randomToggle.value = pEffect.isRepeatingRandom;
+
+        Button updateButton = new Button();
+        updateButton.text = "Update Values";
+        updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, spriteField, layerField, speedField, repeatToggle, randomToggle); };
+
+        rightPane.Add(spriteField);
+        rightPane.Add(layerField);
+        rightPane.Add(speedField);
+        rightPane.Add(repeatToggle);
+        rightPane.Add(randomToggle);
+        rightPane.Add(updateButton);
+    }
+
+    private void UpdateVariables(ParallaxEffect pEffect, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom)
+    {
+        SpriteRenderer renderer = pEffect.transform.GetComponent<SpriteRenderer>();
+        if (renderer == null) Debug.LogError("SpriteRenderer component not found, are you sure the Transform contains a SpriteRenderer component", this);
+
+        renderer.sprite = pObjField.value as Sprite;
+        renderer.sortingOrder = pLayer.value;
+
+        pEffect.Speed = pSpeed.value;
+        pEffect.isRepeating = pRepeat.value;
+        pEffect.isRepeatingRandom = pRandom.value;
+    }
 }

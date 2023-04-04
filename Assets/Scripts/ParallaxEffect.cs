@@ -5,10 +5,11 @@ using UnityEngine;
 [ExecuteAlways]
 public class ParallaxEffect : MonoBehaviour
 {
-    [Range(0f, 1f)]
+    [HideInInspector]
     public float Speed;
-    [Tooltip("If set to true, the image will repeat itself.\nBest used for an endless background")]
+    [HideInInspector]
     public bool isRepeating = true;
+    [HideInInspector]
     public bool isRepeatingRandom = false;
 
     private float startPosition;
