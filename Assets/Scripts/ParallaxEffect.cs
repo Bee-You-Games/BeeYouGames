@@ -5,11 +5,11 @@ using UnityEngine;
 [ExecuteAlways]
 public class ParallaxEffect : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public float Speed;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isRepeating = true;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isRepeatingRandom = false;
 
     private float startPosition;

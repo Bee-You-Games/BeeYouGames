@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using System.Linq;
 using UnityEditor.UIElements;
+using System;
 
 public class ParallaxTool : EditorWindow
 {
@@ -18,8 +19,9 @@ public class ParallaxTool : EditorWindow
     private GUIContent content = new GUIContent("editSpace");
     private ListView leftPane;
     private VisualElement rightPane;
+    private ParallaxEffect currentSelection;
 
-    private float layoutHeight;
+    private Dictionary<ParallaxEffect, Label> effects = new Dictionary<ParallaxEffect, Label>();
 
     public Sprite[] sprites;
 
@@ -91,7 +93,7 @@ public class ParallaxTool : EditorWindow
         float speed = speedField.value;
 
         bool isRepeatable = repeatToggle.value;
-
+        
         bool isRandom = randomToggle.value;
 
         CreateObj(sprite, layer, speed, isRepeatable, isRandom);
@@ -121,23 +123,37 @@ public class ParallaxTool : EditorWindow
 
     private void DeleteEntireList()
     {
-        Debug.Log("Deleting Layers");
+        if (parallaxLayers.Count <= 0) return;
+
+        foreach (ParallaxEffect effect in parallaxLayers)
+        {
+            effect.OnDestruction -= RemoveFromList;
+            DestroyImmediate(effect.gameObject);
+        }
+
         parallaxLayers.Clear();
         parallaxLayers.TrimExcess();
+        so.Update();
+        
+        rightPane.Clear();
         UpdateListView();
     }
 
     private void HandleRemoveButton()
     {
-        
+        if (currentSelection == null) return;
+        RemoveFromList(currentSelection);
     }
 
     private void RemoveFromList(ParallaxEffect pParEffect)
     {
         parallaxLayers.Remove(pParEffect);
+        parallaxLayers.TrimExcess();
         so.Update();
         pParEffect.OnDestruction -= RemoveFromList;
+        DestroyImmediate(pParEffect.gameObject);
         UpdateListView();
+        rightPane.Clear();
     }
 
     private void UpdateListView()
@@ -148,7 +164,11 @@ public class ParallaxTool : EditorWindow
         if (listObjects.Length > 0)
         {
             leftPane.makeItem = () => new Label();
-            leftPane.bindItem = (item, index) => { (item as Label).text = listObjects[index].name; };
+            leftPane.bindItem = (item, index) => 
+            {
+                if((index <= listObjects.Length - 1) && listObjects[index] != null)
+                    (item as Label).text = listObjects[index].name;
+            };
             leftPane.itemsSource = listObjects;
         }
         else
@@ -163,6 +183,7 @@ public class ParallaxTool : EditorWindow
         rightPane.Clear();
 
         ParallaxEffect selectedItem = pSelection.First() as ParallaxEffect;
+        currentSelection = selectedItem;
         if (selectedItem == null) return;
 
         InitVariables(selectedItem);
@@ -170,7 +191,6 @@ public class ParallaxTool : EditorWindow
 
     private void InitVariables(ParallaxEffect pEffect)
     {
-        //TODO: Show variables on screen
         ObjectField spriteField = new ObjectField();
         spriteField.label = "Sprite";
         spriteField.objectType = typeof(Sprite);
