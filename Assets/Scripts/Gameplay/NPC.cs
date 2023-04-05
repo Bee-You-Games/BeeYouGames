@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NPC : AEventAgent, IInteractable
 {
+    [Header("Interaction Settings")]
     Animator animator;
     [SerializeField] private string prompt;
     public string Prompt => prompt;
+    [SerializeField] private Dialogue NPCDialogue;
     public bool Available { get; set; }
 
 	private void Awake()
@@ -23,6 +25,10 @@ public class NPC : AEventAgent, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
+        if (NPCDialogue != null)
+        {
+            InkManager.Instance.StartDialogue(NPCDialogue);
+        }
         StartCoroutine(DanceBreak());
         if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
         {

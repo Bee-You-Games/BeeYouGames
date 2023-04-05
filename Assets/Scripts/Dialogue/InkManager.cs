@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class InkManager : MonoBehaviour
 {
     [SerializeField]
-    private TextAsset inkJSON;
+    private Dialogue dialogue;
     [SerializeField]
     private TextMeshProUGUI dialogueText;
     [SerializeField]
@@ -17,8 +17,6 @@ public class InkManager : MonoBehaviour
     private Transform choiceButtonParent;
     [SerializeField]
     private Image playerImage, npcImage;
-    [SerializeField]
-    private List<CharacterSpriteSO> characterSprites = new List<CharacterSpriteSO>();
 
     private Story story;
     private bool isDialogueActive = false;
@@ -39,12 +37,14 @@ public class InkManager : MonoBehaviour
             Instance = this;
         else
             Debug.LogError("Multiple instances of InkManager have been found", this);
+
+        gameObject.SetActive(false);
     }
 
     private void Start()
     {
-        StartDialogue(inkJSON);
-        UpdateDialogueText();
+        //StartDialogue(inkJSON);
+        //UpdateDialogueText();
     }
 
     private void Update()
@@ -118,7 +118,7 @@ public class InkManager : MonoBehaviour
         foreach (string tag in tags)
         {
             //Check tagtype
-            string tagType = GetSpeakerTagType(tag);
+            string tagType = GetTagType(tag);
 
             //You can implement more tags here
             switch (tagType)
@@ -135,7 +135,7 @@ public class InkManager : MonoBehaviour
         }
     }
 
-    private string GetSpeakerTagType(string pTag)
+    private string GetTagType(string pTag)
     {
         string[] tagContent = pTag.Split(':');
 
@@ -144,8 +144,6 @@ public class InkManager : MonoBehaviour
             Debug.LogError("Given tag is empty", this);
             return "ERROR";
         }
-        else if (tagContent.Length == 1)
-            return tagContent[0];
         else
             return tagContent[0];
 
@@ -170,12 +168,15 @@ public class InkManager : MonoBehaviour
 
     private void SetCharacterSprite(string pCharacterName)
     {
-        foreach (CharacterSpriteSO character in characterSprites)
+        /*
+        foreach (Dialogue dialogue in characterSprites)
         {
-            if (pCharacterName.ToLower() != character.CharacterName.ToLower()) continue;
+            if (pCharacterName.ToLower() != dialogue.CharacterName.ToLower()) continue;
 
-            npcImage.sprite = character.CharacterSprite;
+            npcImage.sprite = dialogue.CharacterSprite;
         }
+        */
+        playerImage.sprite = dialogue.CharacterASprite;
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
@@ -221,17 +222,19 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue(TextAsset pDialogueFile)
+    public void StartDialogue(Dialogue pDialogueFile)
     {
-        Debug.Log("Starting Dialogue");
-        story = new Story(pDialogueFile.text);
+        dialogue = pDialogueFile;
+        story = new Story(pDialogueFile.DialogueFile.text);
         gameObject.SetActive(true);
         isDialogueActive = true;
+        UpdateDialogueText();
         OnDialogueStart?.Invoke();
     }
 
     public void EndDialogue()
     {
+        dialogue = null;
         Debug.Log("Ending dialogue");
         EraseUI();
         gameObject.SetActive(false);

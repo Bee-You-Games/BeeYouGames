@@ -53,7 +53,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   preferredDistance: 1
   movementSpeed: 3
-  _prompt: Take me with you
+  prompt: Take me with you
 --- !u!212 &3448323408826447803
 SpriteRenderer:
   m_ObjectHideFlags: 0
