@@ -1,3 +1,7 @@
+EXTERNAL EndDialogue()
+
+
+
 -> main
 
 === main ===
@@ -11,4 +15,5 @@ Which pokemon do you choose?
         
 === chosen(pokemon) ===
 You chose {pokemon}!
+boom
 -> END

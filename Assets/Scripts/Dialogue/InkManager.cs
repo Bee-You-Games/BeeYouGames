@@ -19,6 +19,7 @@ public class InkManager : MonoBehaviour
     private Image playerImage, npcImage;
 
     private Story story;
+    private DialogueVariables dialogueVariables;
     private bool isDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
@@ -41,18 +42,12 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Start()
-    {
-        //StartDialogue(inkJSON);
-        //UpdateDialogueText();
-    }
-
     private void Update()
     {
         if (story == null) return;
         if (!isDialogueActive) return;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
             UpdateDialogueText();
     }
 
@@ -89,9 +84,8 @@ public class InkManager : MonoBehaviour
         {
             EndDialogue();
             return "";
-        }
-
-        text = story.Continue();
+        }else if(story.currentChoices.Count == 0)
+            text = story.Continue();
 
         return text;
     }
@@ -230,6 +224,7 @@ public class InkManager : MonoBehaviour
         isDialogueActive = true;
         UpdateDialogueText();
         OnDialogueStart?.Invoke();
+        Time.timeScale = 0;
     }
 
     public void EndDialogue()
@@ -240,5 +235,6 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
         isDialogueActive = false;
         OnDialogueEnd?.Invoke();
+        Time.timeScale = 1;
     }
 }
