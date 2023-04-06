@@ -13,19 +13,15 @@ public class ParallaxTool : EditorWindow
     private SerializedProperty spritesProperty;
     private SerializedProperty propLayerList;
 
-    private Transform spawnPos;
     private List<ParallaxEffect> parallaxLayers = new List<ParallaxEffect>();
 
+    private Transform spawnPos;
     private GUIContent content = new GUIContent("editSpace");
     private ListView leftPane;
     private VisualElement rightPane;
     private ParallaxEffect currentSelection;
 
-    private Dictionary<ParallaxEffect, Label> effects = new Dictionary<ParallaxEffect, Label>();
-
-    public Sprite[] sprites;
-
-    
+    private const string LAYER_TAG = "ParallaxLayer";
 
     [MenuItem("Tools/Parallax Effect")]
     public static void ShowWindow()
@@ -36,9 +32,16 @@ public class ParallaxTool : EditorWindow
     private void OnEnable()
     {
         so = new SerializedObject(this);
-        spritesProperty = so.FindProperty("sprites");
         propLayerList = so.FindProperty("parallaxLayers");
+
+        EditorApplication.playModeStateChanged += ModeChanged;
+
         SetUpControls();
+    }
+
+    private void OnDisable()
+    {
+        EditorApplication.playModeStateChanged -= ModeChanged;
     }
 
     public void CreateGUI()
@@ -53,8 +56,35 @@ public class ParallaxTool : EditorWindow
         rootVisualElement.Add(topBotSplit);
 
         UpdateListView();
+    }
 
-        
+    private void ModeChanged(PlayModeStateChange pState)
+    {
+        switch (pState)
+        {
+            //case PlayModeStateChange.EnteredEditMode:
+            //    //leftPane.ClearSelection();
+            //    rightPane.Clear();
+            //    UpdateListView();
+            //    break;
+            //case PlayModeStateChange.EnteredPlayMode:
+            //    //leftPane.ClearSelection();
+            //    rightPane.Clear();
+            //    UpdateListView();
+            //    break;
+            //case PlayModeStateChange.ExitingEditMode:
+            //    //leftPane.ClearSelection();
+            //    rightPane.Clear();
+            //    UpdateListView();
+            //    break;
+            case PlayModeStateChange.ExitingPlayMode:
+                leftPane.Rebuild();
+                //leftPane.Clear();
+                //leftPane.ClearSelection();
+                //rightPane.Clear();
+                //UpdateListView();
+                break;
+        }
     }
 
     private void SetUpControls()
@@ -104,6 +134,7 @@ public class ParallaxTool : EditorWindow
     {
         GameObject obj = new GameObject();
         obj.name = "Parallax Layer " + parallaxLayers.Count;
+        obj.transform.tag = LAYER_TAG;
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
         ParallaxEffect parEffect = obj.AddComponent<ParallaxEffect>();
 
@@ -128,7 +159,8 @@ public class ParallaxTool : EditorWindow
         foreach (ParallaxEffect effect in parallaxLayers)
         {
             effect.OnDestruction -= RemoveFromList;
-            DestroyImmediate(effect.gameObject);
+            if(effect != null)
+                DestroyImmediate(effect.gameObject);
         }
 
         parallaxLayers.Clear();

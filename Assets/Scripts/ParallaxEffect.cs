@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -14,6 +15,7 @@ public class ParallaxEffect : MonoBehaviour
 
     private float startPosition;
     private float spriteLength;
+    private CharacterController2D player;
     private Camera cam;
 
     public event System.Action<ParallaxEffect> OnDestruction;
@@ -24,6 +26,9 @@ public class ParallaxEffect : MonoBehaviour
         if (Application.isPlaying)
         {
             cam = Camera.main;
+            player = FindObjectOfType<CharacterController2D>();
+            if (player == null) Debug.LogError("Couldn't find a player object", this);
+
             startPosition = transform.position.x;
             spriteLength = GetComponent<SpriteRenderer>().bounds.size.x;
         }
@@ -40,9 +45,9 @@ public class ParallaxEffect : MonoBehaviour
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
         {
-            float temp = cam.transform.position.x * (1 - Speed);
+            float temp = player.transform.position.x * (1 - Speed);
 
-            float distance = cam.transform.position.x * Speed;
+            float distance = player.transform.position.x * Speed;
             transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
 
             if (!isRepeating) return;
