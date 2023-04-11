@@ -6,6 +6,8 @@ using UnityEditor;
 using System.Linq;
 using UnityEditor.UIElements;
 using System;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class ParallaxTool : EditorWindow
 {
@@ -38,19 +40,27 @@ public class ParallaxTool : EditorWindow
 
         EditorApplication.playModeStateChanged += ModeChanged;
         SetUpControls();
-        //LoadLayers();
+        EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList; 
+        
     }
 
     private void OnDisable()
     {
         Debug.Log("OnDisable");
         EditorApplication.playModeStateChanged -= ModeChanged;
+        EditorSceneManager.activeSceneChangedInEditMode -= ChangeLayerList;
     }
 
     public void CreateGUI()
     {
         Debug.Log("Creating GUI");
         InitGUI();
+    }
+
+    private void ChangeLayerList(Scene pCurrent, Scene pNext)
+    {
+        Debug.Log("Changing scene from " + pCurrent.name + " to " + pNext.name);
+        LoadLayers();
     }
 
     private void InitGUI()
@@ -100,12 +110,21 @@ public class ParallaxTool : EditorWindow
     private void LoadLayers()
     {
         Debug.Log("Loading Layers");
-        if(leftPane != null)
+        if (leftPane != null)
             leftPane.onSelectionChange -= OnItemSelectionChange;
 
         GameObject[] layers = GameObject.FindGameObjectsWithTag(LAYER_TAG);
 
-        if (layers.Length <= 0 || layers == null) return;
+        if (layers == null) return;
+        if (layers.Length == 0)
+        {
+            Debug.Log("No layers were found", this);
+            parallaxLayers.Clear();
+            parallaxLayers.TrimExcess();
+            so.Update();
+            UpdateListView();
+            return;
+        }
 
         Debug.Log("Gets here " + layers.Length);
 
@@ -213,6 +232,7 @@ public class ParallaxTool : EditorWindow
         parEffect.isRepeatingRandom = pRandom;
 
         so.Update();
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 
     private void DeleteEntireList()
@@ -233,7 +253,7 @@ public class ParallaxTool : EditorWindow
         parallaxLayers.Clear();
         parallaxLayers.TrimExcess();
         so.Update();
-        
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         rightPane.Clear();
         UpdateListView();
     }
@@ -255,6 +275,7 @@ public class ParallaxTool : EditorWindow
         DestroyImmediate(pParEffect.gameObject);
         UpdateListView();
         rightPane.Clear();
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 
     private void UpdateListView()
@@ -264,9 +285,6 @@ public class ParallaxTool : EditorWindow
 
         if (listObjects.Length > 0)
         {
-            Debug.Log("listObjects has " + listObjects.Length + " items");
-            Debug.Log("First object is " + listObjects[0]);
-
             leftPane.makeItem = () => new Label();
             leftPane.bindItem = (item, index) => 
             {
@@ -347,5 +365,6 @@ public class ParallaxTool : EditorWindow
         pEffect.Speed = pSpeed.value;
         pEffect.isRepeating = pRepeat.value;
         pEffect.isRepeatingRandom = pRandom.value;
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 }
