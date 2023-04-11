@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "ScriptableObjects/Dialogue", order = 1)]
 public class Dialogue : ScriptableObject
 {
+    public NPC parentNPC;
     public TextAsset DialogueFile;
     public string CharacterAName;
     public Sprite CharacterASprite;

@@ -223,6 +223,14 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(true);
         isDialogueActive = true;
         UpdateDialogueText();
+        story.BindExternalFunction("ProgressionCheck", (int pID) =>
+        {
+            ProgressionCheck(pID);
+        });
+        story.BindExternalFunction("ProgressionEvent", (int pID) =>
+        {
+            ProgressionCheck(pID);
+        });
         OnDialogueStart?.Invoke();
         Time.timeScale = 0;
     }
@@ -234,7 +242,19 @@ public class InkManager : MonoBehaviour
         EraseUI();
         gameObject.SetActive(false);
         isDialogueActive = false;
+        story.UnbindExternalFunction("ProgressionCheck");
+        story.UnbindExternalFunction("ProgressionEvent");
         OnDialogueEnd?.Invoke();
         Time.timeScale = 1;
+    }
+
+    public bool ProgressionCheck(int pID)
+    {
+        return EventManager.Instance.ProgressionCheck(pID);
+    }
+
+    public void ProgressionEvent(int pID)
+    {
+        EventManager.Instance.TriggerProgression(pID);
     }
 }

@@ -17,6 +17,8 @@ public class NPC : AEventAgent, IInteractable
         animator = GetComponent<Animator>();
         if (animator == null)
             Debug.LogWarning("NPC doesn't have animator");
+        if(NPCDialogue != null)
+            InkManager.Instance.StartDialogue(NPCDialogue);
         if (actorRole != Role.Sender)
         {
             InitReceiver();
@@ -27,7 +29,7 @@ public class NPC : AEventAgent, IInteractable
     {
         if (NPCDialogue != null)
         {
-            InkManager.Instance.StartDialogue(NPCDialogue);
+            NPCDialogue.parentNPC = this;
         }
         StartCoroutine(DanceBreak());
         if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
