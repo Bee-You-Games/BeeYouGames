@@ -220,6 +220,10 @@ public class InkManager : MonoBehaviour
     {
         dialogue = pDialogueFile;
         story = new Story(pDialogueFile.DialogueFile.text);
+
+        bool test = true;
+        story.variablesState.SetGlobal("progress", new BoolValue(test));
+
         gameObject.SetActive(true);
         isDialogueActive = true;
         UpdateDialogueText();
