@@ -1,19 +1,8 @@
 EXTERNAL EndDialogue()
-
-
+VAR progress = false
 
 -> main
 
 === main ===
-Which pokemon do you choose?
-    + [Charmander]
-        -> chosen("Charmander")
-    + [Bulbasaur]
-        -> chosen("Bulbasaur")
-    + [Squirtle]
-        -> chosen("Squirtle")
-        
-=== chosen(pokemon) ===
-You chose {pokemon}!
-boom
+wow, that's so {progress}...
 -> END
