@@ -8,6 +8,7 @@ using UnityEditor.UIElements;
 using System;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
+using PopupWindow = UnityEditor.PopupWindow;
 
 public class ParallaxTool : EditorWindow
 {
@@ -180,7 +181,33 @@ public class ParallaxTool : EditorWindow
 
         AddButton.clickable.clicked += AddToList;
         RemoveButton.clickable.clicked += HandleRemoveButton;
-        DeleteListButton.clickable.clicked += DeleteEntireList;
+
+        Debug.Log("Subscribe to delete list button");
+        DeleteListButton.clickable.clicked += delegate { SubscribePopupEvents(DeleteListButton); };
+    }
+
+    private void SubscribePopupEvents(Button pButton)
+    {
+        Debug.Log("Opening window");
+        var popupWindow = new ConfirmDelete();
+        popupWindow.OnConfirm += DeleteEntireList;
+        popupWindow.OnCancel += CloseWindow;
+        popupWindow.OnCloseWindow += UnSubscribePopupEvents;
+        
+        PopupWindow.Show(pButton.worldBound, popupWindow);
+    }
+
+    private void UnSubscribePopupEvents(ConfirmDelete pWindow)
+    {
+        pWindow.OnConfirm -= DeleteEntireList;
+        pWindow.OnCancel -= CloseWindow;
+        pWindow.OnCloseWindow -= UnSubscribePopupEvents;
+    }
+
+    private void CloseWindow(ConfirmDelete pWindow)
+    {
+        Debug.Log("Closing Window");
+        pWindow.editorWindow.Close();
     }
 
     private void AddToList()
@@ -235,7 +262,7 @@ public class ParallaxTool : EditorWindow
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 
-    private void DeleteEntireList()
+    private void DeleteEntireList(ConfirmDelete pWindow)
     {
         Debug.Log("Deleting List");
         if (parallaxLayers.Count <= 0) return;
@@ -255,7 +282,9 @@ public class ParallaxTool : EditorWindow
         so.Update();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         rightPane.Clear();
+        pWindow.editorWindow.Close();
         UpdateListView();
+
     }
 
     private void HandleRemoveButton()
