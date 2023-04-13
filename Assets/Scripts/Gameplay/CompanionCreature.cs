@@ -14,11 +14,14 @@ public class CompanionCreature : AEventAgent, IInteractable
     [SerializeField] private string prompt;
     public string Prompt => prompt;
     public bool Available { get; set; }
+    [SerializeField] private Dialogue creatureDialogue;
 
 	private void Awake()
 	{
 		Available = true;
-	}
+        if (creatureDialogue != null)
+            creatureDialogue.parentAgent = this;
+    }
 	void Update()
     {
         if (following && Vector3.Distance(transform.position, playerObject.position) > preferredDistance && !moving)
@@ -40,10 +43,15 @@ public class CompanionCreature : AEventAgent, IInteractable
 
 	public bool Interact(PlayerInteractor interactor)
 	{
-        EventSend();
+        InkManager.Instance.StartDialogue(creatureDialogue, receiverID, senderID);
+        return true;
+
+    }
+
+	public override void DialogueSuccess()
+	{
         following = true;
         Available = false;
         gameObject.layer = 0;
-        return true;
-	}
+    }
 }

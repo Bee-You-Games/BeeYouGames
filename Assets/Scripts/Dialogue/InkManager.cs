@@ -29,9 +29,6 @@ public class InkManager : MonoBehaviour
 
     public static InkManager Instance { get; private set; }
 
-    public event Action OnDialogueStart;
-    public event Action OnDialogueEnd;
-
     private void Awake()
     {
         if (Instance == null)
@@ -47,7 +44,7 @@ public class InkManager : MonoBehaviour
         if (story == null) return;
         if (!isDialogueActive) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
             UpdateDialogueText();
     }
 
@@ -216,13 +213,25 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue(Dialogue pDialogueFile)
+    public void StartDialogue(Dialogue pDialogueFile, int receiverID = 0, int senderID = 0)
     {
         dialogue = pDialogueFile;
         story = new Story(pDialogueFile.DialogueFile.text);
 
-        bool test = true;
-        story.variablesState.SetGlobal("progress", new BoolValue(test));
+        if(pDialogueFile.triggerDialogueSuccess)
+            story.BindExternalFunction("DialogueSuccess", () => { pDialogueFile.parentAgent.DialogueSuccess(); });
+        
+        
+        if (receiverID != 0)
+        {
+            story.variablesState["progress"] = ProgressionCheck(receiverID);
+            story.variablesState["receiverID"] = receiverID;
+        }
+        if (senderID != 0)
+        {
+            story.BindExternalFunction("ProgressionEvent", (int pID) => { ProgressionEvent(pID); });
+            story.variablesState["senderID"] = senderID;
+        }
 
         gameObject.SetActive(true);
         isDialogueActive = true;
@@ -231,11 +240,7 @@ public class InkManager : MonoBehaviour
         {
             ProgressionCheck(pID);
         });
-        story.BindExternalFunction("ProgressionEvent", (int pID) =>
-        {
-            ProgressionCheck(pID);
-        });
-        OnDialogueStart?.Invoke();
+        
         Time.timeScale = 0;
     }
 
@@ -248,7 +253,6 @@ public class InkManager : MonoBehaviour
         isDialogueActive = false;
         story.UnbindExternalFunction("ProgressionCheck");
         story.UnbindExternalFunction("ProgressionEvent");
-        OnDialogueEnd?.Invoke();
         Time.timeScale = 1;
     }
 

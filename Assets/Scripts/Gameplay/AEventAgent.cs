@@ -14,9 +14,9 @@ public abstract class AEventAgent : MonoBehaviour
 	[Tooltip("'Sender' and 'Both' will send an event with the set ID when EventSend() is called")]
 	[SerializeField] protected Role actorRole;
 	[Tooltip("When an event is sent from this actor, all initialized receiver EventAgents with the same ID will be activated")]
-	[SerializeField] protected int senderID;
+	[SerializeField] protected int senderID = 0;
 	[Tooltip("When an event is sent with a matching ID, this agent will be activated")]
-	[SerializeField] protected int receiverID;
+	[SerializeField] protected int receiverID = 0;
 	protected bool progressedState = false;
 
 	protected void InitReceiver()
@@ -44,5 +44,10 @@ public abstract class AEventAgent : MonoBehaviour
 	protected void EventSend()
 	{
 		EventManager.Instance.TriggerProgression(senderID);
+	}
+
+	public virtual void DialogueSuccess()
+	{
+		Debug.Log("Dialogue success triggered, override in agent to change effect");
 	}
 }

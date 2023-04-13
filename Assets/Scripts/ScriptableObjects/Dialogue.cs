@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "ScriptableObjects/Dialogue", order = 1)]
 public class Dialogue : ScriptableObject
 {
-    public NPC parentNPC;
+
+    public AEventAgent parentAgent;
+    [Tooltip("Enable this if DialogueSuccess from EventAgent should be called in the agent's dialogue")]
+    public bool triggerDialogueSuccess = false;
     public TextAsset DialogueFile;
     public string CharacterAName;
     public Sprite CharacterASprite;
