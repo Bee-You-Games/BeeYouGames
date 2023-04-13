@@ -5,8 +5,8 @@ using UnityEngine;
 public class NPC : AEventAgent, IInteractable
 {
     Animator animator;
-    [SerializeField] private string _prompt;
-    public string Prompt => _prompt;
+    [SerializeField] private string prompt;
+    public string Prompt => prompt;
     public bool Available { get; set; }
 
 	private void Awake()
@@ -14,15 +14,29 @@ public class NPC : AEventAgent, IInteractable
         Available = true;
         animator = GetComponent<Animator>();
         if (animator == null)
-            Debug.LogWarning("interactable object doesn't have animator");
+            Debug.LogWarning("NPC doesn't have animator");
+        if (actorRole != Role.Sender)
+        {
+            InitReceiver();
+        }
     }
 
     public bool Interact(PlayerInteractor interactor)
     {
+        StartCoroutine(DanceBreak());
+        if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
+        {
+            EventSend();
+        }
+        return true;
+    }
+
+    IEnumerator DanceBreak()
+    {
         animator.SetBool("Interacting", true);
         Available = false;
-        EventSend();
-
-        return true;
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("Interacting", false);
+        Available = true;
     }
 }

@@ -12,9 +12,8 @@ public class ProgressionWall : AEventAgent
         InitReceiver();
     }
 
-    protected override void EventReceive(int pID) 
+    protected override void OnReceive() 
     {
-        if(pID == eventID)
         transform.LeanMoveLocalY(transform.position.y + wallMovement, 1);
     }
 }
