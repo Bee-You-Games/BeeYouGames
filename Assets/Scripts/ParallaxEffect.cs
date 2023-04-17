@@ -16,8 +16,6 @@ public class ParallaxEffect : MonoBehaviour
     private float startPosition;
     private float spriteLength;
 
-    private bool isInitialized = false;
-
     private CharacterController2D player;
     private Camera cam;
 
