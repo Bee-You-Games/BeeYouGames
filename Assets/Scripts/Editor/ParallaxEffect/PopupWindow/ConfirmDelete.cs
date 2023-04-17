@@ -16,6 +16,9 @@ public class ConfirmDelete : PopupWindowContent
         return new Vector2(200, 100);
     }
 
+    /// <summary>
+    /// This function is only here, because class inherits from PopupWindowContent and it needs to implement the OnGUI method
+    /// </summary>
     public override void OnGUI(Rect rect)
     {
     }

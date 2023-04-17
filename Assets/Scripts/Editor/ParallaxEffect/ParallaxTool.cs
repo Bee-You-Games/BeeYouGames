@@ -77,8 +77,7 @@ public class ParallaxTool : EditorWindow
         rootVisualElement.Add(topBotSplit);
 
         leftPane.onSelectionChange += OnItemSelectionChange;
-
-        //LoadLayers();
+        
         UpdateListView();
     }
 
@@ -87,7 +86,6 @@ public class ParallaxTool : EditorWindow
         Debug.Log("Reloading GUI");
         leftPane.onSelectionChange -= OnItemSelectionChange;
         rootVisualElement.Remove(topBotSplit);
-        //InitGUI();
     }
 
     private void ModeChanged(PlayModeStateChange pState)
