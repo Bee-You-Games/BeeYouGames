@@ -17,7 +17,7 @@ public class ConfirmDelete : PopupWindowContent
     }
 
     /// <summary>
-    /// This function is only here, because class inherits from PopupWindowContent and it needs to implement the OnGUI method
+    /// This method is only here, because class inherits from PopupWindowContent and it needs to implement the OnGUI method
     /// </summary>
     public override void OnGUI(Rect rect)
     {

@@ -18,6 +18,10 @@ public class ParallaxEffect : MonoBehaviour
     private CharacterController2D player;
     private Camera cam;
 
+    private GameObject leftDuplicate;
+    private GameObject rightDuplicate;
+    
+
     public event System.Action<ParallaxEffect> OnDestruction;
 
     private void Start()
@@ -32,12 +36,28 @@ public class ParallaxEffect : MonoBehaviour
             startPosition = transform.position.x;
             spriteLength = GetComponent<SpriteRenderer>().bounds.size.x;
         }
+
+        if (isRepeating)
+        {
+            leftDuplicate = new GameObject($"{this.name} left");
+            leftDuplicate.transform.SetParent(this.transform);
+            var spriteRendererLeft = leftDuplicate.AddComponent<SpriteRenderer>();
+            spriteRendererLeft.sprite = GetComponent<SpriteRenderer>().sprite;
+            leftDuplicate.transform.position = transform.position - new Vector3(GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+
+            rightDuplicate = new GameObject($"{this.name} right");
+            rightDuplicate.transform.SetParent(this.transform);
+            var spriteRendererRight = rightDuplicate.AddComponent<SpriteRenderer>();
+            spriteRendererRight.sprite = GetComponent<SpriteRenderer>().sprite;
+            rightDuplicate.transform.position = transform.position + new Vector3(GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+        }
+
     }
 
     private void OnDestroy()
     {
-        //TODO make sure this gets called in editor time aswell
-        OnDestruction?.Invoke(this);   
+        if(!Application.isPlaying)
+            OnDestruction?.Invoke(this);
     }
 
     private void Update()
