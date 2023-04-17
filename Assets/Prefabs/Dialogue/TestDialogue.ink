@@ -1,7 +1,5 @@
-EXTERNAL ProgressionEvent(id)
+EXTERNAL ProgressionEvent()
 VAR progress = false
-VAR senderID = 0
-VAR receiverID = 0
 
 -> main
 
@@ -21,5 +19,5 @@ you see that little guy over there on the left? can you get him over here for me
 
 === continue ===
 wow that's a cool little guy you got there, you may proceed
-~ ProgressionEvent(senderID)
+~ ProgressionEvent()
 -> END

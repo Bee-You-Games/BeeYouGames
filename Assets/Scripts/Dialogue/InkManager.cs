@@ -29,6 +29,8 @@ public class InkManager : MonoBehaviour
 
     public static InkManager Instance { get; private set; }
 
+    private int currentSenderID = 0;
+    private int currentReceiverID = 0;
     private void Awake()
     {
         if (Instance == null)
@@ -159,14 +161,6 @@ public class InkManager : MonoBehaviour
 
     private void SetCharacterSprite(string pCharacterName)
     {
-        /*
-        foreach (Dialogue dialogue in characterSprites)
-        {
-            if (pCharacterName.ToLower() != dialogue.CharacterName.ToLower()) continue;
-
-            npcImage.sprite = dialogue.CharacterSprite;
-        }
-        */
         playerImage.sprite = dialogue.CharacterASprite;
     }
 
@@ -215,32 +209,18 @@ public class InkManager : MonoBehaviour
 
     public void StartDialogue(Dialogue pDialogueFile, int receiverID = 0, int senderID = 0)
     {
+        currentReceiverID = receiverID;
+        currentSenderID = senderID;
         dialogue = pDialogueFile;
         story = new Story(pDialogueFile.DialogueFile.text);
 
-        if(pDialogueFile.triggerDialogueSuccess)
-            story.BindExternalFunction("DialogueSuccess", () => { pDialogueFile.parentAgent.DialogueSuccess(); });
-        
-        
-        if (receiverID != 0)
-        {
-            story.variablesState["progress"] = ProgressionCheck(receiverID);
-            story.variablesState["receiverID"] = receiverID;
-        }
-        if (senderID != 0)
-        {
-            story.BindExternalFunction("ProgressionEvent", (int pID) => { ProgressionEvent(pID); });
-            story.variablesState["senderID"] = senderID;
-        }
+        DialogueVariablesSetup();
 
         gameObject.SetActive(true);
         isDialogueActive = true;
         UpdateDialogueText();
-        story.BindExternalFunction("ProgressionCheck", (int pID) =>
-        {
-            ProgressionCheck(pID);
-        });
         
+        //Essentially pauses the game, maybe change later for another less brute-force method of pausing
         Time.timeScale = 0;
     }
 
@@ -251,18 +231,36 @@ public class InkManager : MonoBehaviour
         EraseUI();
         gameObject.SetActive(false);
         isDialogueActive = false;
-        story.UnbindExternalFunction("ProgressionCheck");
-        story.UnbindExternalFunction("ProgressionEvent");
+        if (currentSenderID != 0)
+        {
+            story.UnbindExternalFunction("ProgressionEvent");
+        }
+        currentReceiverID = 0;
+        currentSenderID = 0;
         Time.timeScale = 1;
     }
 
+    private void DialogueVariablesSetup()
+    {
+        if (dialogue.triggerDialogueSuccess)
+            story.BindExternalFunction("DialogueSuccess", () => { dialogue.parentAgent.DialogueSuccess(); });
+
+        if (currentReceiverID != 0)
+        {
+            ChangeInkVariable("progress", ProgressionCheck(currentReceiverID));
+        }
+        if (currentSenderID != 0)
+        {
+            story.BindExternalFunction("ProgressionEvent", (int pID) => { ProgressionEvent(); });
+        }
+    }
     public bool ProgressionCheck(int pID)
     {
         return EventManager.Instance.ProgressionCheck(pID);
     }
 
-    public void ProgressionEvent(int pID)
+    public void ProgressionEvent()
     {
-        EventManager.Instance.TriggerProgression(pID);
+        EventManager.Instance.TriggerProgression(currentSenderID);
     }
 }
