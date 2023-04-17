@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class InkManager : MonoBehaviour
 {
     [SerializeField]
-    private Dialogue dialogue;
+    private SODialogue dialogue;
     [SerializeField]
     private TextMeshProUGUI dialogueText;
     [SerializeField]
@@ -122,7 +122,7 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-                    SetCharacterSprite(GetSpeakerTagValue(tag));
+                    SetCharacterPortrait(GetSpeakerTagValue(tag));
                     break;
             }
         }
@@ -159,9 +159,17 @@ public class InkManager : MonoBehaviour
         } 
     }
 
-    private void SetCharacterSprite(string pCharacterName)
+    private void PortraitSetup()
     {
         playerImage.sprite = dialogue.CharacterASprite;
+        npcImage.sprite = dialogue.CharacterBSprite;
+    }
+
+    
+    private void SetCharacterPortrait(string pCharacterName)
+    {
+        //This function needs to be reworked to support multiple sprites for different emotions in the portraits during dialogue.
+        //Still need to figure out how to store different emotion sprites
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
@@ -207,7 +215,7 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue(Dialogue pDialogueFile, int receiverID = 0, int senderID = 0)
+    public void StartDialogue(SODialogue pDialogueFile, int receiverID = 0, int senderID = 0)
     {
         currentReceiverID = receiverID;
         currentSenderID = senderID;
@@ -215,6 +223,7 @@ public class InkManager : MonoBehaviour
         story = new Story(pDialogueFile.DialogueFile.text);
 
         DialogueVariablesSetup();
+        PortraitSetup();
 
         gameObject.SetActive(true);
         isDialogueActive = true;
@@ -251,7 +260,7 @@ public class InkManager : MonoBehaviour
         }
         if (currentSenderID != 0)
         {
-            story.BindExternalFunction("ProgressionEvent", (int pID) => { ProgressionEvent(); });
+            story.BindExternalFunction("ProgressionEvent", () => { ProgressionEvent(); });
         }
     }
     public bool ProgressionCheck(int pID)

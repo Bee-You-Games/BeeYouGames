@@ -1,6 +1,5 @@
-EXTERNAL ProgressionEvent(id)
+EXTERNAL ProgressionEvent()
 EXTERNAL DialogueSuccess()
-VAR senderID = 0
 
 -> main
 
@@ -13,7 +12,7 @@ yo, what's up. are you cool?
     
 === cool ===
 nice, i'll join you then since you are cool 
-~ ProgressionEvent(senderID)
+~ ProgressionEvent()
 ~ DialogueSuccess()
 
 -> END

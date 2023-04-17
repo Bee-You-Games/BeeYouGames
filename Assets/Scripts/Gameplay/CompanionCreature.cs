@@ -14,7 +14,7 @@ public class CompanionCreature : AEventAgent, IInteractable
     [SerializeField] private string prompt;
     public string Prompt => prompt;
     public bool Available { get; set; }
-    [SerializeField] private Dialogue creatureDialogue;
+    [SerializeField] private SODialogue creatureDialogue;
 
 	private void Awake()
 	{

@@ -8,7 +8,7 @@ public class NPC : AEventAgent, IInteractable
     Animator animator;
     [SerializeField] private string prompt;
     public string Prompt => prompt;
-    [SerializeField] private Dialogue NPCDialogue;
+    [SerializeField] private SODialogue NPCDialogue;
     public bool Available { get; set; }
 
 	private void Awake()
