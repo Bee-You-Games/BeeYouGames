@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Label text="Are you sure\nyou want to delete all layers?" display-tooltip-when-elided="true" name="Title" style="justify-content: flex-start; margin-left: auto; margin-right: auto; -unity-text-align: upper-center;" />
+    <ui:Button text="Confirm" display-tooltip-when-elided="true" name="YesBtn" style="flex-direction: row; position: absolute; top: 50px; left: 30px; height: 33px; width: 50px; background-color: rgba(52, 128, 53, 255);" />
+    <ui:Button text="Cancel" display-tooltip-when-elided="true" name="NoBtn" style="position: absolute; height: 35px; width: 50px; top: 50px; left: 120px; background-color: rgba(159, 28, 28, 255);" />
+</ui:UXML>

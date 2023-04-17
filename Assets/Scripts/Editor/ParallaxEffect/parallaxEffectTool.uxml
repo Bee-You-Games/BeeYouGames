@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/ParallaxEffect/parallaxEffectTool.uss?fileID=7433441132597879392&amp;guid=7f40f6d7efd3c8448ae73d1e8f136604&amp;type=3#parallaxEffectTool" />
+    <ui:Label text="Parallax Effect" display-tooltip-when-elided="true" style="align-items: auto; height: 29px; width: 91px; -unity-text-align: middle-center; white-space: nowrap; -unity-font-style: bold; margin-left: auto; margin-right: auto;" />
+    <uie:ObjectField label="Sprite" type="UnityEngine.Sprite, UnityEngine.CoreModule" name="SpriteField" />
+    <uie:IntegerField label="Layer" value="-1" name="LayerField" style="height: 19px;" />
+    <ui:Slider picking-mode="Ignore" label="Speed" value="0.5" high-value="1" show-input-field="true" direction="Horizontal" name="SpeedField" />
+    <ui:Toggle label="Repeatable" name="RepeatableToggle" />
+    <ui:Toggle label="Repeat Random" name="RandomToggle" />
+    <ui:Button text="+" display-tooltip-when-elided="true" tooltip="Add Sprite to the list" name="AddButton" style="height: 29px; width: 34px; font-size: 30px; white-space: nowrap; -unity-text-align: middle-center; justify-content: flex-start; margin-left: auto;" />
+    <ui:Label text="Layer Overview" display-tooltip-when-elided="true" style="margin-left: auto; margin-right: auto; -unity-font-style: bold;" />
+    <ui:Foldout text="Advanced Settings" name="AdvSettings">
+        <ui:Button text="Delete All Layers" display-tooltip-when-elided="true" name="ListDeleteBtn" />
+    </ui:Foldout>
+    <ui:Button text="-" display-tooltip-when-elided="true" tooltip="Remove Sprite from the list" name="RemoveButton" style="height: 29px; width: 34px; font-size: 30px; white-space: nowrap; -unity-text-align: middle-center; justify-content: flex-start; margin-left: auto;" />
+</ui:UXML>
