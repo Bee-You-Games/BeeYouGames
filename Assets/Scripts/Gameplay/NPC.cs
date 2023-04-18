@@ -31,11 +31,11 @@ public class NPC : AEventAgent, IInteractable
         {
             InkManager.Instance.StartDialogue(NPCDialogue, receiverID, senderID);
         }
-        StartCoroutine(DanceBreak());
-        if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
+        else if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
         {
-            //EventSend();
+            EventSend();
         }
+        StartCoroutine(DanceBreak());
         return true;
     }
 

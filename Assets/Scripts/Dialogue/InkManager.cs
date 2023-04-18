@@ -19,7 +19,6 @@ public class InkManager : MonoBehaviour
     private Image playerImage, npcImage;
 
     private Story story;
-    private DialogueVariables dialogueVariables;
     private bool isDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
@@ -103,6 +102,8 @@ public class InkManager : MonoBehaviour
         }
     }
 
+    //Tags are currently unused, I am planning to use them for changing the portraits depending on
+    //emotion but this will only be added when CharacterManager is implemented
     private void HandleTextTags(string pText)
     {
         List<string> tags = story.currentTags;
@@ -168,8 +169,7 @@ public class InkManager : MonoBehaviour
     
     private void SetCharacterPortrait(string pCharacterName)
     {
-        //This function needs to be reworked to support multiple sprites for different emotions in the portraits during dialogue.
-        //Still need to figure out how to store different emotion sprites
+        //This function will be used to pick out the sprite from CharacterManager, and will be called by tags
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
