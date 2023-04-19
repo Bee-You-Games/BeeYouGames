@@ -19,7 +19,7 @@ public class InkManager : MonoBehaviour
     private Image playerImage, npcImage;
 
     private Story story;
-    private bool isDialogueActive = false;
+    public bool isDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
@@ -45,11 +45,9 @@ public class InkManager : MonoBehaviour
         if (story == null) return;
         if (!isDialogueActive) return;
 
-        if (Input.GetMouseButtonDown(1))
-            UpdateDialogueText();
     }
 
-    private void UpdateDialogueText()
+    public void UpdateDialogueText()
     {
         Debug.Log("Updating text");
         EraseUI();
