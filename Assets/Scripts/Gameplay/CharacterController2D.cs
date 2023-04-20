@@ -67,7 +67,7 @@ public class CharacterController2D : MonoBehaviour
     private void OnTap() 
     {
         Debug.Log("tapap");
-        if (InkManager.Instance.isDialogueActive)
+        if (InkManager.Instance.IsDialogueActive)
         {
             InkManager.Instance.UpdateDialogueText();
         }

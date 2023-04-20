@@ -19,7 +19,7 @@ public class InkManager : MonoBehaviour
     private Image playerImage, npcImage;
 
     private Story story;
-    public bool isDialogueActive = false;
+    public bool IsDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
@@ -43,7 +43,7 @@ public class InkManager : MonoBehaviour
     private void Update()
     {
         if (story == null) return;
-        if (!isDialogueActive) return;
+        if (!IsDialogueActive) return;
 
     }
 
@@ -99,9 +99,11 @@ public class InkManager : MonoBehaviour
             button.transform.SetParent(choiceButtonParent, false);
         }
     }
+    /// <summary>
+    /// Tags are currently unused, I am planning to use them for changing the portraits depending on emotion but this will only be added when CharacterManager is implemented
+    /// </summary>
+    /// <param name="pText"></param>
 
-    //Tags are currently unused, I am planning to use them for changing the portraits depending on
-    //emotion but this will only be added when CharacterManager is implemented
     private void HandleTextTags(string pText)
     {
         List<string> tags = story.currentTags;
@@ -224,7 +226,7 @@ public class InkManager : MonoBehaviour
         PortraitSetup();
 
         gameObject.SetActive(true);
-        isDialogueActive = true;
+        IsDialogueActive = true;
         UpdateDialogueText();
         
         //Essentially pauses the game, maybe change later for another less brute-force method of pausing
@@ -237,7 +239,7 @@ public class InkManager : MonoBehaviour
         Debug.Log("Ending dialogue");
         EraseUI();
         gameObject.SetActive(false);
-        isDialogueActive = false;
+        IsDialogueActive = false;
         if (currentSenderID != 0)
         {
             story.UnbindExternalFunction("ProgressionEvent");
