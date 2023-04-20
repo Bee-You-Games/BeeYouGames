@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class InkManager : MonoBehaviour
 {
     [SerializeField]
-    private TextAsset inkJSON;
+    private SODialogue dialogue;
     [SerializeField]
     private TextMeshProUGUI dialogueText;
     [SerializeField]
@@ -17,11 +17,9 @@ public class InkManager : MonoBehaviour
     private Transform choiceButtonParent;
     [SerializeField]
     private Image playerImage, npcImage;
-    [SerializeField]
-    private List<CharacterSpriteSO> characterSprites = new List<CharacterSpriteSO>();
 
     private Story story;
-    private bool isDialogueActive = false;
+    public bool IsDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
@@ -30,33 +28,26 @@ public class InkManager : MonoBehaviour
 
     public static InkManager Instance { get; private set; }
 
-    public event Action OnDialogueStart;
-    public event Action OnDialogueEnd;
-
+    private int currentSenderID = 0;
+    private int currentReceiverID = 0;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
             Debug.LogError("Multiple instances of InkManager have been found", this);
-    }
 
-    private void Start()
-    {
-        StartDialogue(inkJSON);
-        UpdateDialogueText();
+        gameObject.SetActive(false);
     }
 
     private void Update()
     {
         if (story == null) return;
-        if (!isDialogueActive) return;
+        if (!IsDialogueActive) return;
 
-        if (Input.GetMouseButtonDown(1))
-            UpdateDialogueText();
     }
 
-    private void UpdateDialogueText()
+    public void UpdateDialogueText()
     {
         Debug.Log("Updating text");
         EraseUI();
@@ -89,9 +80,8 @@ public class InkManager : MonoBehaviour
         {
             EndDialogue();
             return "";
-        }
-
-        text = story.Continue();
+        }else if(story.currentChoices.Count == 0)
+            text = story.Continue();
 
         return text;
     }
@@ -109,6 +99,10 @@ public class InkManager : MonoBehaviour
             button.transform.SetParent(choiceButtonParent, false);
         }
     }
+    /// <summary>
+    /// Tags are currently unused, I am planning to use them for changing the portraits depending on emotion but this will only be added when CharacterManager is implemented
+    /// </summary>
+    /// <param name="pText"></param>
 
     private void HandleTextTags(string pText)
     {
@@ -118,7 +112,7 @@ public class InkManager : MonoBehaviour
         foreach (string tag in tags)
         {
             //Check tagtype
-            string tagType = GetSpeakerTagType(tag);
+            string tagType = GetTagType(tag);
 
             //You can implement more tags here
             switch (tagType)
@@ -129,13 +123,13 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-                    SetCharacterSprite(GetSpeakerTagValue(tag));
+                    SetCharacterPortrait(GetSpeakerTagValue(tag));
                     break;
             }
         }
     }
 
-    private string GetSpeakerTagType(string pTag)
+    private string GetTagType(string pTag)
     {
         string[] tagContent = pTag.Split(':');
 
@@ -144,8 +138,6 @@ public class InkManager : MonoBehaviour
             Debug.LogError("Given tag is empty", this);
             return "ERROR";
         }
-        else if (tagContent.Length == 1)
-            return tagContent[0];
         else
             return tagContent[0];
 
@@ -168,14 +160,16 @@ public class InkManager : MonoBehaviour
         } 
     }
 
-    private void SetCharacterSprite(string pCharacterName)
+    private void PortraitSetup()
     {
-        foreach (CharacterSpriteSO character in characterSprites)
-        {
-            if (pCharacterName.ToLower() != character.CharacterName.ToLower()) continue;
+        playerImage.sprite = dialogue.CharacterASprite;
+        npcImage.sprite = dialogue.CharacterBSprite;
+    }
 
-            npcImage.sprite = character.CharacterSprite;
-        }
+    
+    private void SetCharacterPortrait(string pCharacterName)
+    {
+        //This function will be used to pick out the sprite from CharacterManager, and will be called by tags
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
@@ -221,21 +215,61 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue(TextAsset pDialogueFile)
+    public void StartDialogue(SODialogue pDialogueFile, int receiverID = 0, int senderID = 0)
     {
-        Debug.Log("Starting Dialogue");
-        story = new Story(pDialogueFile.text);
+        currentReceiverID = receiverID;
+        currentSenderID = senderID;
+        dialogue = pDialogueFile;
+        story = new Story(pDialogueFile.DialogueFile.text);
+
+        DialogueVariablesSetup();
+        PortraitSetup();
+
         gameObject.SetActive(true);
-        isDialogueActive = true;
-        OnDialogueStart?.Invoke();
+        IsDialogueActive = true;
+        UpdateDialogueText();
+        
+        //Essentially pauses the game, maybe change later for another less brute-force method of pausing
+        Time.timeScale = 0;
     }
 
     public void EndDialogue()
     {
+        dialogue = null;
         Debug.Log("Ending dialogue");
         EraseUI();
         gameObject.SetActive(false);
-        isDialogueActive = false;
-        OnDialogueEnd?.Invoke();
+        IsDialogueActive = false;
+        if (currentSenderID != 0)
+        {
+            story.UnbindExternalFunction("ProgressionEvent");
+        }
+        currentReceiverID = 0;
+        currentSenderID = 0;
+        Time.timeScale = 1;
+    }
+
+    private void DialogueVariablesSetup()
+    {
+        if (dialogue.triggerDialogueSuccess)
+            story.BindExternalFunction("DialogueSuccess", () => { dialogue.parentAgent.DialogueSuccess(); });
+
+        if (currentReceiverID != 0)
+        {
+            ChangeInkVariable("progress", ProgressionCheck(currentReceiverID));
+        }
+        if (currentSenderID != 0)
+        {
+            story.BindExternalFunction("ProgressionEvent", () => { ProgressionEvent(); });
+        }
+    }
+    public bool ProgressionCheck(int pID)
+    {
+        return EventManager.Instance.ProgressionCheck(pID);
+    }
+
+    public void ProgressionEvent()
+    {
+        EventManager.Instance.TriggerProgression(currentSenderID);
     }
 }

@@ -41,7 +41,9 @@ public class CharacterController2D : MonoBehaviour
         //Camera movement
         Vector3 cameraPosition = cam.transform.position;
         cameraPosition.x = playerBody.position.x;
-        cam.transform.position = cameraPosition;        
+        cam.transform.position = cameraPosition;
+
+        
     }
 
     private void Movement(Vector3 pMovementVelocity)
@@ -58,6 +60,16 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     private void OnInteract()
     {
+        Debug.Log("interac");
         interactor.Interact();
+    }
+
+    private void OnTap() 
+    {
+        Debug.Log("tapap");
+        if (InkManager.Instance.IsDialogueActive)
+        {
+            InkManager.Instance.UpdateDialogueText();
+        }
     }
 }
