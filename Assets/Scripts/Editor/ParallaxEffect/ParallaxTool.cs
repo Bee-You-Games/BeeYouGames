@@ -41,7 +41,8 @@ public class ParallaxTool : EditorWindow
 
         EditorApplication.playModeStateChanged += ModeChanged;
         SetUpControls();
-        EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList; 
+        EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList;
+        LoadLayers();
         
     }
 
