@@ -1,73 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using System;
 
-public class SpamTapping : MonoBehaviour
+public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 {
-    [SerializeField][Range(0, 100)]
-    private int tapAmount = 10;
-    [SerializeField][Range(0, 100)][Tooltip("Time in seconds")]
-    private int tapTime = 10;
+    //[SerializeField][Range(0f, 10f)]
+    //private float mashDelay = 0.5f;
     [SerializeField]
-    private Button buttonPrefab;
+    [Range(1, 1000)]
+    private int tapGoal = 10;
+    [SerializeField]
+    private GameObject UIPanel;
+    [SerializeField]
+    private string prompt;
 
-    private Canvas canvas;
-    private GameObject canvasObj;
+    private int currentTaps = 0;
 
-    private int currentTapAmount = 0;
+    float mash;
+    bool started;
+
+    public UnityEvent OnComplete;
+    public UnityEvent OnFailure;
+
+    public string Prompt => prompt;
+
+    public bool Available { get; set; }
 
     private void Start()
     {
-        currentTapAmount = 0;
+        //mash = mashDelay;
+        UIPanel.SetActive(false);
+        currentTaps = 0;
+    }
+
+    private void Update()
+    {
+        if (started)
+            HandleTappping();
     }
 
     public void StartTapping()
     {
-        HandleTapping();
+        UIPanel.SetActive(true);
+        started = true;
     }
 
-    public void EndTapping()
+    public void HandleTappping()
     {
-        buttonPrefab.onClick.RemoveListener(AddTap);
-        Destroy(canvasObj);
-    }
+        mash -= Time.deltaTime;
 
-    private void AddTap()
-    {
-        if (currentTapAmount < tapAmount)
-            currentTapAmount++;
-        else
-            StopCoroutine(TapTimer());
-    }
-
-    private void InitObjects()
-    {
-        if (canvasObj != null) return;
-
-        canvasObj = new GameObject("Canvas");
-        canvas = canvasObj.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasObj.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        canvasObj.AddComponent<GraphicRaycaster>();
-
-
-        GameObject tapButton = Instantiate(buttonPrefab.gameObject) as GameObject;
-        buttonPrefab.onClick.AddListener(AddTap);
-        tapButton.transform.SetParent(canvas.transform);
-    }
-
-    private void HandleTapping()
-    {
-        InitObjects();
-        StartCoroutine(TapTimer());
-    }
-
-    private IEnumerator TapTimer()
-    {
-        while (currentTapAmount < tapAmount)
+        if (Input.GetMouseButtonDown(0))
         {
-            yield return new WaitForSeconds(1);
+            //mash = mashDelay;
+            currentTaps++;
+            CheckTaps();
         }
+
+        if (mash <= 0)
+        {
+            OnFailure.Invoke();
+            //Debug.Log("Mashing failed");
+            //currentTaps = 0;
+        }
+    }
+
+    public bool CheckTaps()
+    {
+        if (currentTaps >= tapGoal)
+        {
+            Debug.Log("Reached tap goal");
+            currentTaps = tapGoal;
+            OnComplete.Invoke();
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public bool Interact(PlayerInteractor interactor)
+    {
+        StartTapping();
+        return true;
     }
 }
