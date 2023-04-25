@@ -68,7 +68,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (InkManager.Instance.IsDialogueActive)
         {
-            InkManager.Instance.UpdateDialogueText();
+            InkManager.Instance.DialogueClick();
         }
     }
 }

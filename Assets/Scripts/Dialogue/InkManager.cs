@@ -47,6 +47,15 @@ public class InkManager : MonoBehaviour
 
     }
 
+    public void DialogueClick()
+    {
+        if (story.currentChoices.Count == 0)
+            UpdateDialogueText();
+        else
+            return;
+
+    }
+
     public void UpdateDialogueText()
     {
         Debug.Log("Updating text");
@@ -76,12 +85,13 @@ public class InkManager : MonoBehaviour
     {
         string text = "";
 
+        if (story.currentChoices.Count == 0)
+            text = story.Continue();
         if (!story.canContinue)
         {
             EndDialogue();
             return "";
-        }else if(story.currentChoices.Count == 0)
-            text = story.Continue();
+        }
 
         return text;
     }
