@@ -47,22 +47,4 @@ public class ExperienceBar : MonoBehaviour
         if(slider.value != targetValue)
             UpdateSlider(targetValue);
     }
-
-    private IEnumerator SliderAnimation(int pValue)
-    {
-        if (isUpdating) yield return null;
-
-        int tempValue = (int)slider.value;
-
-        isUpdating = true;
-
-        while (slider.value != pValue)
-        {
-            slider.value = Mathf.SmoothDamp(slider.value, pValue, ref currentVelocity, sliderAnimationSpeed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-            //slider.value = Mathf.Lerp(tempValue, pValue, sliderAnimationSpeed * Time.deltaTime);
-        }
-
-        isUpdating = false;
-    }
 }
