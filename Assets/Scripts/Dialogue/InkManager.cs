@@ -85,14 +85,18 @@ public class InkManager : MonoBehaviour
     {
         string text = "";
 
-        if (story.currentChoices.Count == 0)
-            text = story.Continue();
+
         if (!story.canContinue)
         {
             EndDialogue();
             return "";
         }
-
+        else if (story.currentChoices.Count == 0)
+        {
+            text = story.Continue();
+            if (text == "")
+                EndDialogue();
+        }
         return text;
     }
 
