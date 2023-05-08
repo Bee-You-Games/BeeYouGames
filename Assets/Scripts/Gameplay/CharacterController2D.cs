@@ -63,7 +63,7 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     private void OnInteract()
     {
-        if (InkManager.Instance.IsDialogueActive)
+        if (!InkManager.Instance.IsDialogueActive)
             interactor.Interact();
     }
 
