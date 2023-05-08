@@ -4,19 +4,19 @@ EXTERNAL DialogueSuccess()
 -> main
 
 === main ===
-yo, what's up. are you cool?
-*   [yea, i'm cool]
+Hi, can I come with you?
+*   [yes, sure]
     ->cool
-*   [no, i am a fool]
+*   [no, please don't]
     ->fool  
     
 === cool ===
-nice, i'll join you then since you are cool 
+Nice, I'll join you then. 
 ~ ProgressionEvent()
 ~ DialogueSuccess()
 
 -> END
 
 === fool ===
-unfortunate, see ya
+Unfortunate, see ya
 -> END
