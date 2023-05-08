@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SilTestScene.unity
-    guid: 5d717277260e60e4394f0d2162eae905
-  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 1a6a90923c8862c438ff668b31f23341
   - enabled: 1
@@ -17,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 3440f7e41871a9f44a677b69a76b9e15
+  - enabled: 1
+    path: Assets/Scenes/SilTestScene.unity
+    guid: 5d717277260e60e4394f0d2162eae905
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: ffc7564fbe29dcb48a4211eae3ebe2cc
