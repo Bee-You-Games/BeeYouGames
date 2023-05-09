@@ -7,8 +7,6 @@ using System;
 
 public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 {
-    //[SerializeField][Range(0f, 10f)]
-    //private float mashDelay = 0.5f;
     [SerializeField]
     [Range(1, 1000)]
     private int tapGoal = 10;
@@ -32,7 +30,6 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 
     private void Start()
     {
-        //mash = mashDelay;
         Available = true;
         UIPanel.SetActive(false);
         currentTaps = 0;
@@ -52,21 +49,12 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 
     public void HandleTappping()
     {
-        //mash -= Time.deltaTime;
         if (IsComplete) return;
 
         if (Input.GetMouseButtonDown(0))
         {
-            //mash = mashDelay;
             currentTaps++;
             CheckTaps();
-        }
-
-        if (mash <= 0)
-        {
-            //OnFailure.Invoke();
-            //Debug.Log("Mashing failed");
-            //currentTaps = 0;
         }
     }
 
@@ -74,7 +62,6 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
     {
         if (currentTaps >= tapGoal)
         {
-            Debug.Log("Reached tap goal");
             currentTaps = tapGoal;
             OnComplete.Invoke();
             IsComplete = true;

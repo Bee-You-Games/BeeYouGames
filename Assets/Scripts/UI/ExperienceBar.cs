@@ -30,7 +30,7 @@ public class ExperienceBar : MonoBehaviour
 
     private void UpdateSlider(int pTargetValue)
     {
-        Debug.Log("Updaing Slider");
+        Debug.Log("Updating Slider");
         slider.value = Mathf.SmoothDamp(slider.value, pTargetValue, ref currentVelocity, sliderAnimationSpeed * Time.deltaTime);
 
         foreach (Ability ability in abilityButtons)
