@@ -43,7 +43,7 @@ public class InkManager : MonoBehaviour
     private void Update()
     {
         if (story == null) return;
-        if (!IsDialogueActive) return;
+        if (GameStateManager.Instance.CurrentGameState != GameState.Dialogue) return;
 
     }
 
@@ -242,9 +242,9 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(true);
         IsDialogueActive = true;
         UpdateDialogueText();
-        
+
         //Essentially pauses the game, maybe change later for another less brute-force method of pausing
-        Time.timeScale = 0;
+        GameStateManager.Instance.SetState(GameState.Dialogue);
     }
 
     public void EndDialogue()
@@ -260,7 +260,7 @@ public class InkManager : MonoBehaviour
         }
         currentReceiverID = 0;
         currentSenderID = 0;
-        Time.timeScale = 1;
+        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 
     private void DialogueVariablesSetup()
