@@ -324,8 +324,11 @@ public class ParallaxTool : EditorWindow
         else
         {
             Debug.Log("listObjects is empty");
-            rightPane.Clear();
-            leftPane.itemsSource = listObjects;
+            if(rightPane != null)
+                rightPane.Clear();
+
+            if(leftPane != null)
+                leftPane.itemsSource = listObjects;
         }
     }
 

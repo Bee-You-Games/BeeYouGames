@@ -32,6 +32,8 @@ public class Ability : MonoBehaviour, IAbility
         image = GetComponent<Image>();
         unlockedColor = image.color;
         image.color = new Color(image.color.r, image.color.g, image.color.b, startAlpha);
+
+        gameObject.SetActive(false);
     }
 
     public void OnSelect()
@@ -44,6 +46,7 @@ public class Ability : MonoBehaviour, IAbility
     {
         Debug.Log(transform.name + " unlocked");
         isUnlocked = true;
+        gameObject.SetActive(true);
         LeanTween.cancel(gameObject);
 
         LeanTween.scale(gameObject, Vector3.one * scaleModifier, animationSpeed).setEasePunch();

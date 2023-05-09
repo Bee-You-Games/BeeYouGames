@@ -14,7 +14,6 @@ public class ExperienceBar : MonoBehaviour
     private List<Ability> abilityButtons;
 
     private Slider slider;
-    private bool isUpdating = false;
 
     //I don't know what this exactly is, but I need it for the SmoothDamp
     private float currentVelocity;
@@ -31,6 +30,7 @@ public class ExperienceBar : MonoBehaviour
 
     private void UpdateSlider(int pTargetValue)
     {
+        Debug.Log("Updating Slider");
         slider.value = Mathf.SmoothDamp(slider.value, pTargetValue, ref currentVelocity, sliderAnimationSpeed * Time.deltaTime);
 
         foreach (Ability ability in abilityButtons)
