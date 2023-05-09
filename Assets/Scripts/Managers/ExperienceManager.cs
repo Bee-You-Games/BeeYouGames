@@ -22,7 +22,7 @@ public class ExperienceManager : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Pressing Button");
             AddExperience(20);

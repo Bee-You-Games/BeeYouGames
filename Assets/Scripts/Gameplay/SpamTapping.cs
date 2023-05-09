@@ -19,8 +19,8 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 
     private int currentTaps = 0;
 
-    float mash;
-    bool started;
+    private float mash;
+    private bool hasStarted;
 
     public UnityEvent OnComplete;
     public UnityEvent OnFailure;
@@ -28,29 +28,32 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
     public string Prompt => prompt;
 
     public bool Available { get; set; }
+    public bool IsComplete { get; private set; }
 
     private void Start()
     {
         //mash = mashDelay;
+        Available = true;
         UIPanel.SetActive(false);
         currentTaps = 0;
     }
 
     private void Update()
     {
-        if (started)
+        if (hasStarted)
             HandleTappping();
     }
 
     public void StartTapping()
     {
         UIPanel.SetActive(true);
-        started = true;
+        hasStarted = true;
     }
 
     public void HandleTappping()
     {
-        mash -= Time.deltaTime;
+        //mash -= Time.deltaTime;
+        if (IsComplete) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,7 +64,7 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 
         if (mash <= 0)
         {
-            OnFailure.Invoke();
+            //OnFailure.Invoke();
             //Debug.Log("Mashing failed");
             //currentTaps = 0;
         }
@@ -74,6 +77,8 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
             Debug.Log("Reached tap goal");
             currentTaps = tapGoal;
             OnComplete.Invoke();
+            IsComplete = true;
+            hasStarted = false;
             return true;
         }
         else
@@ -82,7 +87,12 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
-        StartTapping();
-        return true;
+        if (!IsComplete)
+        {
+            StartTapping();
+            return true;
+        }
+        else
+            return false;
     }
 }

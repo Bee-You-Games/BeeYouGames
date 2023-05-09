@@ -30,7 +30,7 @@ public class CharacterController2D : MonoBehaviour
 
 	void Update()
     {
-        if (!InkManager.Instance.IsDialogueActive)
+        if (InkManager.Instance != null && !InkManager.Instance.IsDialogueActive)
         {
             Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
 
