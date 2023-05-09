@@ -41,7 +41,8 @@ public class ParallaxTool : EditorWindow
 
         EditorApplication.playModeStateChanged += ModeChanged;
         SetUpControls();
-        EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList; 
+        EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList;
+        LoadLayers();
         
     }
 
@@ -370,6 +371,7 @@ public class ParallaxTool : EditorWindow
         Toggle randomToggle = new Toggle();
         randomToggle.label = "Repeat Random";
         randomToggle.value = pEffect.isRepeatingRandom;
+        Debug.LogWarning("Repeat Random doesn't work yet. Enabling or disabling doesn't change anything", this);
 
         Button updateButton = new Button();
         updateButton.text = "Update Values";

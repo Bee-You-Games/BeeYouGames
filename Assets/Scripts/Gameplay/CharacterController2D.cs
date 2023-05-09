@@ -30,18 +30,23 @@ public class CharacterController2D : MonoBehaviour
 
 	void Update()
     {
-        Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
-
-        if (input.magnitude != 0)
+        if (!InkManager.Instance.IsDialogueActive)
         {
-            Vector3 velocity = new Vector3(input.x, 0, input.y);
-            Movement(velocity);
+            Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
+
+            if (input.magnitude != 0)
+            {
+                Vector3 velocity = new Vector3(input.x, 0, input.y);
+                Movement(velocity);
+            }
         }
 
         //Camera movement
         Vector3 cameraPosition = cam.transform.position;
         cameraPosition.x = playerBody.position.x;
-        cam.transform.position = cameraPosition;        
+        cam.transform.position = cameraPosition;
+
+        
     }
 
     private void Movement(Vector3 pMovementVelocity)
@@ -58,6 +63,14 @@ public class CharacterController2D : MonoBehaviour
     /// </summary>
     private void OnInteract()
     {
-        interactor.Interact();
+        if (!InkManager.Instance.IsDialogueActive)
+            interactor.Interact();
+    }
+
+    private void OnTap() 
+    {
+        if (InkManager.Instance.IsDialogueActive)
+            InkManager.Instance.DialogueClick();
+        
     }
 }

@@ -36,18 +36,26 @@ public class ParallaxEffect : MonoBehaviour
 
             startPosition = transform.position.x;
 
-            spriteLength = GetComponent<SpriteRenderer>().bounds.size.x; if (isRepeating)
+            spriteLength = GetComponent<SpriteRenderer>().bounds.size.x;
+
+            if (isRepeating)
             {
                 leftDuplicate = new GameObject($"{this.name} left");
                 leftDuplicate.transform.SetParent(this.transform);
                 var spriteRendererLeft = leftDuplicate.AddComponent<SpriteRenderer>();
                 spriteRendererLeft.sprite = GetComponent<SpriteRenderer>().sprite;
+                spriteRendererLeft.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
+                leftDuplicate.transform.rotation = transform.rotation;
+                leftDuplicate.transform.localScale = transform.localScale;
                 leftDuplicate.transform.position = transform.position - new Vector3(GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
 
                 rightDuplicate = new GameObject($"{this.name} right");
                 rightDuplicate.transform.SetParent(this.transform);
                 var spriteRendererRight = rightDuplicate.AddComponent<SpriteRenderer>();
                 spriteRendererRight.sprite = GetComponent<SpriteRenderer>().sprite;
+                spriteRendererRight.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
+                rightDuplicate.transform.rotation = transform.rotation;
+                rightDuplicate.transform.localScale = transform.localScale;
                 rightDuplicate.transform.position = transform.position + new Vector3(GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
             }
         }

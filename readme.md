@@ -2,6 +2,8 @@
 
 This reposository stores the source project for the BeeYou Games Project.
 
+itch.io Download Link: https://beeyougames.itch.io/beeyou-games-test
+
 ## Run Locally
 
 1. Download Unity Hub 

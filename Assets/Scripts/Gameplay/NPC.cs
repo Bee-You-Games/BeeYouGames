@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class NPC : AEventAgent, IInteractable
 {
+    [Header("Interaction Settings")]
     Animator animator;
     [SerializeField] private string prompt;
     public string Prompt => prompt;
+    [SerializeField] private SODialogue NPCDialogue;
     public bool Available { get; set; }
 
 	private void Awake()
@@ -15,6 +17,8 @@ public class NPC : AEventAgent, IInteractable
         animator = GetComponent<Animator>();
         if (animator == null)
             Debug.LogWarning("NPC doesn't have animator");
+        if(NPCDialogue != null)
+            NPCDialogue.parentAgent = this;
         if (actorRole != Role.Sender)
         {
             InitReceiver();
@@ -23,11 +27,15 @@ public class NPC : AEventAgent, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
-        StartCoroutine(DanceBreak());
-        if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
+        if (NPCDialogue != null)
+        {
+            InkManager.Instance.StartDialogue(NPCDialogue, receiverID, senderID);
+        }
+        else if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
         {
             EventSend();
         }
+        StartCoroutine(DanceBreak());
         return true;
     }
 
