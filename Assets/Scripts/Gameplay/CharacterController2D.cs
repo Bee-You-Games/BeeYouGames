@@ -45,8 +45,6 @@ public class CharacterController2D : MonoBehaviour
         Vector3 cameraPosition = cam.transform.position;
         cameraPosition.x = playerBody.position.x;
         cam.transform.position = cameraPosition;
-
-        
     }
 
     private void Movement(Vector3 pMovementVelocity)
