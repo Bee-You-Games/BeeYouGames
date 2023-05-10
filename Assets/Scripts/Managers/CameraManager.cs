@@ -4,7 +4,7 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    public static CameraManager Instance;
+    public static CameraManager Instance { get; private set; }
     public CinemachineVirtualCamera PlayerCam { get; private set; }
     [SerializeField]
     private PlayerCamTarget camTarget;
