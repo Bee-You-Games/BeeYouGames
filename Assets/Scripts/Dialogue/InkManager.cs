@@ -243,7 +243,6 @@ public class InkManager : MonoBehaviour
         IsDialogueActive = true;
         UpdateDialogueText();
 
-        //Essentially pauses the game, maybe change later for another less brute-force method of pausing
         GameStateManager.Instance.SetState(GameState.Dialogue);
     }
 
