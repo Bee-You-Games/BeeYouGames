@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwipeMiniGame : ASwipe, IInteractable
 {
@@ -8,6 +9,8 @@ public class SwipeMiniGame : ASwipe, IInteractable
     private ParticleSystem trailPrefab;
     [SerializeField]
     private string prompt;
+    [SerializeField][Range(1, 50)]
+    private int targetSwipeAmount = 5;
 
     private int swipeCount;
     private ParticleSystem trail;
@@ -15,6 +18,9 @@ public class SwipeMiniGame : ASwipe, IInteractable
     public string Prompt => prompt;
 
     public bool Available { get; set; }
+
+    public UnityEvent OnComplete;
+    public UnityEvent OnInteract;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +38,7 @@ public class SwipeMiniGame : ASwipe, IInteractable
         GameObject obj = Instantiate(trailPrefab.gameObject);
         trail = obj.GetComponent<ParticleSystem>();
         trail.gameObject.SetActive(false);
+        OnInteract.Invoke();
         return true;
     }
 
@@ -64,6 +71,13 @@ public class SwipeMiniGame : ASwipe, IInteractable
             }
 #endif
         }
+
+        if (swipeCount >= targetSwipeAmount)
+        {
+            Destroy(trail.gameObject);
+            OnComplete.Invoke();
+        }
+            
     }
 
     private void TrailFollowTouch()
