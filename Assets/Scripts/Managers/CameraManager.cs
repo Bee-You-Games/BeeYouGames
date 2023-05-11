@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Cinemachine;
 [RequireComponent(typeof(CinemachineVirtualCamera))]
@@ -5,7 +6,8 @@ using Cinemachine;
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }
-    public CinemachineVirtualCamera PlayerCam { get; private set; }
+    public CinemachineVirtualCamera PlayerVirtualCam { get; private set; }
+    private Camera mainCam;
     [SerializeField]
     private PlayerCamTarget camTarget;
     [SerializeField]
@@ -20,8 +22,8 @@ public class CameraManager : MonoBehaviour
             Debug.LogWarning("Several CameraManager scripts are being initiated");
             Destroy(this);
         }
-
-        PlayerCam = GetComponent<CinemachineVirtualCamera>();
+        mainCam = Camera.main;
+        PlayerVirtualCam = GetComponent<CinemachineVirtualCamera>();
     }
 
     public void SetTarget(Transform pTarget)
@@ -29,6 +31,23 @@ public class CameraManager : MonoBehaviour
         camTarget.targetTransform = pTarget;
     }
 
+    public IEnumerator PanToPoint(Vector3 point, float panFrames)
+    {
+        int elapsedFrames = 0;
+        PlayerVirtualCam.enabled = false;
+        Vector3 camPosition = mainCam.transform.position;
+        Vector3 targetPosition = point;
+        targetPosition.x = camPosition.x;
+        while (Vector3.Distance(mainCam.transform.position, targetPosition) > 0.1f)
+        {
+            float interpolationRatio = (float)elapsedFrames / panFrames;
+            mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, targetPosition, interpolationRatio);
+            yield return null;
+        }
+        //yield return new WaitForSeconds(2);
+        PlayerVirtualCam.enabled = true;
+    }
+    /*
     public void PanToPoint(Vector3 point)
     {
         currentCam = Instantiate(cameraPrefab);
@@ -37,12 +56,13 @@ public class CameraManager : MonoBehaviour
         currentCam.transform.position = camPosition;
         PlayerCam.enabled = false;
     }
+    */
 
     public void CancelPan()
     {
         if (currentCam != null)
         {
-            PlayerCam.enabled = true;
+            PlayerVirtualCam.enabled = true;
             Destroy(currentCam);
             currentCam = null;
         }

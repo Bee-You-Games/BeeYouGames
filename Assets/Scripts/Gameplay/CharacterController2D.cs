@@ -41,11 +41,12 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
+        /*
         //Camera movement
         Vector3 cameraPosition = cam.transform.position;
         cameraPosition.x = playerBody.position.x;
         cam.transform.position = cameraPosition;
-
+        */
         
     }
 
