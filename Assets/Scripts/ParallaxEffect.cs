@@ -31,7 +31,6 @@ public class ParallaxEffect : MonoBehaviour
         if (Application.isPlaying)
         {
             cam = Camera.main.transform;
-            Debug.Log(cam.gameObject.name);
             player = FindObjectOfType<CharacterController2D>();
             if (player == null) Debug.LogError("Couldn't find a player object", this);
 

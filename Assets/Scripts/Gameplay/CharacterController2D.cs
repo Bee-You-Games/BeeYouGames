@@ -14,7 +14,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField]  private float speed = 5f;
     [Range(300f, 900f)]
     [SerializeField]  private float rotationSpeed = 600;
-    private Camera cam;
     private Rigidbody playerBody;
     private PlayerInput playerInput;
     private PlayerInteractor interactor;
@@ -24,8 +23,6 @@ public class CharacterController2D : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<PlayerInteractor>();
-        
-        cam = Camera.main;
     }
 
 	void Update()
@@ -40,13 +37,6 @@ public class CharacterController2D : MonoBehaviour
                 Movement(velocity);
             }
         }
-
-        //Camera movement
-        Vector3 cameraPosition = cam.transform.position;
-        cameraPosition.x = playerBody.position.x;
-        cam.transform.position = cameraPosition;
-
-        
     }
 
     private void Movement(Vector3 pMovementVelocity)
