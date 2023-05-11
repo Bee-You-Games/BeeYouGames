@@ -5,15 +5,13 @@ using UnityEngine;
 public class CameraSwitchTest : MonoBehaviour
 {
     [SerializeField]
-    private float panFrames = 120;
+    private float panTime = 4;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
-            StartCoroutine(CameraManager.Instance.PanToPoint(transform.position, panFrames));
+            StartCoroutine(CameraPan());
     }
 
-
-    /*
     public IEnumerator CameraPan()
     {
         CameraManager.Instance.PanToPoint(transform.position);
@@ -22,5 +20,4 @@ public class CameraSwitchTest : MonoBehaviour
 
         CameraManager.Instance.CancelPan();
     }
-    */
 }
