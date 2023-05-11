@@ -28,16 +28,8 @@ public class SwipeMiniGame : ASwipe, IInteractable
         Available = true;
     }
 
-    private void OnDisable()
-    {
-        //Destroy(trail.gameObject);
-    }
-
     public bool Interact(PlayerInteractor interactor)
     {
-        GameObject obj = Instantiate(trailPrefab.gameObject);
-        trail = obj.GetComponent<ParticleSystem>();
-        trail.gameObject.SetActive(false);
         OnInteract.Invoke();
         return true;
     }
@@ -46,23 +38,15 @@ public class SwipeMiniGame : ASwipe, IInteractable
     // Update is called once per frame
     void Update()
     {
-        if (trail != null)
-        {
-            if (!trail.gameObject.activeInHierarchy && isFingerDown)
-                trail.gameObject.SetActive(true);
-            if (trail.gameObject.activeInHierarchy && !isFingerDown)
-                trail.gameObject.SetActive(false);
 #if UNITY_STANDALONE
-            TrailFollowMouse();
 
-            if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
-            {
-                swipeCount++;
-                Debug.Log(swipeCount);
-            }
+        if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
+        {
+            swipeCount++;
+            Debug.Log(swipeCount);
+        }
 #endif
 #if UNITY_ANDROID
-            TrailFollowTouch();
 
             if(GetSwipeOnPhone().magnitude >= pixelDistToDetect)
             {
@@ -70,12 +54,11 @@ public class SwipeMiniGame : ASwipe, IInteractable
                 Debug.Log(swipeCount);
             }
 #endif
-        }
 
         if (swipeCount >= targetSwipeAmount)
         {
-            Destroy(trail.gameObject);
             OnComplete.Invoke();
+            isActive = false;
         }
             
     }
