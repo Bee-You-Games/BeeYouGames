@@ -31,11 +31,10 @@ public class CameraManager : MonoBehaviour
 
     public void PanToPoint(Vector3 point)
     {
-        GameObject camera = Instantiate(cameraPrefab);
-        Vector3 camPosition = camera.transform.position;
+        currentCam = Instantiate(cameraPrefab);
+        Vector3 camPosition = currentCam.transform.position;
         camPosition.x = point.x;
-        camera.transform.position = camPosition;
-        currentCam = camera;
+        currentCam.transform.position = camPosition;
         PlayerCam.enabled = false;
     }
 
