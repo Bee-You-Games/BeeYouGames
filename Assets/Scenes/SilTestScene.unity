@@ -470,6 +470,7 @@ MonoBehaviour:
   Speed: 1.4
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &46716932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -699,6 +700,7 @@ MonoBehaviour:
   Speed: 1.5
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &177743042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1090,8 +1092,9 @@ Transform:
   m_Children:
   - {fileID: 1107033178}
   - {fileID: 1416638010}
+  - {fileID: 1891760182}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &341504846
 GameObject:
@@ -1397,6 +1400,7 @@ MonoBehaviour:
   Speed: 1.2
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &409279045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1497,6 +1501,7 @@ MonoBehaviour:
   Speed: 1.2
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &424438811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1759,6 +1764,7 @@ MonoBehaviour:
   Speed: 1.4
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &621716982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1889,7 +1895,7 @@ Transform:
   m_Children:
   - {fileID: 1170201213}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 3.533, y: 0, z: 0}
 --- !u!114 &688447896
 MonoBehaviour:
@@ -2686,6 +2692,7 @@ MonoBehaviour:
   Speed: 1.35
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &983531732
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2983,6 +2990,7 @@ MonoBehaviour:
   Speed: 0
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &1139540869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3360,6 +3368,7 @@ MonoBehaviour:
   Speed: 1.2
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &1228753859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3841,6 +3850,7 @@ MonoBehaviour:
   Speed: 0.3
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &1339370018
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4501,6 +4511,7 @@ MonoBehaviour:
   Speed: 0.6
   isRepeating: 1
   isRepeatingRandom: 0
+  cam: {fileID: 1754009438}
 --- !u!212 &1754854443
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4781,8 +4792,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1754009438}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 328745173}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 25.808, y: 0, z: 0}
 --- !u!114 &1891760183
 MonoBehaviour:
@@ -5206,7 +5217,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!1 &2141592334
 GameObject:
@@ -5472,7 +5483,7 @@ PrefabInstance:
     - target: {fileID: 4552704888599746813, guid: 5d86e03fba5fc374d945a6e697590f26, type: 3}
       propertyPath: cameraPrefab
       value: 
-      objectReference: {fileID: 4552704888599746814, guid: 5d86e03fba5fc374d945a6e697590f26, type: 3}
+      objectReference: {fileID: 9037986181937148098, guid: 2114d3496a0aef84cba52e7549227d26, type: 3}
     - target: {fileID: 4552704888599746814, guid: 5d86e03fba5fc374d945a6e697590f26, type: 3}
       propertyPath: m_Name
       value: VirtualCam
