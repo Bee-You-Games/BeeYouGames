@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 1379246643}
   - component: {fileID: 1379246642}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: LoadingScreenManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eb03cec5d36aa40a9be753c8e74af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartSceneName: MainMenu
   loadingScreenObj: {fileID: 1144562376}
 --- !u!4 &1379246643
 Transform:

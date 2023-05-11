@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LoadingScreenManager : MonoBehaviour
 {
     [SerializeField]
-    private string pStartSceneName = "MainMenu";
+    private string StartSceneName = "MainMenu";
     [SerializeField]
     private GameObject loadingScreenObj;
     private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
@@ -28,8 +28,8 @@ public class LoadingScreenManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        SceneManager.LoadSceneAsync(pStartSceneName, LoadSceneMode.Additive);
-        lastLoadedScene = SceneManager.GetSceneByName(pStartSceneName);
+        SceneManager.LoadSceneAsync(StartSceneName, LoadSceneMode.Additive);
+        lastLoadedScene = SceneManager.GetSceneByName(StartSceneName);
     }
 
     public void LoadScene(string pSceneName)
