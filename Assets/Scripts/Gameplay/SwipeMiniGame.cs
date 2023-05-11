@@ -41,20 +41,40 @@ public class SwipeMiniGame : ASwipe, IInteractable
     {
         if (trail != null)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-            Debug.Log("MousePos" + mousePos);
-            trail.transform.position = mousePos;
-
             if (!trail.gameObject.activeInHierarchy && isFingerDown)
                 trail.gameObject.SetActive(true);
             if (trail.gameObject.activeInHierarchy && !isFingerDown)
                 trail.gameObject.SetActive(false);
+#if UNITY_STANDALONE
+            TrailFollowMouse();
 
             if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
             {
                 swipeCount++;
                 Debug.Log(swipeCount);
             }
+#endif
+#if UNITY_ANDROID
+            TrailFollowTouch();
+
+            if(GetSwipeOnPhone().magnitude >= pixelDistToDetect)
+            {
+                swipeCount++;
+                Debug.Log(swipeCount);
+            }
+#endif
         }
+    }
+
+    private void TrailFollowTouch()
+    {
+        trail.transform.position = GetTouchPosition();
+    }
+
+    private void TrailFollowMouse()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+        Debug.Log("MousePos" + mousePos);
+        trail.transform.position = mousePos;
     }
 }

@@ -33,6 +33,22 @@ public abstract class ASwipe : MonoBehaviour
         return deltaVec;
     }
 
+    /// <summary>
+    /// Gets the position of a touch in world space
+    /// </summary>
+    /// <returns></returns>
+    protected Vector3 GetTouchPosition()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.touches[0];
+
+            return Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.nearClipPlane));
+        }
+        else
+            return Vector3.zero;
+    }
+
     protected virtual Vector2 GetSwipeOnPhone()
     {
         Vector2 startPos = new Vector2();
