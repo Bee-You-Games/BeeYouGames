@@ -1544,6 +1544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8544ea354a0ba469de3f088ebb432c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pixelDistToDetect: 20
+  trailPrefab: {fileID: 6860410827989487692, guid: 39ea8043bfb6dce40bcc7a7252f250ee, type: 3}
   prompt: Swipe Game Here
 --- !u!1 &1119506514
 GameObject:

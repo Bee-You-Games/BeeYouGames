@@ -8,12 +8,11 @@ public abstract class ASwipe : MonoBehaviour
     protected int pixelDistToDetect = 20;
     protected bool isActive;
 
-    private bool isFingerDown = false;
+    protected bool isFingerDown = false;
 
     Vector2 startPos = new Vector2();
     Vector2 endPos = new Vector2();
 
-#if UNITY_EDITOR
     protected virtual Vector2 GetSwipeOnPC()
     {
         Vector2 deltaVec = new Vector2();
@@ -21,7 +20,6 @@ public abstract class ASwipe : MonoBehaviour
         if (!isFingerDown && Input.GetMouseButtonDown(0))
         {
             startPos = Input.mousePosition;
-            Debug.Log(startPos);
             isFingerDown = true;
         }
 
@@ -30,16 +28,10 @@ public abstract class ASwipe : MonoBehaviour
             endPos = Input.mousePosition;
             deltaVec = endPos - startPos;
             isFingerDown = false;
-
-            Debug.Log("Detected Swipe");
-            Debug.Log(isFingerDown);
-            Debug.Log("Swipe from: " + startPos + " to: " + endPos);
-            Debug.Log("Swipe length: " + deltaVec.magnitude);
         }
 
         return deltaVec;
     }
-#endif
 
     protected virtual Vector2 GetSwipeOnPhone()
     {
