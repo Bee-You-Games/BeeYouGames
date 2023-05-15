@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoading : MonoBehaviour, ISceneLoading
 {
+
     private void Start()
     {
         if (LoadingScreenManager.Instance == null)

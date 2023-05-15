@@ -10,11 +10,15 @@ public class LoadingScreenManager : MonoBehaviour
     private string StartSceneName = "MainMenu";
     [SerializeField]
     private GameObject loadingScreenObj;
+    [SerializeField]
+    private Canvas canvas;
+    [SerializeField]
+    private Animator anim;
     private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
     private Scene lastLoadedScene;
 
-    public static LoadingScreenManager Instance;
+    public static LoadingScreenManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -32,9 +36,12 @@ public class LoadingScreenManager : MonoBehaviour
         lastLoadedScene = SceneManager.GetSceneByName(StartSceneName);
     }
 
-    public void LoadScene(string pSceneName)
+    private IEnumerator ILoadScene(string pSceneName)
     {
-        loadingScreenObj.SetActive(true);
+        anim.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+        
         scenesLoading.Add(SceneManager.UnloadSceneAsync(lastLoadedScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(pSceneName, LoadSceneMode.Additive));
 
@@ -43,15 +50,28 @@ public class LoadingScreenManager : MonoBehaviour
         StartCoroutine(HandleSceneLoadProgress());
     }
 
-    public void LoadScene(int pSceneIndex)
+    private IEnumerator ILoadScene(int pSceneIndex)
     {
-        loadingScreenObj.SetActive(true);
+        anim.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
         scenesLoading.Add(SceneManager.UnloadSceneAsync(lastLoadedScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(pSceneIndex, LoadSceneMode.Additive));
 
         lastLoadedScene = SceneManager.GetSceneByBuildIndex(pSceneIndex);
 
         StartCoroutine(HandleSceneLoadProgress());
+    }
+
+    public void LoadScene(string pSceneName)
+    {
+        StartCoroutine(ILoadScene(pSceneName));
+    }
+
+    public void LoadScene(int pSceneIndex)
+    {
+        StartCoroutine(ILoadScene(pSceneIndex));
     }
 
     public IEnumerator HandleSceneLoadProgress()
@@ -63,7 +83,8 @@ public class LoadingScreenManager : MonoBehaviour
                 yield return null;
             }
         }
-
-        loadingScreenObj.SetActive(false);
+        
+        anim.SetTrigger("End");
+        yield return new WaitForSeconds(1f);
     }
 }
