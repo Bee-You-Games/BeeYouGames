@@ -11,11 +11,6 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField][Tooltip("Name of the scene to load")]
     private string sceneName;
 
-    //[SerializeField]
-    //private float fadeSpeed = 5f;
-    [SerializeField]
-    private Image blackImage;
-
     private SceneLoading sceneLoading;
 
     public string Prompt => prompt;
@@ -25,7 +20,7 @@ public class Door : MonoBehaviour, IInteractable
     public bool Interact(PlayerInteractor interactor)
     {
         Debug.Log("Gets here");
-        //StartCoroutine(FadeScreenToBlack());
+        sceneLoading.LoadScene(sceneName);
         return true;
     }
 
@@ -35,6 +30,4 @@ public class Door : MonoBehaviour, IInteractable
         Available = true;
         sceneLoading = GetComponent<SceneLoading>();
     }
-
-    
 }
