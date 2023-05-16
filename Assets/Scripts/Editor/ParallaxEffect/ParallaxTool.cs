@@ -178,9 +178,11 @@ public class ParallaxTool : EditorWindow
         Button AddButton = rootVisualElement.Q<Button>("AddButton");
         Button RemoveButton = rootVisualElement.Q<Button>("RemoveButton");
         Button DeleteListButton = rootVisualElement.Q<Button>("ListDeleteBtn");
+        Button LoadLayersButton = rootVisualElement.Q<Button>("LoadLayerBtn");
 
         AddButton.clickable.clicked += AddToList;
         RemoveButton.clickable.clicked += HandleRemoveButton;
+        LoadLayersButton.clickable.clicked += LoadLayers;
 
         Debug.Log("Subscribe to delete list button");
         DeleteListButton.clickable.clicked += delegate { SubscribePopupEvents(DeleteListButton); };
