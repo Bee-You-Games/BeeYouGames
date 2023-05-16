@@ -17,7 +17,7 @@ public class ParallaxEffect : MonoBehaviour
     private float spriteLength;
 
     private CharacterController2D player;
-    private Camera cam;
+    private Transform cam;
 
     private GameObject leftDuplicate;
     private GameObject rightDuplicate;
@@ -30,7 +30,7 @@ public class ParallaxEffect : MonoBehaviour
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
         {
-            cam = Camera.main;
+            cam = Camera.main.transform;
             player = FindObjectOfType<CharacterController2D>();
             if (player == null) Debug.LogError("Couldn't find a player object", this);
 
@@ -72,9 +72,10 @@ public class ParallaxEffect : MonoBehaviour
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
         {
-            float tempPos = player.transform.position.x * (1 - Speed);
+            Debug.Log(cam.localPosition.x);
+            float tempPos = cam.transform.position.x * (1 - Speed);
 
-            float distance = player.transform.position.x * Speed;
+            float distance = cam.transform.position.x * Speed;
             transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
 
             if (!isRepeating) return;
