@@ -273,13 +273,20 @@ public class ParallaxTool : EditorWindow
         Debug.Log("Deleting List");
         if (parallaxLayers.Count <= 0) return;
 
+        Debug.Log(layerParent == null);
         DestroyImmediate(layerParent);
+        layerParent = null;
+
         foreach (ParallaxEffect effect in parallaxLayers)
         {
             Debug.Log(effect);
             if (effect != null)
+            {
                 effect.OnDestruction -= LayerOnDestroy;
+                DestroyImmediate(effect.gameObject);
+            }
         }
+
 
         parallaxLayers.Clear();
         parallaxLayers.TrimExcess();
@@ -288,7 +295,6 @@ public class ParallaxTool : EditorWindow
         rightPane.Clear();
         pWindow.editorWindow.Close();
         UpdateListView();
-
     }
 
     private void HandleRemoveButton()
