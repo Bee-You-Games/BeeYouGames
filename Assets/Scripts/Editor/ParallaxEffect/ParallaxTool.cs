@@ -232,6 +232,10 @@ public class ParallaxTool : EditorWindow
         
         bool isRandom = randomToggle.value;
 
+        if (sprite == null) Debug.LogWarning("Created layer without a sprite", this);
+        if (layer == -1) Debug.LogWarning("Created layer without chaning layer", this);
+
+
         CreateObj(sprite, layer, speed, isRepeatable, isRandom);
         UpdateListView();
     }
