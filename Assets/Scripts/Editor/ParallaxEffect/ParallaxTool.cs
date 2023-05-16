@@ -24,6 +24,7 @@ public class ParallaxTool : EditorWindow
     private ListView leftPane;
     private VisualElement rightPane;
     private ParallaxEffect currentSelection;
+    private GameObject layerParent = null;
 
     private const string LAYER_TAG = "ParallaxLayer";
 
@@ -235,6 +236,9 @@ public class ParallaxTool : EditorWindow
 
     private void CreateObj(Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable, bool pRandom)
     {
+        if (layerParent == null)
+            layerParent = new GameObject("Parallax Layers");
+
         Debug.Log("Creating object");
         GameObject obj = new GameObject();
 
@@ -243,12 +247,13 @@ public class ParallaxTool : EditorWindow
         else
             obj.name = "Parallax Layer " + parallaxLayers.Count;
 
+        obj.transform.SetParent(layerParent.transform);
         obj.transform.tag = LAYER_TAG;
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
         ParallaxEffect parEffect = obj.AddComponent<ParallaxEffect>();
 
         parallaxLayers.Add(parEffect);
-        parEffect.OnDestruction += RemoveFromList;
+        parEffect.OnDestruction += LayerOnDestroy;
 
         renderer.sprite = pSprite;
         renderer.sortingOrder = pLayer;
@@ -266,14 +271,12 @@ public class ParallaxTool : EditorWindow
         Debug.Log("Deleting List");
         if (parallaxLayers.Count <= 0) return;
 
+        DestroyImmediate(layerParent);
         foreach (ParallaxEffect effect in parallaxLayers)
         {
             Debug.Log(effect);
             if (effect != null)
-            {
-                effect.OnDestruction -= RemoveFromList;
-                DestroyImmediate(effect.gameObject);
-            }
+                effect.OnDestruction -= LayerOnDestroy;
         }
 
         parallaxLayers.Clear();
@@ -299,8 +302,23 @@ public class ParallaxTool : EditorWindow
         parallaxLayers.Remove(pParEffect);
         parallaxLayers.TrimExcess();
         so.Update();
-        pParEffect.OnDestruction -= RemoveFromList;
+        pParEffect.OnDestruction -= LayerOnDestroy;
+
         DestroyImmediate(pParEffect.gameObject);
+
+        UpdateListView();
+        rightPane.Clear();
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+    }
+
+    private void LayerOnDestroy(ParallaxEffect pParEffect)
+    {
+        Debug.Log("Removing from list");
+        parallaxLayers.Remove(pParEffect);
+        parallaxLayers.TrimExcess();
+        so.Update();
+        pParEffect.OnDestruction -= LayerOnDestroy;
+        
         UpdateListView();
         rightPane.Clear();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
@@ -371,7 +389,8 @@ public class ParallaxTool : EditorWindow
         Toggle randomToggle = new Toggle();
         randomToggle.label = "Repeat Random";
         randomToggle.value = pEffect.isRepeatingRandom;
-        Debug.LogWarning("Repeat Random doesn't work yet. Enabling or disabling doesn't change anything", this);
+        if(randomToggle.value)
+            Debug.LogWarning("Repeat Random doesn't work yet. Enabling or disabling doesn't change anything", this);
 
         Button updateButton = new Button();
         updateButton.text = "Update Values";
