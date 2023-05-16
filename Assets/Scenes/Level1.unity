@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.109000005, y: 0.17500001}
   m_AnchorMax: {x: 0.109000005, y: 0.17500001}
-  m_AnchoredPosition: {x: 1.6999512, y: -1.3999634}
+  m_AnchoredPosition: {x: 1.6999512, y: -1.3999023}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190630574
@@ -324,11 +324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31c52a9af1c7394ea19eac895e196e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actorRole: 0
-  senderID: 0
-  receiverID: 0
-  prompt: 
-  NPCDialogue: {fileID: 0}
+  actorRole: 2
+  senderID: 666
+  receiverID: 888
+  prompt: Test
+  NPCDialogue: {fileID: 11400000, guid: 6438cc98c42df75408b3dc7686426eff, type: 2}
 --- !u!1 &435295665
 GameObject:
   m_ObjectHideFlags: 0
