@@ -23,6 +23,7 @@ public class InkManager : MonoBehaviour
 
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
+    private const string EMOTION_TAG = "emotion";
 
     private const string LOCKED_BTNTAG = "locked";
 
@@ -120,6 +121,7 @@ public class InkManager : MonoBehaviour
 
     private void HandleTextTags(string pText)
     {
+        string speakerID = "B";
         List<string> tags = story.currentTags;
         if (tags.Count <= 0) return;
 
@@ -137,7 +139,11 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-                    SetCharacterPortrait(GetSpeakerTagValue(tag));
+                    speakerID = (GetSpeakerTagValue(tag));
+                    //set name for dialogue speaker here
+                    break;
+                case EMOTION_TAG:
+                    SetEmotion(speakerID, GetEmotionTagValue(tag));
                     break;
             }
         }
@@ -173,17 +179,55 @@ public class InkManager : MonoBehaviour
             return "Given tag isn't a speaker tag";
         } 
     }
+    
+    private string GetEmotionTagValue(string pTag)
+    {
+        if (pTag.Contains("emotion"))
+        {
+            string[] speakerTagContent = pTag.Split(':');
+
+            if (speakerTagContent.Length != 2) Debug.LogError("Emotion tag can't be read", this);
+
+            return speakerTagContent[1];
+        }
+        else
+        {
+            Debug.LogError("Given tag isn't an emotion tag", this);
+            return "Given tag isn't an emotion tag";
+        } 
+    }
+    
+    private void SetEmotion(string speakerID, string emotion)
+    {
+        if (speakerID == "A")
+        {
+            playerImage.sprite = dialogue.CharacterASprite.GetSprite(emotion);
+        }
+        else if (speakerID == "B")
+        {
+            npcImage.sprite = dialogue.CharacterBSprite.GetSprite(emotion);
+        }
+    }
+
+
 
     private void PortraitSetup()
     {
-        playerImage.sprite = dialogue.CharacterASprite;
-        npcImage.sprite = dialogue.CharacterBSprite;
+        playerImage.sprite = dialogue.CharacterASprite.GetSprite("neutral");
+        npcImage.sprite = dialogue.CharacterBSprite.GetSprite("neutral");
     }
 
     
-    private void SetCharacterPortrait(string pCharacterName)
+    private void SetCharacterPortrait(string speakerIdentifier)
     {
-        //This function will be used to pick out the sprite from CharacterManager, and will be called by tags
+        if (speakerIdentifier == "A")
+        {
+
+        }
+        else if (speakerIdentifier == "B")
+        {
+
+        }
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)

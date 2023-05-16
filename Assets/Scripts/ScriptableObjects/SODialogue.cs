@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 [CreateAssetMenu(fileName = "Dialogue", menuName = "ScriptableObjects/Dialogue", order = 1)]
 public class SODialogue : ScriptableObject
@@ -11,7 +12,7 @@ public class SODialogue : ScriptableObject
     public bool triggerDialogueSuccess = false;
     public TextAsset DialogueFile;
     public string CharacterAName;
-    public Sprite CharacterASprite;
+    public SpriteAtlas CharacterASprite;
     public string CharacterBName;
-    public Sprite CharacterBSprite;
+    public SpriteAtlas CharacterBSprite;
 }
