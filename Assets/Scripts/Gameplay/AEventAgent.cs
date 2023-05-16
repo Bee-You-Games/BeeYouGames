@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EventIndicator))]
 public abstract class AEventAgent : MonoBehaviour
 {
 	public enum Role
@@ -19,7 +20,7 @@ public abstract class AEventAgent : MonoBehaviour
 	[SerializeField] protected int receiverID = 0;
 	protected bool progressedState = false;
 
-	protected void InitReceiver()
+    protected void InitReceiver()
 	{
 		EventManager.Instance.ProgressionEvent += EventReceive;
 	}
@@ -50,4 +51,7 @@ public abstract class AEventAgent : MonoBehaviour
 	{
 		Debug.Log("Dialogue success triggered, override in agent to change effect");
 	}
+
+    public int GetSenderID() => senderID;
+    public int GetReceiverID() => receiverID;
 }
