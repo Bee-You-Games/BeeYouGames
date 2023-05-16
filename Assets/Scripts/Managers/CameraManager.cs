@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Cinemachine;
 [RequireComponent(typeof(CinemachineVirtualCamera))]
@@ -29,7 +30,16 @@ public class CameraManager : MonoBehaviour
         camTarget.targetTransform = pTarget;
     }
 
-    public void PanToPoint(Vector3 point)
+    public IEnumerator CameraPan(float panTime, Vector3 position)
+    {
+        PanStart(position);
+
+        yield return new WaitForSeconds(panTime);
+
+        PanStop();
+    }
+
+    public void PanStart(Vector3 point)
     {
         currentCam = Instantiate(cameraPrefab);
         Vector3 camPosition = currentCam.transform.position;
@@ -38,7 +48,7 @@ public class CameraManager : MonoBehaviour
         PlayerCam.enabled = false;
     }
 
-    public void CancelPan()
+    public void PanStop()
     {
         if (currentCam != null)
         {
