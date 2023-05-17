@@ -42,20 +42,12 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (story == null) return;
-        if (GameStateManager.Instance.CurrentGameState != GameState.Dialogue) return;
-
-    }
-
     public void DialogueClick()
     {
         if (story.currentChoices.Count == 0)
             UpdateDialogueText();
         else
             return;
-
     }
 
     public void UpdateDialogueText()
@@ -116,10 +108,6 @@ public class InkManager : MonoBehaviour
             button.transform.SetParent(choiceButtonParent, false);
         }
     }
-    /// <summary>
-    /// Tags are currently unused, I am planning to use them for changing the portraits depending on emotion but this will only be added when CharacterManager is implemented
-    /// </summary>
-    /// <param name="pText"></param>
 
     private void HandleTextTags(string pText)
     {
@@ -199,6 +187,10 @@ public class InkManager : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// A is the player character, B is the character they're talking to
+    /// </summary>
+    /// <param name="pSpeakerID"></param>
     private void SetName(string pSpeakerID)
     {
         if (pSpeakerID == "A")
