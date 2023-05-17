@@ -10,6 +10,7 @@
     <ui:Label text="Layer Overview" display-tooltip-when-elided="true" style="margin-left: auto; margin-right: auto; -unity-font-style: bold;" />
     <ui:Foldout text="Advanced Settings" name="AdvSettings">
         <ui:Button text="Delete All Layers" display-tooltip-when-elided="true" name="ListDeleteBtn" />
+        <ui:Button text="Load All Layers" display-tooltip-when-elided="true" name="LoadLayerBtn" tooltip="Checks to see if there are any layers already in the scene." />
     </ui:Foldout>
     <ui:Button text="-" display-tooltip-when-elided="true" tooltip="Remove Sprite from the list" name="RemoveButton" style="height: 29px; width: 34px; font-size: 30px; white-space: nowrap; -unity-text-align: middle-center; justify-content: flex-start; margin-left: auto;" />
 </ui:UXML>
