@@ -7,10 +7,11 @@ using System.Collections.Generic;
 
 public class InkManager : MonoBehaviour
 {
-    [SerializeField]
     private SODialogue dialogue;
     [SerializeField]
     private TextMeshProUGUI dialogueText;
+    [SerializeField]
+    private TextMeshProUGUI nameText;
     [SerializeField]
     private Button choiceButtonPrefab;
     [SerializeField]
@@ -63,6 +64,7 @@ public class InkManager : MonoBehaviour
         EraseUI();
 
         string text = GetDialogueText();
+        if (text == "") return;
 
         Debug.Log("Calling HandleTextTags method");
         HandleTextTags(text);
@@ -139,8 +141,8 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-                    speakerID = (GetSpeakerTagValue(tag));
-                    //set name for dialogue speaker here
+                    speakerID = GetSpeakerTagValue(tag);
+                    SetName(speakerID);
                     break;
                 case EMOTION_TAG:
                     SetEmotion(speakerID, GetEmotionTagValue(tag));
@@ -196,38 +198,35 @@ public class InkManager : MonoBehaviour
             return "Given tag isn't an emotion tag";
         } 
     }
-    
-    private void SetEmotion(string speakerID, string emotion)
+
+    private void SetName(string pSpeakerID)
     {
-        if (speakerID == "A")
+        if (pSpeakerID == "A")
+        {
+            nameText.text = dialogue.CharacterAName;
+        }
+        else if (pSpeakerID == "B")
+        {
+            nameText.text = dialogue.CharacterBName;
+        }
+    }
+
+    private void SetEmotion(string pSpeakerID, string emotion)
+    {
+        if (pSpeakerID == "A")
         {
             playerImage.sprite = dialogue.CharacterASprite.GetSprite(emotion);
         }
-        else if (speakerID == "B")
+        else if (pSpeakerID == "B")
         {
             npcImage.sprite = dialogue.CharacterBSprite.GetSprite(emotion);
         }
     }
 
-
-
     private void PortraitSetup()
     {
         playerImage.sprite = dialogue.CharacterASprite.GetSprite("neutral");
         npcImage.sprite = dialogue.CharacterBSprite.GetSprite("neutral");
-    }
-
-    
-    private void SetCharacterPortrait(string speakerIdentifier)
-    {
-        if (speakerIdentifier == "A")
-        {
-
-        }
-        else if (speakerIdentifier == "B")
-        {
-
-        }
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)

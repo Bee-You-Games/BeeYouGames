@@ -4,10 +4,10 @@ EXTERNAL DialogueSuccess()
 -> main
 
 === main ===
-Hi, can I come with you? #speaker:B #emotion:happy
-*   [yes, sure]
+Hi, can I come with you? #speaker:B #emotion:neutral
+*   Yes, sure #speaker:A #emotion:happy
     ->cool
-*   [no, please don't]
+*   No, please don't #speaker:A #emotion:neutral
     ->fool  
     
 === cool ===
