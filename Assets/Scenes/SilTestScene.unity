@@ -1817,6 +1817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atlas: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
+  spriteName: 
 --- !u!54 &524056758
 Rigidbody:
   m_ObjectHideFlags: 0
