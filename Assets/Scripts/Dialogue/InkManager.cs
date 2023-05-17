@@ -28,6 +28,10 @@ public class InkManager : MonoBehaviour
 
     private const string LOCKED_BTNTAG = "locked";
 
+    private const string PLAYER_ID = "A";
+    private const string NPC_ID = "B";
+
+
     public static InkManager Instance { get; private set; }
 
     private int currentSenderID = 0;
@@ -59,7 +63,7 @@ public class InkManager : MonoBehaviour
         if (text == "") return;
 
         Debug.Log("Calling HandleTextTags method");
-        HandleTextTags(text);
+        HandleTextTags();
 
         dialogueText.text = text;
         
@@ -109,9 +113,9 @@ public class InkManager : MonoBehaviour
         }
     }
 
-    private void HandleTextTags(string pText)
+    private void HandleTextTags()
     {
-        string speakerID = "B";
+        string speakerID = NPC_ID;
         List<string> tags = story.currentTags;
         if (tags.Count <= 0) return;
 
@@ -193,11 +197,11 @@ public class InkManager : MonoBehaviour
     /// <param name="pSpeakerID"></param>
     private void SetName(string pSpeakerID)
     {
-        if (pSpeakerID == "A")
+        if (pSpeakerID == PLAYER_ID)
         {
             nameText.text = dialogue.CharacterAName;
         }
-        else if (pSpeakerID == "B")
+        else if (pSpeakerID == NPC_ID)
         {
             nameText.text = dialogue.CharacterBName;
         }
@@ -205,11 +209,11 @@ public class InkManager : MonoBehaviour
 
     private void SetEmotion(string pSpeakerID, string emotion)
     {
-        if (pSpeakerID == "A")
+        if (pSpeakerID == PLAYER_ID)
         {
             playerImage.sprite = dialogue.CharacterASprite.GetSprite(emotion);
         }
-        else if (pSpeakerID == "B")
+        else if (pSpeakerID == NPC_ID)
         {
             npcImage.sprite = dialogue.CharacterBSprite.GetSprite(emotion);
         }
