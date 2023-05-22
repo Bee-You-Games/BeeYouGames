@@ -56,12 +56,18 @@ public class InkManager : MonoBehaviour
 
     public void UpdateDialogueText()
     {
+        if (story == null) return;
+
         Debug.Log("Updating text");
         EraseUI();
 
         string text = GetDialogueText();
-        if (text == "") return;
-
+        if (text == "")
+        {
+            EndDialogue();
+            return;
+        }
+        
         Debug.Log("Calling HandleTextTags method");
         HandleTextTags();
 
@@ -101,14 +107,14 @@ public class InkManager : MonoBehaviour
 
     private void InstantiateChoiceButtons()
     {
+        if(story.currentChoices.Count == 0)
+            return;
+
         foreach (Choice choice in story.currentChoices)
         {
             Button button = Instantiate(choiceButtonPrefab) as Button;
             TextMeshProUGUI tmProText = button.GetComponentInChildren<TextMeshProUGUI>();
-
-            string text = HandleButtonTag(choice.text, button, choice);
-
-            tmProText.text = text;
+            tmProText.text = HandleButtonTag(choice.text, button, choice);
             button.transform.SetParent(choiceButtonParent, false);
         }
     }
