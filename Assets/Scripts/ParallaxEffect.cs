@@ -72,7 +72,6 @@ public class ParallaxEffect : MonoBehaviour
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
         {
-            Debug.Log(cam.localPosition.x);
             float tempPos = cam.transform.position.x * (1 - Speed);
 
             float distance = cam.transform.position.x * Speed;
