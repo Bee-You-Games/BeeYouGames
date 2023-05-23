@@ -12,25 +12,41 @@ public class ParallaxEffect : MonoBehaviour
     public bool isRepeating = true;
     [HideInInspector]
     public bool isRepeatingRandom = false;
+    [HideInInspector]
+    public float MinimumHeight;
+    [HideInInspector]
+    public float MaximumHeight;
 
     private float startPosition;
     private float spriteLength;
+    private float screenWidth;
+
+    private Vector2 screenBounds;
 
     private CharacterController2D player;
-    private Transform cam;
+    private Camera cam;
+    private Transform camTrans;
+    private Renderer objRenderer;
 
     private GameObject leftDuplicate;
     private GameObject rightDuplicate;
-    
+
+    private bool wasMoved;
 
     public event System.Action<ParallaxEffect> OnDestruction;
 
     private void Start()
     {
+        cam = Camera.main;
+        objRenderer = GetComponent<Renderer>();
+
+        float cameraHeight = cam.orthographicSize * 2f;
+        screenWidth = cameraHeight * cam.aspect;
+
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
         {
-            cam = Camera.main.transform;
+            camTrans = cam.transform;
             player = FindObjectOfType<CharacterController2D>();
             if (player == null) Debug.LogError("Couldn't find a player object", this);
 
@@ -70,20 +86,44 @@ public class ParallaxEffect : MonoBehaviour
     private void Update()
     {
         //Check to see if unity is in playmode, because of the excecute always attribute
-        if (Application.isPlaying)
+        if (!Application.isPlaying) return;
+
+        float tempPos = camTrans.position.x * (1 - Speed);
+
+        float distance = camTrans.position.x * Speed;
+        transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
+
+        if (isRepeating)
         {
-            Debug.Log(cam.localPosition.x);
-            float tempPos = cam.transform.position.x * (1 - Speed);
-
-            float distance = cam.transform.position.x * Speed;
-            transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
-
-            if (!isRepeating) return;
-
             if (tempPos > startPosition + spriteLength)
                 startPosition += spriteLength;
             else if (tempPos < startPosition - spriteLength)
                 startPosition -= spriteLength;
         }
+        else if (isRepeatingRandom)
+        {
+            if (!IsOnScreen() && !wasMoved)
+            {
+                wasMoved = true;
+                float distToCam = transform.position.x - camTrans.position.x;
+                float moveDist = screenWidth + objRenderer.bounds.extents.x;
+
+                if (distToCam > 0)
+                    startPosition -= moveDist;
+                else if (distToCam < 0)
+                    startPosition += moveDist;
+            }
+            else if (IsOnScreen() && wasMoved)
+                wasMoved = false;
+        }
+    }
+
+    private bool IsOnScreen()
+    {
+        if (objRenderer == null || !objRenderer.enabled)
+            return false;
+
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        return GeometryUtility.TestPlanesAABB(planes, objRenderer.bounds);
     }
 }
