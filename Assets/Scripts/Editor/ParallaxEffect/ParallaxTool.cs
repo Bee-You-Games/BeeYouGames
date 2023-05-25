@@ -349,12 +349,20 @@ public class ParallaxTool : EditorWindow
     private void RemoveFromList(ParallaxEffect pParEffect)
     {
         Debug.Log("Removing from list");
+        pParEffect.OnDestruction -= LayerOnDestroy;
         parallaxLayers.Remove(pParEffect);
         parallaxLayers.TrimExcess();
         so.Update();
-        pParEffect.OnDestruction -= LayerOnDestroy;
 
-        DestroyImmediate(pParEffect.gameObject);
+        if (parallaxLayers.Count == 0)
+        {
+            if(layerParent == null)
+                layerParent = GameObject.Find(LAYER_PARENT_NAME);
+
+            DestroyImmediate(layerParent);
+        }
+        else
+            DestroyImmediate(pParEffect.gameObject);
 
         UpdateListView();
         rightPane.Clear();
@@ -461,7 +469,6 @@ public class ParallaxTool : EditorWindow
         updateButton.text = "Update Values";
         updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, spriteField, layerField, speedField, repeatToggle, randomToggle, minHeightField, maxHeightField); };
 
-        rightPane.Add(spriteImage);
         rightPane.Add(spriteField);
         rightPane.Add(layerField);
         rightPane.Add(speedField);
@@ -470,6 +477,7 @@ public class ParallaxTool : EditorWindow
         rightPane.Add(minHeightField);
         rightPane.Add(maxHeightField);
         rightPane.Add(updateButton);
+        rightPane.Add(spriteImage);
     }
 
     private void UpdateVariables(ParallaxEffect pEffect, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom, FloatField pMinHeight, FloatField pMaxHeight)
