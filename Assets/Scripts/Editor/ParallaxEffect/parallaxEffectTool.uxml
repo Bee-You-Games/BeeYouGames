@@ -5,7 +5,9 @@
     <uie:IntegerField label="Layer" value="-1" name="LayerField" style="height: 19px;" />
     <ui:Slider picking-mode="Ignore" label="Speed" value="0.5" high-value="1" show-input-field="true" direction="Horizontal" name="SpeedField" />
     <ui:Toggle label="Repeatable" name="RepeatableToggle" />
-    <ui:Toggle label="Repeat Random" name="RandomToggle" />
+    <ui:Toggle label="Repeat Random Y axis" name="RandomToggle" tooltip="When set to true, the layer will repeat with a random position on the Y axis" />
+    <uie:FloatField label="Min Height" value="42,2" name="MinHeight" style="align-items: stretch;" />
+    <uie:FloatField label="Max Height" value="42,2" name="MaxHeight" />
     <ui:Button text="+" display-tooltip-when-elided="true" tooltip="Add Sprite to the list" name="AddButton" style="height: 29px; width: 34px; font-size: 30px; white-space: nowrap; -unity-text-align: middle-center; justify-content: flex-start; margin-left: auto;" />
     <ui:Label text="Layer Overview" display-tooltip-when-elided="true" style="margin-left: auto; margin-right: auto; -unity-font-style: bold;" />
     <ui:Foldout text="Advanced Settings" name="AdvSettings">
