@@ -20,6 +20,8 @@ public class ParallaxEffect : MonoBehaviour
     private float startPosition;
     private float spriteLength;
     private float screenWidth;
+    private float cameraHeight;
+    private float yPos;
 
     private Vector2 screenBounds;
 
@@ -40,8 +42,12 @@ public class ParallaxEffect : MonoBehaviour
         cam = Camera.main;
         objRenderer = GetComponent<Renderer>();
 
-        float cameraHeight = cam.orthographicSize * 2f;
+        yPos = transform.position.y;
+
+        cameraHeight = cam.orthographicSize * 2f;
         screenWidth = cameraHeight * cam.aspect;
+
+        Debug.Log(cameraHeight + " " + screenWidth);
 
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (Application.isPlaying)
@@ -91,7 +97,7 @@ public class ParallaxEffect : MonoBehaviour
         float tempPos = camTrans.position.x * (1 - Speed);
 
         float distance = camTrans.position.x * Speed;
-        transform.position = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
+        transform.position = new Vector3(startPosition + distance, yPos, transform.position.z);
 
         if (isRepeating)
         {
@@ -107,6 +113,11 @@ public class ParallaxEffect : MonoBehaviour
                 wasMoved = true;
                 float distToCam = transform.position.x - camTrans.position.x;
                 float moveDist = screenWidth + objRenderer.bounds.extents.x;
+
+                float screenTop = (cameraHeight / 2) - objRenderer.bounds.extents.y;
+                float screenBottom = 0 - (cameraHeight / 2) + objRenderer.bounds.extents.y;
+                float randYPos = Random.Range(screenBottom, screenTop);
+                yPos = randYPos;
 
                 if (distToCam > 0)
                     startPosition -= moveDist;
