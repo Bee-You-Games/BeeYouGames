@@ -36,6 +36,7 @@ public class ParallaxEffect : MonoBehaviour
     private bool wasMoved;
 
     public event System.Action<ParallaxEffect> OnDestruction;
+    public event System.Action<ParallaxEffect> OnTransformChange;
 
     private void Start()
     {
@@ -91,6 +92,9 @@ public class ParallaxEffect : MonoBehaviour
 
     private void Update()
     {
+        if (transform.hasChanged)
+            OnTransformChange?.Invoke(this);
+
         //Check to see if unity is in playmode, because of the excecute always attribute
         if (!Application.isPlaying) return;
 
