@@ -95,6 +95,7 @@ public class ParallaxTool : EditorWindow
 
     private void OnGUI()
     {
+        if (repeatRandom == null || minHeight == null || maxHeight == null) return;
         repeatRandom.SetEnabled(!repeatLayer.value);
         minHeight.SetEnabled(repeatRandom.value);
         maxHeight.SetEnabled(repeatRandom.value);
