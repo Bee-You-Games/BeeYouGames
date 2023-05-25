@@ -17,16 +17,12 @@ public class ParallaxTool : EditorWindow
     private SerializedProperty propLayerList;
 
     private List<ParallaxEffect> parallaxLayers = new List<ParallaxEffect>();
-
-    private Transform spawnPos;
-    private GUIContent content = new GUIContent("editSpace");
+    
     private TwoPaneSplitView topBotSplit;
     private ListView leftPane;
     private VisualElement rightPane;
     private ParallaxEffect currentSelection;
     private GameObject layerParent = null;
-
-
 
     //Fields for in the creation view
     private Toggle repeatLayer;
@@ -39,7 +35,6 @@ public class ParallaxTool : EditorWindow
     private Toggle repeatToggle;
     private FloatField minHeightField;
     private FloatField maxHeightField;
-
 
     private const string LAYER_TAG = "ParallaxLayer";
     private const string LAYER_PARENT_NAME = "Parallax Layers";
@@ -60,7 +55,6 @@ public class ParallaxTool : EditorWindow
         SetUpControls();
         EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList;
         LoadLayers();
-        
     }
 
     private void OnDisable()
