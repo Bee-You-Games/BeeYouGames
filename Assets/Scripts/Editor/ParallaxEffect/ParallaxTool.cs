@@ -42,6 +42,7 @@ public class ParallaxTool : EditorWindow
 
 
     private const string LAYER_TAG = "ParallaxLayer";
+    private const string LAYER_PARENT_NAME = "Parallax Layers";
 
     [MenuItem("Tools/Parallax Effect")]
     public static void ShowWindow()
@@ -151,6 +152,8 @@ public class ParallaxTool : EditorWindow
             leftPane.onSelectionChange -= OnItemSelectionChange;
 
         GameObject[] layers = GameObject.FindGameObjectsWithTag(LAYER_TAG);
+        if(layerParent == null)
+            layerParent = GameObject.Find(LAYER_PARENT_NAME);
 
         if (layers == null) return;
         if (layers.Length == 0)
@@ -282,7 +285,7 @@ public class ParallaxTool : EditorWindow
     private void CreateObj(Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable)
     {
         if (layerParent == null)
-            layerParent = new GameObject("Parallax Layers");
+            layerParent = new GameObject(LAYER_PARENT_NAME);
 
         Debug.Log("Creating object");
         GameObject obj = new GameObject();
