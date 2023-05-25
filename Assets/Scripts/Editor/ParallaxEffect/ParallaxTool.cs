@@ -417,6 +417,13 @@ public class ParallaxTool : EditorWindow
 
     private void InitVariables(ParallaxEffect pEffect)
     {
+        Sprite layerSprite = pEffect.GetComponent<SpriteRenderer>().sprite;
+        if (layerSprite == null) Debug.LogWarning($"Layer {pEffect.transform.name} doesn't contain a sprite", this);
+
+        Image spriteImage = new Image();
+        spriteImage.scaleMode = ScaleMode.ScaleToFit;
+        spriteImage.sprite = layerSprite;
+
         Debug.Log("Initializing variables");
         ObjectField spriteField = new ObjectField();
         spriteField.label = "Sprite";
@@ -454,6 +461,7 @@ public class ParallaxTool : EditorWindow
         updateButton.text = "Update Values";
         updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, spriteField, layerField, speedField, repeatToggle, randomToggle, minHeightField, maxHeightField); };
 
+        rightPane.Add(spriteImage);
         rightPane.Add(spriteField);
         rightPane.Add(layerField);
         rightPane.Add(speedField);
