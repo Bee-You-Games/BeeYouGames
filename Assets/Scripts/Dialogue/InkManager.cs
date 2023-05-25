@@ -7,10 +7,11 @@ using System.Collections.Generic;
 
 public class InkManager : MonoBehaviour
 {
-    [SerializeField]
     private SODialogue dialogue;
     [SerializeField]
     private TextMeshProUGUI dialogueText;
+    [SerializeField]
+    private TextMeshProUGUI nameText;
     [SerializeField]
     private Button choiceButtonPrefab;
     [SerializeField]
@@ -23,8 +24,13 @@ public class InkManager : MonoBehaviour
 
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
+    private const string EMOTION_TAG = "emotion";
 
     private const string LOCKED_BTNTAG = "locked";
+
+    private const string PLAYER_ID = "A";
+    private const string NPC_ID = "B";
+
 
     public static InkManager Instance { get; private set; }
 
@@ -40,31 +46,30 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (story == null) return;
-        if (GameStateManager.Instance.CurrentGameState != GameState.Dialogue) return;
-
-    }
-
     public void DialogueClick()
     {
         if (story.currentChoices.Count == 0)
             UpdateDialogueText();
         else
             return;
-
     }
 
     public void UpdateDialogueText()
     {
+        if (story == null) return;
+
         Debug.Log("Updating text");
         EraseUI();
 
         string text = GetDialogueText();
-
+        if (text == "")
+        {
+            EndDialogue();
+            return;
+        }
+        
         Debug.Log("Calling HandleTextTags method");
-        HandleTextTags(text);
+        HandleTextTags();
 
         dialogueText.text = text;
         
@@ -102,24 +107,21 @@ public class InkManager : MonoBehaviour
 
     private void InstantiateChoiceButtons()
     {
+        if(story.currentChoices.Count == 0)
+            return;
+
         foreach (Choice choice in story.currentChoices)
         {
             Button button = Instantiate(choiceButtonPrefab) as Button;
             TextMeshProUGUI tmProText = button.GetComponentInChildren<TextMeshProUGUI>();
-
-            string text = HandleButtonTag(choice.text, button, choice);
-
-            tmProText.text = text;
+            tmProText.text = HandleButtonTag(choice.text, button, choice);
             button.transform.SetParent(choiceButtonParent, false);
         }
     }
-    /// <summary>
-    /// Tags are currently unused, I am planning to use them for changing the portraits depending on emotion but this will only be added when CharacterManager is implemented
-    /// </summary>
-    /// <param name="pText"></param>
 
-    private void HandleTextTags(string pText)
+    private void HandleTextTags()
     {
+        string speakerID = NPC_ID;
         List<string> tags = story.currentTags;
         if (tags.Count <= 0) return;
 
@@ -137,7 +139,11 @@ public class InkManager : MonoBehaviour
                 case SPEAKER_TAG:
                     //implement text file with names and corresponding image locations
                     Debug.Log("Checking speaker tag");
-                    SetCharacterPortrait(GetSpeakerTagValue(tag));
+                    speakerID = GetSpeakerTagValue(tag);
+                    SetName(speakerID);
+                    break;
+                case EMOTION_TAG:
+                    SetEmotion(speakerID, GetEmotionTagValue(tag));
                     break;
             }
         }
@@ -173,17 +179,56 @@ public class InkManager : MonoBehaviour
             return "Given tag isn't a speaker tag";
         } 
     }
+    
+    private string GetEmotionTagValue(string pTag)
+    {
+        if (pTag.Contains("emotion"))
+        {
+            string[] speakerTagContent = pTag.Split(':');
+
+            if (speakerTagContent.Length != 2) Debug.LogError("Emotion tag can't be read", this);
+
+            return speakerTagContent[1];
+        }
+        else
+        {
+            Debug.LogError("Given tag isn't an emotion tag", this);
+            return "Given tag isn't an emotion tag";
+        } 
+    }
+
+    /// <summary>
+    /// A is the player character, B is the character they're talking to
+    /// </summary>
+    /// <param name="pSpeakerID"></param>
+    private void SetName(string pSpeakerID)
+    {
+        if (pSpeakerID == PLAYER_ID)
+        {
+            nameText.text = dialogue.CharacterAName;
+        }
+        else if (pSpeakerID == NPC_ID)
+        {
+            nameText.text = dialogue.CharacterBName;
+        }
+    }
+
+    private void SetEmotion(string pSpeakerID, string emotion)
+    {
+        if (pSpeakerID == PLAYER_ID)
+        {
+            playerImage.sprite = dialogue.CharacterASprite.GetSprite(emotion);
+        }
+        else if (pSpeakerID == NPC_ID)
+        {
+            npcImage.sprite = dialogue.CharacterBSprite.GetSprite(emotion);
+        }
+    }
 
     private void PortraitSetup()
     {
-        playerImage.sprite = dialogue.CharacterASprite;
-        npcImage.sprite = dialogue.CharacterBSprite;
-    }
-
-    
-    private void SetCharacterPortrait(string pCharacterName)
-    {
-        //This function will be used to pick out the sprite from CharacterManager, and will be called by tags
+        playerImage.sprite = dialogue.CharacterASprite.GetSprite("neutral");
+        npcImage.sprite = dialogue.CharacterBSprite.GetSprite("neutral");
     }
 
     private string HandleButtonTag(string pTag, Button pButton, Choice pChoice)
