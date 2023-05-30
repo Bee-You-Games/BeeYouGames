@@ -25,8 +25,8 @@ public class InkManager : MonoBehaviour
     private const string TEST_TAG = "testTag";
     private const string SPEAKER_TAG = "speaker";
     private const string EMOTION_TAG = "emotion";
-
     private const string LOCKED_BTNTAG = "locked";
+    private const string XP_TAG = "xp";
 
     private const string PLAYER_ID = "A";
     private const string NPC_ID = "B";
@@ -145,6 +145,14 @@ public class InkManager : MonoBehaviour
                 case EMOTION_TAG:
                     SetEmotion(speakerID, GetEmotionTagValue(tag));
                     break;
+                case XP_TAG:
+                    if(dialogue.XPTriggered == false){
+                        dialogue.XPTriggered = true;
+                        ExperienceManager.Instance.AddExperience((GetXPTagValue(tag)));
+                    }
+                    else
+                        Debug.Log("XP reward already triggered for this dialogue");
+                    break;
             }
         }
     }
@@ -196,6 +204,24 @@ public class InkManager : MonoBehaviour
             return "Given tag isn't an emotion tag";
         } 
     }
+
+    private int GetXPTagValue(string pTag)
+    {
+        if (pTag.Contains("xp"))
+        {
+            string[] xpTagContent = pTag.Split(':');
+
+            if (xpTagContent.Length != 2) Debug.LogError("XP tag can't be read", this);
+
+            return int.Parse(xpTagContent[1]);
+        }
+        else
+        {
+            Debug.LogError("Given tag isn't an XP tag", this);
+            return 0;
+        }
+    }
+    
 
     /// <summary>
     /// A is the player character, B is the character they're talking to
