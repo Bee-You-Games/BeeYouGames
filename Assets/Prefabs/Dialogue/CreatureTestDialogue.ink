@@ -11,7 +11,7 @@ Hi, can I come with you? #speaker:B #emotion:neutral
     ->fool  
     
 === cool ===
-Nice, I'll join you then. #speaker:B #emotion:happy
+Nice, I'll join you then. #speaker:B #emotion:happy #xp:30
 ~ ProgressionEvent()
 ~ DialogueSuccess()
 
