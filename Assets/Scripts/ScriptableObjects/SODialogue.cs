@@ -15,4 +15,6 @@ public class SODialogue : ScriptableObject
     public SpriteAtlas CharacterASprite;
     public string CharacterBName;
     public SpriteAtlas CharacterBSprite;
+    [HideInInspector]
+    public bool XPTriggered = false;
 }

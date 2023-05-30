@@ -146,7 +146,12 @@ public class InkManager : MonoBehaviour
                     SetEmotion(speakerID, GetEmotionTagValue(tag));
                     break;
                 case XP_TAG:
-                    ExperienceManager.Instance.AddExperience((GetXPTagValue(tag)));
+                    if(dialogue.XPTriggered == false){
+                        dialogue.XPTriggered = true;
+                        ExperienceManager.Instance.AddExperience((GetXPTagValue(tag)));
+                    }
+                    else
+                        Debug.Log("XP reward already triggered for this dialogue");
                     break;
             }
         }
