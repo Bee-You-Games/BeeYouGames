@@ -95,6 +95,7 @@ public class ParallaxTool : EditorWindow
 
     private void OnGUI()
     {
+        if (repeatRandom == null || minHeight == null || maxHeight == null) return;
         repeatRandom.SetEnabled(!repeatLayer.value);
         minHeight.SetEnabled(repeatRandom.value);
         maxHeight.SetEnabled(repeatRandom.value);
@@ -363,13 +364,23 @@ public class ParallaxTool : EditorWindow
     private void RemoveFromList(ParallaxEffect pParEffect)
     {
         Debug.Log("Removing from list");
+        pParEffect.OnDestruction -= LayerOnDestroy;
         parallaxLayers.Remove(pParEffect);
         parallaxLayers.TrimExcess();
         so.Update();
+        
         pParEffect.OnDestruction -= LayerOnDestroy;
         pParEffect.OnTransformChange -= UpdateLayerName;
 
-        DestroyImmediate(pParEffect.gameObject);
+        if (parallaxLayers.Count == 0)
+        {
+            if(layerParent == null)
+                layerParent = GameObject.Find(LAYER_PARENT_NAME);
+
+            DestroyImmediate(layerParent);
+        }
+        else
+            DestroyImmediate(pParEffect.gameObject);
 
         UpdateListView();
         rightPane.Clear();
@@ -433,6 +444,13 @@ public class ParallaxTool : EditorWindow
 
     private void InitVariables(ParallaxEffect pEffect)
     {
+        Sprite layerSprite = pEffect.GetComponent<SpriteRenderer>().sprite;
+        if (layerSprite == null) Debug.LogWarning($"Layer {pEffect.transform.name} doesn't contain a sprite", this);
+
+        Image spriteImage = new Image();
+        spriteImage.scaleMode = ScaleMode.ScaleToFit;
+        spriteImage.sprite = layerSprite;
+
         Debug.Log("Initializing variables");
         TextField nameField = new TextField();
         nameField.label = "Layer Name";
@@ -483,6 +501,7 @@ public class ParallaxTool : EditorWindow
         rightPane.Add(minHeightField);
         rightPane.Add(maxHeightField);
         rightPane.Add(updateButton);
+        rightPane.Add(spriteImage);
     }
 
     private void UpdateVariables(ParallaxEffect pEffect, TextField pTextField, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom, FloatField pMinHeight, FloatField pMaxHeight)
