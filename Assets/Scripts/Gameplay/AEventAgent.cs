@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(EventIndicator))]
 public abstract class AEventAgent : MonoBehaviour
@@ -11,6 +12,9 @@ public abstract class AEventAgent : MonoBehaviour
 		Receiver,
 		Both
 	}
+	[SerializeField]
+	[Tooltip("This event will be called when the DialogueSuccess function is called through dialogue, if triggerDialogueSuccess is enabled")]
+    private UnityEvent dialogueSuccessEvent;
 	[Header("Event Agent Settings")]
 	[Tooltip("'Sender' and 'Both' will send an event with the set ID when EventSend() is called")]
 	[SerializeField] protected Role actorRole;
@@ -20,6 +24,7 @@ public abstract class AEventAgent : MonoBehaviour
 	[SerializeField] protected int receiverID = 0;
 	protected bool progressedState = false;
 
+	
     protected void InitReceiver()
 	{
 		EventManager.Instance.ProgressionEvent += EventReceive;
@@ -49,7 +54,10 @@ public abstract class AEventAgent : MonoBehaviour
 
 	public virtual void DialogueSuccess()
 	{
-		Debug.Log("Dialogue success triggered, override in agent to change effect");
+		if(dialogueSuccessEvent != null)
+			dialogueSuccessEvent.Invoke();
+		else 
+			Debug.LogWarning("No success event set for " + gameObject.name);
 	}
 
     public int GetSenderID() => senderID;
