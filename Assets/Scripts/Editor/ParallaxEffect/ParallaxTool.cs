@@ -254,11 +254,14 @@ public class ParallaxTool : EditorWindow
     private void AddToList()
     {
         Debug.Log("Add to list");
+        TextField nameTextField = rootVisualElement.Q<TextField>("LayerName");
         ObjectField objField = rootVisualElement.Q<ObjectField>("SpriteField");
         IntegerField layerField = rootVisualElement.Q<IntegerField>("LayerField");
         Slider speedField = rootVisualElement.Q<Slider>("SpeedField");
         Toggle repeatToggle = rootVisualElement.Q<Toggle>("RepeatableToggle");
         Toggle randomToggle = rootVisualElement.Q<Toggle>("RandomToggle");
+
+        string objName = nameTextField.value;
 
         objField.objectType = typeof(Sprite);
         Sprite sprite = (Sprite)objField.value;
@@ -273,22 +276,27 @@ public class ParallaxTool : EditorWindow
         if (layer == -1) Debug.LogWarning("Created layer without changing render layer", this);
 
 
-        CreateObj(sprite, layer, speed, isRepeatable);
+        CreateObj(objName, sprite, layer, speed, isRepeatable);
         UpdateListView();
     }
 
-    private void CreateObj(Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable)
+    private void CreateObj(string pName, Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable)
     {
         if (layerParent == null)
             layerParent = new GameObject(LAYER_PARENT_NAME);
 
-        Debug.Log("Creating object");
-        GameObject obj = new GameObject();
+        string objName = "";
 
-        if (pSprite != null)
-            obj.name = pSprite.name;
+        if (pName == "" || pName == string.Empty)
+        {
+            Debug.Log("Layer name is empty, will set name to 'Parallax Layer'");
+            objName = "Parallax Layer";
+        }
         else
-            obj.name = "Parallax Layer " + parallaxLayers.Count;
+            objName = pName;
+
+        Debug.Log("Creating object");
+        GameObject obj = new GameObject(objName);
 
         obj.transform.SetParent(layerParent.transform);
         obj.transform.tag = LAYER_TAG;
@@ -297,6 +305,7 @@ public class ParallaxTool : EditorWindow
 
         parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += LayerOnDestroy;
+        parEffect.OnTransformChange += UpdateLayerName;
 
         renderer.sprite = pSprite;
         renderer.sortingOrder = pLayer;
@@ -309,6 +318,11 @@ public class ParallaxTool : EditorWindow
 
         so.Update();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+    }
+
+    private void UpdateLayerName(ParallaxEffect pEffect)
+    {
+        UpdateListView();
     }
 
     private void DeleteEntireList(ConfirmDelete pWindow)
@@ -326,6 +340,7 @@ public class ParallaxTool : EditorWindow
             if (effect != null)
             {
                 effect.OnDestruction -= LayerOnDestroy;
+                effect.OnTransformChange -= UpdateLayerName;
                 DestroyImmediate(effect.gameObject);
             }
         }
@@ -353,6 +368,9 @@ public class ParallaxTool : EditorWindow
         parallaxLayers.Remove(pParEffect);
         parallaxLayers.TrimExcess();
         so.Update();
+        
+        pParEffect.OnDestruction -= LayerOnDestroy;
+        pParEffect.OnTransformChange -= UpdateLayerName;
 
         if (parallaxLayers.Count == 0)
         {
@@ -376,7 +394,8 @@ public class ParallaxTool : EditorWindow
         parallaxLayers.TrimExcess();
         so.Update();
         pParEffect.OnDestruction -= LayerOnDestroy;
-        
+        pParEffect.OnTransformChange -= UpdateLayerName;
+
         UpdateListView();
         rightPane.Clear();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
@@ -433,6 +452,10 @@ public class ParallaxTool : EditorWindow
         spriteImage.sprite = layerSprite;
 
         Debug.Log("Initializing variables");
+        TextField nameField = new TextField();
+        nameField.label = "Layer Name";
+        nameField.value = pEffect.transform.name;
+
         ObjectField spriteField = new ObjectField();
         spriteField.label = "Sprite";
         spriteField.objectType = typeof(Sprite);
@@ -467,8 +490,9 @@ public class ParallaxTool : EditorWindow
 
         Button updateButton = new Button();
         updateButton.text = "Update Values";
-        updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, spriteField, layerField, speedField, repeatToggle, randomToggle, minHeightField, maxHeightField); };
+        updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, nameField, spriteField, layerField, speedField, repeatToggle, randomToggle, minHeightField, maxHeightField); };
 
+        rightPane.Add(nameField);
         rightPane.Add(spriteField);
         rightPane.Add(layerField);
         rightPane.Add(speedField);
@@ -480,11 +504,13 @@ public class ParallaxTool : EditorWindow
         rightPane.Add(spriteImage);
     }
 
-    private void UpdateVariables(ParallaxEffect pEffect, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom, FloatField pMinHeight, FloatField pMaxHeight)
+    private void UpdateVariables(ParallaxEffect pEffect, TextField pTextField, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom, FloatField pMinHeight, FloatField pMaxHeight)
     {
         Debug.Log("Updating variable");
         SpriteRenderer renderer = pEffect.transform.GetComponent<SpriteRenderer>();
         if (renderer == null) Debug.LogError("SpriteRenderer component not found, are you sure the Transform contains a SpriteRenderer component", this);
+
+        pEffect.transform.name = pTextField.value;
 
         renderer.sprite = pObjField.value as Sprite;
         renderer.sortingOrder = pLayer.value;
