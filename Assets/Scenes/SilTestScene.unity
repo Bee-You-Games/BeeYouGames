@@ -2098,8 +2098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa53571ff214f24c91cd54fd8b5963e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atlas: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
-  spriteName: 
 --- !u!54 &524056758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3514,6 +3512,7 @@ GameObject:
   - component: {fileID: 1175004850}
   - component: {fileID: 1175004849}
   - component: {fileID: 1175004853}
+  - component: {fileID: 1175004854}
   m_Layer: 6
   m_Name: Mouse (1)
   m_TagString: Untagged
@@ -3605,6 +3604,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showLines: 1
+--- !u!114 &1175004854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175004848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6db1addad633444b859c8701c573b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panTime: 4.5
 --- !u!1 &1228753857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,7 +5462,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2137026878}
   - component: {fileID: 2137026877}
-  - component: {fileID: 2137026876}
   m_Layer: 0
   m_Name: gotem
   m_TagString: Untagged
@@ -5458,18 +5469,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2137026876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137026875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc3f0a8cdfbe6549ba92fe0e63650f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &2137026877
 SpriteRenderer:
   m_ObjectHideFlags: 0
