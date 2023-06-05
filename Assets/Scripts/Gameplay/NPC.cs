@@ -35,11 +35,13 @@ public class NPC : AEventAgent, IInteractable
         {
             EventSend();
         }
-        StartCoroutine(DanceBreak());
+        if(animator != null)
+            StartCoroutine(PlayAnimation());
+
         return true;
     }
 
-    IEnumerator DanceBreak()
+    IEnumerator PlayAnimation()
     {
         animator.SetBool("Interacting", true);
         Available = false;
