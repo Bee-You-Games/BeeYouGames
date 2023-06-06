@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class SwipeMiniGame : ASwipe, IInteractable
 {
     [SerializeField]
-    private ParticleSystem trailPrefab;
+    private GameObject UIPanel;
     [SerializeField]
     private string prompt;
     [SerializeField][Range(1, 50)]
@@ -18,6 +18,7 @@ public class SwipeMiniGame : ASwipe, IInteractable
     public string Prompt => prompt;
 
     public bool Available { get; set; }
+    public bool IsCompleted { get; set; } = false;
 
     public UnityEvent OnComplete;
     public UnityEvent OnInteract;
@@ -31,6 +32,9 @@ public class SwipeMiniGame : ASwipe, IInteractable
     public bool Interact(PlayerInteractor interactor)
     {
         OnInteract.Invoke();
+        isActive = true;
+        Available = false;
+        UIPanel.SetActive(true);
         return true;
     }
 
@@ -38,12 +42,25 @@ public class SwipeMiniGame : ASwipe, IInteractable
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (swipeCount >= targetSwipeAmount)
+        {
+            OnComplete.Invoke();
+            isActive = false;
+
+            if (swipeCount >= targetSwipeAmount)
+                GameOver();
+        }
+#endif 
 #if UNITY_STANDALONE
 
         if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
         {
             swipeCount++;
             Debug.Log(swipeCount);
+
+            if (swipeCount >= targetSwipeAmount)
+                GameOver();
         }
 #endif
 #if UNITY_ANDROID
@@ -52,15 +69,19 @@ public class SwipeMiniGame : ASwipe, IInteractable
             {
                 swipeCount++;
                 Debug.Log(swipeCount);
+
+                if (swipeCount >= targetSwipeAmount)
+                    GameOver();
             }
 #endif
+    }
 
-        if (swipeCount >= targetSwipeAmount)
-        {
-            OnComplete.Invoke();
-            isActive = false;
-        }
-            
+    private void GameOver()
+    {
+        Available = true;
+        isActive = false;
+
+        UIPanel.SetActive(false);
     }
 
     private void TrailFollowTouch()
