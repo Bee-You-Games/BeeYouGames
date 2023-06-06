@@ -29,7 +29,7 @@ public class NPC : AEventAgent, IInteractable
     {
         if (NPCDialogue != null)
         {
-            InkManager.Instance.StartDialogue(NPCDialogue, receiverID, senderID);
+            InkManager.Instance.StartDialogue(NPCDialogue, this.gameObject, receiverID, senderID);
         }
         else if ((actorRole == Role.Sender) || (actorRole == Role.Both && progressedState))
         {

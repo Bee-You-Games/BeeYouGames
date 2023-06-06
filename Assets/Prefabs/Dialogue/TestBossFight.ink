@@ -4,9 +4,9 @@ EXTERNAL BossDamage(pDamage)
 
 === main ===
 I am the boss and you will listen to me! #speaker:B #emotion:neutral
-* Be nice bitch #speaker:A #emotion:neutral
+* Be nice bitch
     ->Damage
-* You're a cunt #speaker:A #emotion:neutral
+* You're a cunt
     ->Damage
     
 === Damage ===
