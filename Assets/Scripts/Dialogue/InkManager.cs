@@ -335,6 +335,9 @@ public class InkManager : MonoBehaviour
         if (dialogue.triggerDialogueSuccess)
             story.UnbindExternalFunction("DialogueSuccess");
 
+        if (npcObj.GetComponent<BossHealth>() != null)
+            story.UnbindExternalFunction("BossDamage");
+
         currentReceiverID = 0;
         currentSenderID = 0;
         GameStateManager.Instance.SetState(GameState.Gameplay);
@@ -342,6 +345,7 @@ public class InkManager : MonoBehaviour
 
     private void DialogueVariablesSetup()
     {
+        //TEMPORARY FIX
         dialogue.XPTriggered = false;
 
         if (dialogue.triggerDialogueSuccess)
@@ -356,7 +360,8 @@ public class InkManager : MonoBehaviour
             story.BindExternalFunction("ProgressionEvent", () => { ProgressionEvent(); });
         }
 
-        story.BindExternalFunction("BossDamage", (int pDamage) => { BossDamage(pDamage); });
+        if(npcObj.GetComponent<BossHealth>() != null)
+            story.BindExternalFunction("BossDamage", (int pDamage) => { BossDamage(pDamage); });
     }
 
     private void BossDamage(int pDamage)

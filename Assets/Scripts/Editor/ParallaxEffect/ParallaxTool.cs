@@ -305,8 +305,6 @@ public class ParallaxTool : EditorWindow
 
         ParallaxEffect parEffect = obj.GetComponent<ParallaxEffect>();
 
-        Debug.Log((parEffect == null));
-
         parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += LayerOnDestroy;
         parEffect.OnTransformChange += UpdateLayerName;
