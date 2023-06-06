@@ -340,7 +340,6 @@ public class InkManager : MonoBehaviour
 
     private void DialogueVariablesSetup()
     {
-        //Maybe remove this?
         dialogue.XPTriggered = false;
 
         if (dialogue.triggerDialogueSuccess)
