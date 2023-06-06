@@ -330,9 +330,11 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
         IsDialogueActive = false;
         if (currentSenderID != 0)
-        {
             story.UnbindExternalFunction("ProgressionEvent");
-        }
+        
+        if (dialogue.triggerDialogueSuccess)
+            story.UnbindExternalFunction("DialogueSuccess");
+
         currentReceiverID = 0;
         currentSenderID = 0;
         GameStateManager.Instance.SetState(GameState.Gameplay);
