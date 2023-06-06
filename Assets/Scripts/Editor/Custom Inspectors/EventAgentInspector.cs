@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(NPC))]
 public class EventAgentInspector : Editor
 {
+    private SerializedProperty propDialogueSuccessEvent;
     private SerializedProperty propNPCDialogue;
     private SerializedProperty propActorRole;
     private SerializedProperty propSenderID;
@@ -14,6 +15,7 @@ public class EventAgentInspector : Editor
 
     private void OnEnable()
     {
+        propDialogueSuccessEvent = serializedObject.FindProperty("dialogueSuccessEvent");
         propNPCDialogue = serializedObject.FindProperty("NPCDialogue");
         propActorRole = serializedObject.FindProperty("actorRole");
         propSenderID = serializedObject.FindProperty("senderID");
@@ -28,7 +30,7 @@ public class EventAgentInspector : Editor
         
         GUILayout.Label("Event Agent Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(propActorRole);
-
+        
         switch ((AEventAgent.Role)propActorRole.enumValueIndex)
         {
             case AEventAgent.Role.Both:
@@ -45,6 +47,8 @@ public class EventAgentInspector : Editor
 
                 break;
         }
+        
+        EditorGUILayout.PropertyField(propDialogueSuccessEvent);
 
         GUILayout.Space(20f);
         GUILayout.Label("NPC Settings", EditorStyles.boldLabel);
