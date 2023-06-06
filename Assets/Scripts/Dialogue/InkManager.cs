@@ -338,6 +338,7 @@ public class InkManager : MonoBehaviour
         if (dialogue.triggerDialogueSuccess)
             story.BindExternalFunction("DialogueSuccess", () => { dialogue.parentAgent.DialogueSuccess(); });
 
+
         if (currentReceiverID != 0)
         {
             ChangeInkVariable("progress", ProgressionCheck(currentReceiverID));
@@ -346,6 +347,7 @@ public class InkManager : MonoBehaviour
         {
             story.BindExternalFunction("ProgressionEvent", () => { ProgressionEvent(); });
         }
+        story.BindExternalFunction("BossDamage", (int pDamage) => { Debug.Log(pDamage); });
     }
     public bool ProgressionCheck(int pID)
     {
