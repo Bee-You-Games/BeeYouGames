@@ -4,19 +4,19 @@ EXTERNAL DialogueSuccess()
 -> main
 
 === main ===
-Hi, can I come with you?
-*   [yes, sure]
+Hi, can I come with you? #speaker:B #emotion:neutral
+*   Yes, sure #speaker:A #emotion:happy
     ->cool
-*   [no, please don't]
+*   No, please don't #speaker:A #emotion:neutral
     ->fool  
     
 === cool ===
-Nice, I'll join you then. 
+Nice, I'll join you then. #speaker:B #emotion:happy #xp:30
 ~ ProgressionEvent()
 ~ DialogueSuccess()
 
 -> END
 
 === fool ===
-Unfortunate, see ya
+Unfortunate, see ya #speaker:B #emotion:sad
 -> END

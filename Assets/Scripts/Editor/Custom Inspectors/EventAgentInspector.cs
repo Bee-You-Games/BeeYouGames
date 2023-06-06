@@ -37,9 +37,12 @@ public class EventAgentInspector : Editor
                 break;
             case AEventAgent.Role.Receiver:
                 EditorGUILayout.PropertyField(propReceiverID);
+                propSenderID.intValue = 0;
                 break;
             case AEventAgent.Role.Sender:
                 EditorGUILayout.PropertyField(propSenderID);
+                propReceiverID.intValue = 0;
+
                 break;
         }
 

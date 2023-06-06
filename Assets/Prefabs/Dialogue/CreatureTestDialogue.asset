@@ -16,6 +16,6 @@ MonoBehaviour:
   triggerDialogueSuccess: 1
   DialogueFile: {fileID: 4900000, guid: b5bce4eaed3bb424fb55e143f107cf9d, type: 3}
   CharacterAName: Bill
-  CharacterASprite: {fileID: 21300000, guid: 59886416981a7ce41a38a9a18756acf7, type: 3}
+  CharacterASprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
   CharacterBName: Cretin
-  CharacterBSprite: {fileID: 21300000, guid: b3450df47f3840c4cbbfbb003a86e97d, type: 3}
+  CharacterBSprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}

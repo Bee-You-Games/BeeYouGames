@@ -17,16 +17,27 @@ public class ParallaxTool : EditorWindow
     private SerializedProperty propLayerList;
 
     private List<ParallaxEffect> parallaxLayers = new List<ParallaxEffect>();
-
-    private Transform spawnPos;
-    private GUIContent content = new GUIContent("editSpace");
+    
     private TwoPaneSplitView topBotSplit;
     private ListView leftPane;
     private VisualElement rightPane;
     private ParallaxEffect currentSelection;
     private GameObject layerParent = null;
 
+    //Fields for in the creation view
+    private Toggle repeatLayer;
+    private Toggle repeatRandom;
+    private FloatField minHeight;
+    private FloatField maxHeight;
+
+    //Fields for in the variable view
+    private Toggle randomToggle;
+    private Toggle repeatToggle;
+    private FloatField minHeightField;
+    private FloatField maxHeightField;
+
     private const string LAYER_TAG = "ParallaxLayer";
+    private const string LAYER_PARENT_NAME = "Parallax Layers";
 
     [MenuItem("Tools/Parallax Effect")]
     public static void ShowWindow()
@@ -44,7 +55,6 @@ public class ParallaxTool : EditorWindow
         SetUpControls();
         EditorSceneManager.activeSceneChangedInEditMode += ChangeLayerList;
         LoadLayers();
-        
     }
 
     private void OnDisable()
@@ -83,6 +93,28 @@ public class ParallaxTool : EditorWindow
         UpdateListView();
     }
 
+    private void OnGUI()
+    {
+        if (repeatRandom == null || minHeight == null || maxHeight == null) return;
+        repeatRandom.SetEnabled(!repeatLayer.value);
+        minHeight.SetEnabled(repeatRandom.value);
+        maxHeight.SetEnabled(repeatRandom.value);
+
+        if (randomToggle == null || minHeight == null || maxHeightField == null) return;
+        randomToggle.SetEnabled(!repeatToggle.value);
+
+        if (repeatToggle.value)
+        {
+            minHeightField.SetEnabled(false);
+            maxHeightField.SetEnabled(false);
+        }
+        else
+        {
+            minHeightField.SetEnabled(randomToggle.value);
+            maxHeightField.SetEnabled(randomToggle.value);
+        }
+    }
+
     private void ReloadGUI()
     {
         Debug.Log("Reloading GUI");
@@ -115,6 +147,8 @@ public class ParallaxTool : EditorWindow
             leftPane.onSelectionChange -= OnItemSelectionChange;
 
         GameObject[] layers = GameObject.FindGameObjectsWithTag(LAYER_TAG);
+        if(layerParent == null)
+            layerParent = GameObject.Find(LAYER_PARENT_NAME);
 
         if (layers == null) return;
         if (layers.Length == 0)
@@ -169,6 +203,11 @@ public class ParallaxTool : EditorWindow
             ("Assets/Scripts/Editor/ParallaxEffect/parallaxEffectTool.uss");
         rootVisualElement.styleSheets.Add(styleSheet);
 
+        repeatLayer = rootVisualElement.Q<Toggle>("RepeatableToggle");
+        repeatRandom = rootVisualElement.Q<Toggle>("RandomToggle");
+        minHeight = rootVisualElement.Q<FloatField>("MinHeight");
+        maxHeight = rootVisualElement.Q<FloatField>("MaxHeight");
+
         SetUpButtons();
     }
 
@@ -215,11 +254,14 @@ public class ParallaxTool : EditorWindow
     private void AddToList()
     {
         Debug.Log("Add to list");
+        TextField nameTextField = rootVisualElement.Q<TextField>("LayerName");
         ObjectField objField = rootVisualElement.Q<ObjectField>("SpriteField");
         IntegerField layerField = rootVisualElement.Q<IntegerField>("LayerField");
         Slider speedField = rootVisualElement.Q<Slider>("SpeedField");
         Toggle repeatToggle = rootVisualElement.Q<Toggle>("RepeatableToggle");
         Toggle randomToggle = rootVisualElement.Q<Toggle>("RandomToggle");
+
+        string objName = nameTextField.value;
 
         objField.objectType = typeof(Sprite);
         Sprite sprite = (Sprite)objField.value;
@@ -229,25 +271,32 @@ public class ParallaxTool : EditorWindow
         float speed = speedField.value;
 
         bool isRepeatable = repeatToggle.value;
-        
-        bool isRandom = randomToggle.value;
 
-        CreateObj(sprite, layer, speed, isRepeatable, isRandom);
+        if (sprite == null) Debug.LogWarning("Created layer without a sprite", this);
+        if (layer == -1) Debug.LogWarning("Created layer without changing render layer", this);
+
+
+        CreateObj(objName, sprite, layer, speed, isRepeatable);
         UpdateListView();
     }
 
-    private void CreateObj(Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable, bool pRandom)
+    private void CreateObj(string pName, Sprite pSprite, int pLayer, float pSpeed, bool pRepeatable)
     {
         if (layerParent == null)
-            layerParent = new GameObject("Parallax Layers");
+            layerParent = new GameObject(LAYER_PARENT_NAME);
+
+        string objName = "";
+
+        if (pName == "" || pName == string.Empty)
+        {
+            Debug.Log("Layer name is empty, will set name to 'Parallax Layer'");
+            objName = "Parallax Layer";
+        }
+        else
+            objName = pName;
 
         Debug.Log("Creating object");
-        GameObject obj = new GameObject();
-
-        if (pSprite != null)
-            obj.name = pSprite.name;
-        else
-            obj.name = "Parallax Layer " + parallaxLayers.Count;
+        GameObject obj = new GameObject(objName);
 
         obj.transform.SetParent(layerParent.transform);
         obj.transform.tag = LAYER_TAG;
@@ -256,16 +305,24 @@ public class ParallaxTool : EditorWindow
 
         parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += LayerOnDestroy;
+        parEffect.OnTransformChange += UpdateLayerName;
 
         renderer.sprite = pSprite;
         renderer.sortingOrder = pLayer;
 
         parEffect.Speed = pSpeed;
         parEffect.isRepeating = pRepeatable;
-        parEffect.isRepeatingRandom = pRandom;
+        parEffect.isRepeatingRandom = repeatRandom.value;
+        parEffect.MinimumHeight = minHeight.value;
+        parEffect.MaximumHeight = maxHeight.value;
 
         so.Update();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+    }
+
+    private void UpdateLayerName(ParallaxEffect pEffect)
+    {
+        UpdateListView();
     }
 
     private void DeleteEntireList(ConfirmDelete pWindow)
@@ -283,10 +340,10 @@ public class ParallaxTool : EditorWindow
             if (effect != null)
             {
                 effect.OnDestruction -= LayerOnDestroy;
+                effect.OnTransformChange -= UpdateLayerName;
                 DestroyImmediate(effect.gameObject);
             }
         }
-
 
         parallaxLayers.Clear();
         parallaxLayers.TrimExcess();
@@ -307,12 +364,23 @@ public class ParallaxTool : EditorWindow
     private void RemoveFromList(ParallaxEffect pParEffect)
     {
         Debug.Log("Removing from list");
+        pParEffect.OnDestruction -= LayerOnDestroy;
         parallaxLayers.Remove(pParEffect);
         parallaxLayers.TrimExcess();
         so.Update();
+        
         pParEffect.OnDestruction -= LayerOnDestroy;
+        pParEffect.OnTransformChange -= UpdateLayerName;
 
-        DestroyImmediate(pParEffect.gameObject);
+        if (parallaxLayers.Count == 0)
+        {
+            if(layerParent == null)
+                layerParent = GameObject.Find(LAYER_PARENT_NAME);
+
+            DestroyImmediate(layerParent);
+        }
+        else
+            DestroyImmediate(pParEffect.gameObject);
 
         UpdateListView();
         rightPane.Clear();
@@ -326,7 +394,8 @@ public class ParallaxTool : EditorWindow
         parallaxLayers.TrimExcess();
         so.Update();
         pParEffect.OnDestruction -= LayerOnDestroy;
-        
+        pParEffect.OnTransformChange -= UpdateLayerName;
+
         UpdateListView();
         rightPane.Clear();
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
@@ -375,7 +444,18 @@ public class ParallaxTool : EditorWindow
 
     private void InitVariables(ParallaxEffect pEffect)
     {
+        Sprite layerSprite = pEffect.GetComponent<SpriteRenderer>().sprite;
+        if (layerSprite == null) Debug.LogWarning($"Layer {pEffect.transform.name} doesn't contain a sprite", this);
+
+        Image spriteImage = new Image();
+        spriteImage.scaleMode = ScaleMode.ScaleToFit;
+        spriteImage.sprite = layerSprite;
+
         Debug.Log("Initializing variables");
+        TextField nameField = new TextField();
+        nameField.label = "Layer Name";
+        nameField.value = pEffect.transform.name;
+
         ObjectField spriteField = new ObjectField();
         spriteField.label = "Sprite";
         spriteField.objectType = typeof(Sprite);
@@ -390,33 +470,47 @@ public class ParallaxTool : EditorWindow
         speedField.showInputField = true;
         speedField.value = pEffect.Speed;
 
-        Toggle repeatToggle = new Toggle();
+        repeatToggle = new Toggle();
         repeatToggle.label = "Repeatable";
         repeatToggle.value = pEffect.isRepeating;
 
-        Toggle randomToggle = new Toggle();
+        randomToggle = new Toggle();
         randomToggle.label = "Repeat Random";
         randomToggle.value = pEffect.isRepeatingRandom;
-        if(randomToggle.value)
-            Debug.LogWarning("Repeat Random doesn't work yet. Enabling or disabling doesn't change anything", this);
+
+        minHeightField = new FloatField();
+        minHeightField.label = "Min Height";
+        minHeight.value = pEffect.MinimumHeight;
+        minHeightField.SetEnabled(repeatToggle.value);
+
+        maxHeightField = new FloatField();
+        maxHeightField.label = "Max Height";
+        maxHeightField.value = pEffect.MaximumHeight;
+        maxHeightField.SetEnabled(repeatToggle.value);
 
         Button updateButton = new Button();
         updateButton.text = "Update Values";
-        updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, spriteField, layerField, speedField, repeatToggle, randomToggle); };
+        updateButton.clickable.clicked += delegate { UpdateVariables(pEffect, nameField, spriteField, layerField, speedField, repeatToggle, randomToggle, minHeightField, maxHeightField); };
 
+        rightPane.Add(nameField);
         rightPane.Add(spriteField);
         rightPane.Add(layerField);
         rightPane.Add(speedField);
         rightPane.Add(repeatToggle);
         rightPane.Add(randomToggle);
+        rightPane.Add(minHeightField);
+        rightPane.Add(maxHeightField);
         rightPane.Add(updateButton);
+        rightPane.Add(spriteImage);
     }
 
-    private void UpdateVariables(ParallaxEffect pEffect, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom)
+    private void UpdateVariables(ParallaxEffect pEffect, TextField pTextField, ObjectField pObjField, IntegerField pLayer, Slider pSpeed, Toggle pRepeat, Toggle pRandom, FloatField pMinHeight, FloatField pMaxHeight)
     {
         Debug.Log("Updating variable");
         SpriteRenderer renderer = pEffect.transform.GetComponent<SpriteRenderer>();
         if (renderer == null) Debug.LogError("SpriteRenderer component not found, are you sure the Transform contains a SpriteRenderer component", this);
+
+        pEffect.transform.name = pTextField.value;
 
         renderer.sprite = pObjField.value as Sprite;
         renderer.sortingOrder = pLayer.value;
@@ -424,6 +518,8 @@ public class ParallaxTool : EditorWindow
         pEffect.Speed = pSpeed.value;
         pEffect.isRepeating = pRepeat.value;
         pEffect.isRepeatingRandom = pRandom.value;
+        pEffect.MinimumHeight = pMinHeight.value;
+        pEffect.MaximumHeight = pMaxHeight.value;
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 }
