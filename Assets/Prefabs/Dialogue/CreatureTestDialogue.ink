@@ -7,7 +7,7 @@ EXTERNAL DialogueSuccess()
 Hi, can I come with you? #speaker:B #emotion:neutral
 *   Yes, sure #speaker:A #emotion:happy
     ->cool
-*   No, please don't #speaker:A #emotion:neutral
+*   No, please don't #speaker:A #emotion:troubled
     ->fool  
     
 === cool ===
