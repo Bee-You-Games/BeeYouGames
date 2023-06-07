@@ -19,8 +19,11 @@ public class BossHealth : MonoBehaviour, IHealth
         Health -= pDamage;
         OnDamage?.Invoke();
 
+        Debug.Log($"Dealth {pDamage} damage. {Health} hp remaining");
+
         if (Health <= 0)
         {
+            Debug.Log("No heath left, baddie dead");
             Health = 0;
             OnDeath?.Invoke();
         }

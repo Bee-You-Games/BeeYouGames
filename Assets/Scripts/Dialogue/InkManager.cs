@@ -20,6 +20,9 @@ public class InkManager : MonoBehaviour
     private Image playerImage, npcImage;
 
     private Story story;
+
+    private GameObject npcObj;
+
     public bool IsDialogueActive = false;
 
     private const string TEST_TAG = "testTag";
@@ -36,6 +39,7 @@ public class InkManager : MonoBehaviour
 
     private int currentSenderID = 0;
     private int currentReceiverID = 0;
+
     private void Awake()
     {
         if (Instance == null)
@@ -300,8 +304,9 @@ public class InkManager : MonoBehaviour
         UpdateDialogueText();
     }
 
-    public void StartDialogue(SODialogue pDialogueFile, int receiverID = 0, int senderID = 0)
+    public void StartDialogue(SODialogue pDialogueFile, GameObject pNPCObj, int receiverID = 0, int senderID = 0)
     {
+        npcObj = pNPCObj;
         currentReceiverID = receiverID;
         currentSenderID = senderID;
         dialogue = pDialogueFile;
@@ -325,9 +330,14 @@ public class InkManager : MonoBehaviour
         gameObject.SetActive(false);
         IsDialogueActive = false;
         if (currentSenderID != 0)
-        {
             story.UnbindExternalFunction("ProgressionEvent");
-        }
+        
+        if (dialogue.triggerDialogueSuccess)
+            story.UnbindExternalFunction("DialogueSuccess");
+
+        if (npcObj.GetComponent<BossHealth>() != null)
+            story.UnbindExternalFunction("BossDamage");
+
         currentReceiverID = 0;
         currentSenderID = 0;
         GameStateManager.Instance.SetState(GameState.Gameplay);
@@ -335,6 +345,9 @@ public class InkManager : MonoBehaviour
 
     private void DialogueVariablesSetup()
     {
+        //TEMPORARY FIX
+        dialogue.XPTriggered = false;
+
         if (dialogue.triggerDialogueSuccess)
             story.BindExternalFunction("DialogueSuccess", () => { dialogue.parentAgent.DialogueSuccess(); });
 
@@ -346,7 +359,30 @@ public class InkManager : MonoBehaviour
         {
             story.BindExternalFunction("ProgressionEvent", () => { ProgressionEvent(); });
         }
+
+        if(npcObj.GetComponent<BossHealth>() != null)
+            story.BindExternalFunction("BossDamage", (int pDamage) => { BossDamage(pDamage); });
     }
+
+    private void BossDamage(int pDamage)
+    {
+        if (npcObj == null)
+        {
+            Debug.LogError("npcObj is NULL", this);
+            return;
+        }
+
+        BossHealth health = npcObj.GetComponent<BossHealth>();
+
+        if (health == null)
+        {
+            Debug.LogError("bossHealth is NULL", this);
+            return;
+        }
+
+        health.DealDamage(pDamage);
+    }
+
     public bool ProgressionCheck(int pID)
     {
         return EventManager.Instance.ProgressionCheck(pID);

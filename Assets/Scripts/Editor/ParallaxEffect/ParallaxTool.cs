@@ -301,7 +301,9 @@ public class ParallaxTool : EditorWindow
         obj.transform.SetParent(layerParent.transform);
         obj.transform.tag = LAYER_TAG;
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-        ParallaxEffect parEffect = obj.AddComponent<ParallaxEffect>();
+        obj.AddComponent<ParallaxEffect>();
+
+        ParallaxEffect parEffect = obj.GetComponent<ParallaxEffect>();
 
         parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += LayerOnDestroy;

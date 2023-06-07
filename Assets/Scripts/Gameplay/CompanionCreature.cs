@@ -43,7 +43,7 @@ public class CompanionCreature : AEventAgent, IInteractable
 
 	public bool Interact(PlayerInteractor interactor)
 	{
-        InkManager.Instance.StartDialogue(creatureDialogue, receiverID, senderID);
+        InkManager.Instance.StartDialogue(creatureDialogue, gameObject, receiverID, senderID);
         return true;
 
     }
