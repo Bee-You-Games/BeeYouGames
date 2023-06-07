@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31c52a9af1c7394ea19eac895e196e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
   actorRole: 2
   senderID: 777
   receiverID: 666
@@ -454,6 +457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31c52a9af1c7394ea19eac895e196e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
   actorRole: 2
   senderID: 666
   receiverID: 888

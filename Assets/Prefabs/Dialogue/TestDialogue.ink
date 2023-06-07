@@ -13,7 +13,7 @@ VAR progress = false
 }
 
 === question ===
-You see that little guy over there on the left? Can you get him over here for me? #speaker:B #emotion:neutral
+You see that little guy over there on the left? Can you eat him over there for me? #speaker:B #emotion:neutral
 -> END
 
 
