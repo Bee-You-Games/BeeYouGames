@@ -17,7 +17,7 @@ public class ExperienceManager : MonoBehaviour
 
     private int currentExperience;
 
-    public static ExperienceManager Instance { get; set; }
+    public static ExperienceManager Instance { get; private set; }
 
     public event Action<int> OnExperienceChange;
 
