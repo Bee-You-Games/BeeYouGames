@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class ExperienceBar : MonoBehaviour
 {
     [SerializeField]
-    private int maxValue = 100;
-    [SerializeField]
     private float sliderAnimationSpeed = 100f;
     [SerializeField]
     private List<Ability> abilityButtons;
@@ -24,7 +22,7 @@ public class ExperienceBar : MonoBehaviour
     {
         ExperienceManager.Instance.OnExperienceChange += (value) => targetValue = value;
         slider = GetComponent<Slider>();
-        slider.maxValue = maxValue;
+        slider.maxValue = ExperienceManager.Instance.MaxValue;
         slider.value = 0;
     }
 
