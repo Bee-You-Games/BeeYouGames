@@ -10,6 +10,8 @@ public class Door : MonoBehaviour, IInteractable
     private string prompt;
     [SerializeField][Tooltip("Name of the scene to load")]
     private string sceneName;
+    [SerializeField][Range(0f, 2f)]
+    private float WaitTimeInSeconds = 0.5f;
 
     private SceneLoading sceneLoading;
 
@@ -19,15 +21,23 @@ public class Door : MonoBehaviour, IInteractable
 
     public bool Interact(PlayerInteractor interactor)
     {
-        Debug.Log("Gets here");
+        Debug.Log("Switching Scene");
         sceneLoading.LoadScene(sceneName);
+        Available = false;
         return true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Available = true;
+        Available = false;
+        StartCoroutine(WaitTime());
         sceneLoading = GetComponent<SceneLoading>();
+    }
+
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(WaitTimeInSeconds);
+        Available = true;
     }
 }

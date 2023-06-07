@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaa6aa02c56ce841a6ef4cd3e97d5de, type: 3}
+  m_Name: HappyChapDialogue
+  m_EditorClassIdentifier: 
+  parentAgent: {fileID: 0}
+  triggerDialogueSuccess: 0
+  DialogueFile: {fileID: 4900000, guid: b7194b8c890783148a926f3ab9628b99, type: 3}
+  CharacterAName: El Chaffe
+  CharacterASprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
+  CharacterBName: Fat Fuck
+  CharacterBSprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
+  XPTriggered: 0
