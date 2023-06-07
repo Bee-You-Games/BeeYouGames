@@ -117,14 +117,12 @@ public class ParallaxTool : EditorWindow
 
     private void ReloadGUI()
     {
-        Debug.Log("Reloading GUI");
         leftPane.onSelectionChange -= OnItemSelectionChange;
         rootVisualElement.Remove(topBotSplit);
     }
 
     private void ModeChanged(PlayModeStateChange pState)
     {
-        Debug.Log("ModeChanged");
         switch (pState)
         {
             case PlayModeStateChange.EnteredEditMode:
@@ -161,8 +159,6 @@ public class ParallaxTool : EditorWindow
             return;
         }
 
-        Debug.Log("Gets here " + layers.Length);
-
         ParallaxEffect[] parLayers = new ParallaxEffect[layers.Length];
 
         parallaxLayers.Clear();
@@ -170,7 +166,6 @@ public class ParallaxTool : EditorWindow
 
         for (int i = 0; i < layers.Length; i++)
         {
-            Debug.Log("Has Parallax Effect: " + layers[i].GetComponent<ParallaxEffect>());
             ParallaxEffect effect = layers[i].GetComponent<ParallaxEffect>();
 
             if (effect == null)
@@ -301,7 +296,9 @@ public class ParallaxTool : EditorWindow
         obj.transform.SetParent(layerParent.transform);
         obj.transform.tag = LAYER_TAG;
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-        ParallaxEffect parEffect = obj.AddComponent<ParallaxEffect>();
+        obj.AddComponent<ParallaxEffect>();
+
+        ParallaxEffect parEffect = obj.GetComponent<ParallaxEffect>();
 
         parallaxLayers.Add(parEffect);
         parEffect.OnDestruction += LayerOnDestroy;
