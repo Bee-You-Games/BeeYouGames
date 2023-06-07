@@ -52,7 +52,7 @@ public class ExperienceManager : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
         string[] words = sceneName.Split('_');
-        string level = words[0];
+        string level = words[0].ToLower();
 
         return level;
     }
