@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: Enter here
-  sceneName: Level1_UndergroundTest
+  sceneName: Level2
   WaitTimeInSeconds: 0.5
 --- !u!212 &1035605531
 SpriteRenderer:

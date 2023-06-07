@@ -32,7 +32,10 @@ public class ExperienceManager : MonoBehaviour
     private void Start()
     {
         if (PlayerPrefs.HasKey(GetCurrentLevel()))
+        {
             currentExperience = PlayerPrefs.GetInt(GetCurrentLevel());
+            OnExperienceChange?.Invoke(currentExperience);
+        }
         else
             PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
     }
@@ -59,7 +62,6 @@ public class ExperienceManager : MonoBehaviour
 
     public void AddExperience(int pXP)
     {
-        GetCurrentLevel();
         Debug.Log("Adding XP");
         currentExperience += pXP;
 
