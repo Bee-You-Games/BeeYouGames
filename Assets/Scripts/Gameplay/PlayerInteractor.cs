@@ -30,7 +30,7 @@ public class PlayerInteractor : MonoBehaviour
     private void CheckInteractables()
     {
         numFound = Physics.OverlapSphereNonAlloc(transform.position, interactRange, colliders, interactLayer);
-
+        
         if (numFound > 0)
         {
             Collider closestTarget;
