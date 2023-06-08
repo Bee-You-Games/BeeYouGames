@@ -324,7 +324,7 @@ public class InkManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        dialogue = null;
+        
         Debug.Log("Ending dialogue");
         EraseUI();
         gameObject.SetActive(false);
@@ -332,15 +332,17 @@ public class InkManager : MonoBehaviour
         if (currentSenderID != 0)
             story.UnbindExternalFunction("ProgressionEvent");
         
+        //  For some ungodly reason, this line is causing a null reference exception
         if (dialogue.triggerDialogueSuccess)
             story.UnbindExternalFunction("DialogueSuccess");
-
+        
         if (npcObj.GetComponent<BossHealth>() != null)
             story.UnbindExternalFunction("BossDamage");
 
         currentReceiverID = 0;
         currentSenderID = 0;
         GameStateManager.Instance.SetState(GameState.Gameplay);
+        dialogue = null;
     }
 
     private void DialogueVariablesSetup()

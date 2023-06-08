@@ -431,7 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55752318488842800}
   - component: {fileID: 55752318488842802}
-  - component: {fileID: 55752318488842803}
+  - component: {fileID: 1155305907212344090}
   m_Layer: 5
   m_Name: ChoiceSpawnPoint
   m_TagString: Untagged
@@ -456,8 +456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 154, y: 274}
-  m_SizeDelta: {x: 720.3085, y: 405.17352}
+  m_AnchoredPosition: {x: 123, y: 361}
+  m_SizeDelta: {x: 813.1355, y: 417.9161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &55752318488842802
 CanvasRenderer:
@@ -467,7 +467,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55752318488842815}
   m_CullTransparentMesh: 1
---- !u!114 &55752318488842803
+--- !u!114 &1155305907212344090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 55752318488842815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -484,15 +484,13 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 160, y: 70}
+  m_Spacing: {x: 250, y: 120}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &55752319014024067
 GameObject:
   m_ObjectHideFlags: 0
