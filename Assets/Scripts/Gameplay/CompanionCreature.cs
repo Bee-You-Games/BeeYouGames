@@ -16,8 +16,14 @@ public class CompanionCreature : AEventAgent, IInteractable
     public bool Available { get; set; }
     [SerializeField] private SODialogue creatureDialogue;
 
-	private void Awake()
+	private void Start()
 	{
+        if(PlayerPrefs.GetInt("CreatureUnlocked", 0) == 1)
+        {
+            Follow();
+            return;
+        }
+        else
 		Available = true;
         if (creatureDialogue != null)
             creatureDialogue.parentAgent = this;
@@ -50,8 +56,14 @@ public class CompanionCreature : AEventAgent, IInteractable
 
 	public override void DialogueSuccess()
 	{
+        PlayerPrefs.SetInt("CreatureUnlocked", 1);
+        Follow();
+    }
+
+    private void Follow(){
         following = true;
         Available = false;
         gameObject.layer = 0;
+
     }
 }
