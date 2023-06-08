@@ -65,5 +65,7 @@ public class CompanionCreature : AEventAgent, IInteractable
         Available = false;
         gameObject.layer = 0;
 
+        if(!EventManager.Instance.ProgressionCheck(senderID))
+            EventManager.Instance.TriggerProgression(senderID);
     }
 }
