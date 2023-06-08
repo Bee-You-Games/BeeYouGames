@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2858693529933199242, guid: 91506616b5d143946b86fc754db2d3ed, type: 3}
       propertyPath: sceneName
-      value: LevelMushroomPrototype
+      value: Level3_
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91506616b5d143946b86fc754db2d3ed, type: 3}
@@ -1038,11 +1038,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295312412}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &309996686 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6444261874532638241, guid: b76a562f8f27e734aa08397f510db93f, type: 3}
-  m_PrefabInstance: {fileID: 1213556553792270753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328745172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,7 +2976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe3e82826a3c9d4ca59b6f27cc2fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 309996686}
+  targetTransform: {fileID: 0}
 --- !u!1 &1480710482
 GameObject:
   m_ObjectHideFlags: 0
