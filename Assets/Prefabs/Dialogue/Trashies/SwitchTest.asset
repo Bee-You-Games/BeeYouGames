@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SwitchTest
   m_EditorClassIdentifier: 
   parentAgent: {fileID: 0}
-  triggerDialogueSuccess: 0
-  DialogueFile: {fileID: 0}
-  CharacterAName: 
-  CharacterASprite: {fileID: 0}
-  CharacterBName: 
-  CharacterBSprite: {fileID: 0}
+  triggerDialogueSuccess: 1
+  DialogueFile: {fileID: 4900000, guid: e2db03c87f664c5429b3de5e8fb383d2, type: 3}
+  CharacterAName: man
+  CharacterASprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
+  CharacterBName: boom
+  CharacterBSprite: {fileID: 4343727234628468602, guid: 922fa23295f5a794fb6c0f9f2a4747ba, type: 2}
   XPTriggered: 0
