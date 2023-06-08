@@ -1,14 +1,17 @@
 EXTERNAL ProgressionEvent()
 EXTERNAL DialogueSuccess()
+VAR progress = false
 
 -> main
 
 === main ===
+{
     -progress:
     ->continue
     
     -else:
     ->nothing
+}
     
 === continue ===
 Wat is er aan de hand met ze? #speaker:B #emotion:sad 

@@ -32,26 +32,26 @@ Oh wat een vreugde!!! Paddestoelen en blijdschap! Blijdschap en paddestoelen! Ka
 === comment ===
 Weeee, kijk naar deze prachtige paddestoelen! Is dit niet de meest prachtige plek die je ooit hebt gezien? Het voelt als een droom die uitkomt! De kleuren, de vormen, de vreugde die het mijn kleine hamster hartje geeft! #speaker:B #emotion:happy
     Laten we nadenken, welke emotie voelt de hamster? #speaker:A #emotion:neutral
-*   [Blij] Ben je blij? #speaker:A #emotion:neutral
+*   [Blij] Hallo daar! Ik voel dat de paddestoelen jou enorm veel blijdschap geven en ik moet zeggen, ik voel het ook helemaal! Zijn deze paddestoelen magisch?  #speaker:A #emotion:happy #xp:10
     ~ emotion = "Blij"
     ->blij
-*   Ik kan zien dat je je [Verdrietig] voelt #speaker:A #emotion:neutral
+*   [Verdrietig] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je verdrietig?  #speaker:A #emotion:caring
     ~ emotion = "Verdrietig"
     ->verkeerd
-*   Boos #speaker:A #emotion:neutral
+*   [Boos] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je boos? #speaker:A #emotion:troubled
     ~ emotion = "Boos"
     ->verkeerd
-*   Bang #speaker:A #emotion:neutral
+*   [Bang] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je bang? #speaker:A #emotion:caring
     ~ emotion = "Bang"
     ->verkeerd
     
 === blij ===
-    Ahh, stimmt! #speaker:A #emotion:neutral
-koom #speaker:B #emotion:happy
+Oh mijn vrolijke vriend, mijn paddestoel kameraad, jij voelt het nu ook! Deze paddestoelen... Ze vullen mijn hart met bodemloze blijdschap en genot. Ik voel alsof ik deze vrolijkheid met iedereen moet delen! #speaker:B #emotion:happy
+    Dat kan ik zien ja, de paddestoelen zien er zeker magisch uit #speaker:A #emotion:happy
 -> END
 
 === verkeerd ===
-    Ik ben zuper {emotion}!
+   Oh hemeltje, je bent een beetje in de war volgens mij vriend! Deze paddestoelen maken mij niet {emotion}! Deze paddestoelen geven mij onwijze vrolijkheid!! #speaker:B #emotion:happy
 -> END
 
 ~ ProgressionEvent()
