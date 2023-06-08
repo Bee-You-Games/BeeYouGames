@@ -329,21 +329,43 @@ public class InkManager : MonoBehaviour
         EraseUI();
         gameObject.SetActive(false);
         IsDialogueActive = false;
-        if (currentSenderID != 0)
-            story.UnbindExternalFunction("ProgressionEvent");
         
-        //  For some ungodly reason, this line is causing a null reference exception
-        if (dialogue.triggerDialogueSuccess)
-            story.UnbindExternalFunction("DialogueSuccess");
-        
-        if (npcObj.GetComponent<BossHealth>() != null)
-            story.UnbindExternalFunction("BossDamage");
+        UnbindExternalFunctions();
 
         currentReceiverID = 0;
         currentSenderID = 0;
         GameStateManager.Instance.SetState(GameState.Gameplay);
         dialogue = null;
     }
+
+    private void UnbindExternalFunctions(){
+        if (currentSenderID != 0)
+            story.UnbindExternalFunction("ProgressionEvent");
+        
+        /*  For some ungodly reason, this if statement line is causing a null reference exception
+        I debugged it, and dialogue isn't null here so I have no idea what's going on
+
+        if (dialogue.triggerDialogueSuccess)
+            story.UnbindExternalFunction("DialogueSuccess");
+        */
+
+        if (npcObj.GetComponent<BossHealth>() != null)
+            story.UnbindExternalFunction("BossDamage");
+    }
+
+    public void SwitchDialogue(SODialogue pDialogueFile)
+    {
+        UnbindExternalFunctions();
+
+        Debug.Log("Switching dialogue");
+        dialogue = pDialogueFile;
+        story = new Story(pDialogueFile.DialogueFile.text);
+        DialogueVariablesSetup();
+        PortraitSetup();
+        //UpdateDialogueText();
+
+    }
+    
 
     private void DialogueVariablesSetup()
     {

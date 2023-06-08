@@ -10,7 +10,8 @@ public abstract class AEventAgent : MonoBehaviour
 	{
 		Sender,
 		Receiver,
-		Both
+		Both,
+		Neither
 	}
 	[SerializeField]
 	[Tooltip("This event will be called when the DialogueSuccess function is called through dialogue, if triggerDialogueSuccess is enabled")]
@@ -58,6 +59,11 @@ public abstract class AEventAgent : MonoBehaviour
 			dialogueSuccessEvent.Invoke();
 		else 
 			Debug.LogWarning("No success event set for " + gameObject.name);
+	}
+
+	public virtual void SetDialogue(SODialogue pDialogue)
+	{
+		Debug.LogWarning("SetDialogue() not implemented for " + gameObject.name);
 	}
 
     public int GetSenderID() => senderID;
