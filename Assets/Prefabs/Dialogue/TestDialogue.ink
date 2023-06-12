@@ -16,7 +16,7 @@ VAR progress = false
 === mushroom === 
 ...#speaker:B #emotion:idle  
     Zeg vader a niffo #speaker:A #emotion:neutral
-    ~ ProgressionEvent()
+    ~ DialogueSuccess()
  -> END
 
 === continue ===
