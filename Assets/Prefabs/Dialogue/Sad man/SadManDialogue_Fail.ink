@@ -28,7 +28,7 @@ M-mijn naam... ehh...Gus #speaker:B #emotion:sad
 G-grote padde-s-stoellen *snuif*, wat...zullen ze doen? #speaker:B #emotion:crying
     Deze hamster heeft overduidelijk een probleem, maar ik kan moeilijk voor nu met hem praten als hij zo bedoefd is. #speaker:A #emotion:troubled
     Hmm, beide hamsters zijn echt te druk bezig met hun emoties. #speaker:A #emotion:troubled
-    ~ ProgressionEvent()
+    //~ ProgressionEvent()
 ->continue
 
 === gloom ===
@@ -38,7 +38,7 @@ M-misschien zijn ze z-zelfs gevaarlijk... #speaker:B #emotion:crying
     Deze hamster heeft overduidelijk een probleem, maar ik kan moeilijk voor nu met hem praten als hij zo bedoefd is. # #speaker:A #emotion:surprised
     hmm, beide hamsters zijn te druk bezig met hun emoties. #speaker:A #emotion:troubled
     Wat als ik me eerst probeer in te leven in hun schoenen en nadenk over hun emoties? #speaker:A #emotion:neutral
-    ~ ProgressionEvent()
+    //~ ProgressionEvent()
 ->continue
 
 === continue ===
@@ -74,6 +74,7 @@ Wat maakt het nou uit...*snuif*. Waarom zijn ze zo speciaal? #speaker:B #emotion
 *   [Gaat het goed?] Gaat alles nog goed met je? #speaker:A #emotion:caring
     ->nee
 *   [Laat de paddestoel zien] Hey, kijk hier eens naar! De paddestoelen zijn volledig ongevaarlijk, moet je deze kleine eens bekijken! #speaker:A #emotion:happy #xp:10
+    ~ ProgressionEvent()
     ->paddoboys
 
     
@@ -86,7 +87,7 @@ Dat zie ik nu inderdaad! Om heel eerlijk te zijn, de paddestoelen zijn ook niet 
 Hij geeft alleen maar iets om die stomme paddestoelen...Hij luistert nooit...#speaker:B #emotion:crying
     Oh nee, Gus was nooit verdrietig over de paddestoelen, hij is verdrietig over zijn vriend die niet wilt luisteren... #speaker:A #emotion:troubled
     Ik moet met de blije hamster praten en hem op laten merken dat zijn vriend verdrietig is! #speaker:A #emotion:neutral
-    ~ DialogueSuccess()
+    //~ DialogueSuccess()
     ->END
 
 === nee ===
