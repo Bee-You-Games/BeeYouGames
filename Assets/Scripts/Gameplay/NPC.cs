@@ -11,7 +11,7 @@ public class NPC : AEventAgent, IInteractable
     [SerializeField] private SODialogue NPCDialogue;
     public bool Available { get; set; }
 
-	private void Awake()
+	private void Start()
     {
         Available = true;
         animator = GetComponent<Animator>();
@@ -39,6 +39,12 @@ public class NPC : AEventAgent, IInteractable
             StartCoroutine(PlayAnimation());
 
         return true;
+    }
+
+    public override void SetDialogue(SODialogue pDialogue)
+    {
+        NPCDialogue = pDialogue;
+        InkManager.Instance.SwitchDialogue(pDialogue);
     }
 
     IEnumerator PlayAnimation()

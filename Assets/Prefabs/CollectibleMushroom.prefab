@@ -1,0 +1,206 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &218697044035140783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 378633434659421563, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674248314556031703, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: prompt
+      value: take him
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674248314556031703, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: experienceValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Name
+      value: Collectible (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7489531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7489531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7489531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008146034
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440219600896962913, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608596086932253521, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980667929708465479, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Size.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980667929708465479, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980667929708465479, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Center.x
+      value: -0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980667929708465479, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Center.z
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980667929708465479, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381411778486117660, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3674248314556031703, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+    - {fileID: 733316534465750259, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+    - {fileID: 3214920166782603743, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+    - {fileID: 5547974935881136461, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+--- !u!1 &3881525990490675060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
+  m_PrefabInstance: {fileID: 218697044035140783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &338717903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881525990490675060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8cdeabb6083f045858d5931d88f193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tapGoal: 15
+  UIPanel: {fileID: 0}
+  prompt: Een paddestoel?
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ExperienceManager, Assembly-CSharp
+        m_MethodName: AddExperience
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFailure:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &338717904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881525990490675060}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad334ad5d58e0249b2729ba000127a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  actorRole: 1
+  senderID: 0
+  receiverID: 3
+  wallMovement: 0
+  movementTime: 4
+--- !u!114 &338717905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881525990490675060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e8f48fbf1cd8748b3615376167e4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showLines: 1

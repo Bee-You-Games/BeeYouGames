@@ -27,6 +27,10 @@ public class CompanionCreature : AEventAgent, IInteractable
 		Available = true;
         if (creatureDialogue != null)
             creatureDialogue.parentAgent = this;
+        if (actorRole != Role.Sender)
+        {
+            InitReceiver();
+        }
     }
 	void Update()
     {
@@ -52,6 +56,12 @@ public class CompanionCreature : AEventAgent, IInteractable
         InkManager.Instance.StartDialogue(creatureDialogue, gameObject, receiverID, senderID);
         return true;
 
+    }
+
+    public override void SetDialogue(SODialogue pDialogue)
+    {
+        creatureDialogue = pDialogue;
+        InkManager.Instance.SwitchDialogue(pDialogue);
     }
 
 	public override void DialogueSuccess()

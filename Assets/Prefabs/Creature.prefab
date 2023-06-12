@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3448323408826447803}
   - component: {fileID: 3448323408826447800}
   - component: {fileID: 6163115317086112383}
+  - component: {fileID: 378399891450597549}
   m_Layer: 6
   m_Name: Creature
   m_TagString: Untagged
@@ -47,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251c8cee1cf8ec49a2669b2c23590c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
   actorRole: 0
   senderID: 1
   receiverID: 0
@@ -132,3 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eb03b8657644445abc39a54fae4566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &378399891450597549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448323408826447804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e8f48fbf1cd8748b3615376167e4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showLines: 1

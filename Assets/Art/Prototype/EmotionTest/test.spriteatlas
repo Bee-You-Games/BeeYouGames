@@ -53,11 +53,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 43840e9211a0a524db7f7c10cf321d3c, type: 3}
   - {fileID: 21300000, guid: d1ccd8931acdfa34b89f2f318f82bf9d, type: 3}
   - {fileID: 21300000, guid: 50cbe3c95f8434740b51f1641b8708b0, type: 3}
+  - {fileID: 21300000, guid: 049402e95b1ec3a418cce7fe848be7ea, type: 3}
   - {fileID: 21300000, guid: ed5aef1fd10ac0a46b81391490021aba, type: 3}
   m_PackedSpriteNamesToIndex:
   - neutral
   - sad
   - angry
+  - cretin
   - happy
   m_RenderDataMap: {}
   m_Tag: test

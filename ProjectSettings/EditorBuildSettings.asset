@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 3440f7e41871a9f44a677b69a76b9e15
   - enabled: 1
-    path: Assets/Scenes/LevelMushroomForestPlane.unity
+    path: Assets/Scenes/Level3_ForestPlane.unity
     guid: 5d717277260e60e4394f0d2162eae905
   - enabled: 1
     path: Assets/Scenes/Credits.unity
@@ -36,10 +36,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: 1756f9a6946f2104aa6546bbba940699
   - enabled: 1
-    path: Assets/Scenes/LevelMushroomDetour.unity
+    path: Assets/Scenes/Level3_Detour.unity
     guid: 5e1777d49061db141b5d1e2dfbcb5d65
   - enabled: 1
-    path: Assets/Scenes/LevelMushroomPrototype.unity
+    path: Assets/Scenes/Level3_Lane1.unity
     guid: 7a065d23405693042bfdf1e39af4e6f5
   - enabled: 1
     path: Assets/Scenes/Level1_UndergroundTest.unity

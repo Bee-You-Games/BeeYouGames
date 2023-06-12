@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaa6aa02c56ce841a6ef4cd3e97d5de, type: 3}
+  m_Name: SadContDialogue_Fail
+  m_EditorClassIdentifier: 
+  parentAgent: {fileID: 0}
+  triggerDialogueSuccess: 1
+  DialogueFile: {fileID: 4900000, guid: 78bd597e64bbab34c892110d1b39b98f, type: 3}
+  CharacterAName: Speler
+  CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
+  CharacterBName: Gus
+  CharacterBSprite: {fileID: 4343727234628468602, guid: 68302ad37a0c38d45b9b35c8f79632ef, type: 2}
+  XPTriggered: 0
