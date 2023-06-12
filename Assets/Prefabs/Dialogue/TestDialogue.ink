@@ -1,23 +1,25 @@
 EXTERNAL ProgressionEvent()
+EXTERNAL DialogueSuccess()
 VAR progress = false
 
 -> main
 
 === main ===
 {
-    - progress:
+    -progress:
     ->continue
     
     -else:
-    ->question
+    ->mushroom
 }
-
-=== question ===
-You see that little guy over there on the left? Can you eat him over there for me? #speaker:B #emotion:neutral
--> END
-
+    
+=== mushroom === 
+...#speaker:B #emotion:idle  
+    Zeg vader a niffo #speaker:A #emotion:neutral
+    ~ ProgressionEvent()
+ -> END
 
 === continue ===
-Wow, what a great guy, you may proceed #speaker:B #emotion:happy
-~ ProgressionEvent()
--> END
+Zeg hallo daar, niet-paddestoel vriend. #speaker:B #emotion:neutral
+    ~ DialogueSuccess()
+->END
