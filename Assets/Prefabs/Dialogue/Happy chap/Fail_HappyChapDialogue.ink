@@ -7,7 +7,7 @@ VAR emotion = ""
 
 === main ===
 {
-   -progress:
+    -progress:
     ->continue
     
     -else:
@@ -60,7 +60,7 @@ Weeee, kijk naar deze prachtige paddestoelen! Ik voel alsof ik het hele bos kan 
 === blij ===
 Oh mijn vrolijke vriend, mijn paddestoel kameraad, jij voelt het nu ook! Deze paddestoelen... Ze vullen mijn hart met bodemloze blijdschap en genot. Ik voel alsof ik deze vrolijkheid met iedereen moet delen! #speaker:B #emotion:happy
     Dat kan ik zien ja, de paddestoelen zien er zeker magisch uit #speaker:A #emotion:happy
-    ~ ProgressionEvent()
+    //~ ProgressionEvent()
 -> END
 
 === verkeerd ===

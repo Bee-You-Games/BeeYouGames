@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentAgent: {fileID: 0}
   triggerDialogueSuccess: 1
-  DialogueFile: {fileID: 4900000, guid: 1be1d7b5433679f46b31a062b9d33e31, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 11efc5deb796c9b4bb3a87c791434a02, type: 3}
   CharacterAName: Speler
   CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
   CharacterBName: Gus

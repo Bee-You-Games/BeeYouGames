@@ -64,8 +64,7 @@ Hallo, ik heb je hulp nodig!#speaker:B #emotion:cretin
     ->hallo
     *[Je hebt mijn hulp nodig?] Je hebt mijn hulp nodig zeg je? #speaker:A #emotion:caring
     ->hallo
-    *[Uhmmmm...] Waar zit ik precies mee te praten? #speaker:A #emotion:suprised
-    
+    *[Uhmmmm...] Waar zit ik precies mee te praten? #speaker:A #emotion:surprised
     ->wat
     *[Jij kan praten?] Jij kan echt praten. Uhm...wat ben jij precies? #speaker:A #emotion:suprised
     ->hallo
