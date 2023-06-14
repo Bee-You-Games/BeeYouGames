@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: HappyHammy
   m_EditorClassIdentifier: 
   parentAgent: {fileID: 0}
-  triggerDialogueSuccess: 0
-  DialogueFile: {fileID: 0}
+  triggerDialogueSuccess: 1
+  DialogueFile: {fileID: 4900000, guid: ae2b5dae07448b4438f3096884dabe86, type: 3}
   CharacterAName: Speler
   CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
   CharacterBName: Jani

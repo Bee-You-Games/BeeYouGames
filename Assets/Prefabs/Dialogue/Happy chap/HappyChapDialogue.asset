@@ -15,7 +15,7 @@ MonoBehaviour:
   parentAgent: {fileID: 0}
   triggerDialogueSuccess: 1
   DialogueFile: {fileID: 4900000, guid: b7194b8c890783148a926f3ab9628b99, type: 3}
-  CharacterAName: Speler'
+  CharacterAName: Speler
   CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
   CharacterBName: Jani
   CharacterBSprite: {fileID: 4343727234628468602, guid: f31c918b3936d0b48b03a784bd140a5c, type: 2}

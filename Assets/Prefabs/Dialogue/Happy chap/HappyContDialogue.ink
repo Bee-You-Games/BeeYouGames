@@ -7,7 +7,7 @@ VAR emotion = ""
 
 === main ===
 {
-    - progress:
+    -progress:
     ->continue
     
     -else:
@@ -15,23 +15,13 @@ VAR emotion = ""
 }
 
 === continue ===
-/* DIE PADDESTOEL PAST IN DE PALM VAN MIJN HAND, WAT ABSOLUUT WONDERBAARLIJK! AAAAAAH! IK MOET HEM ZIEN!! #speaker:B #emotion:happy
-*   [Zet een verdrietig gezicht op] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je verdrietig?  #speaker:A #emotion:troubled
-    ~ emotion = "Verdrietig"
-    ->verkeerd
-*   [Vraag hem om te luisteren] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je boos? #speaker:A #emotion:caring
-    ~ emotion = "Boos"
-    ->verkeerd
-*   [Doe alsof je de paddestoel niet hebt] Hallo daar! Ik voel dat je een bepaalde energie krijgt van de paddestoelen hier. Maken ze je bang? #speaker:A #emotion:surprised
-    ~ emotion = "Bang"
-    ->verkeerd */
-->END
-
+ DIE PADDESTOEL PAST IN DE PALM VAN MIJN HAND, WAT ABSOLUUT WONDERBAARLIJK! AAAAAAH! IK MOET HEM ZIEN!! #speaker:B #emotion:happy
+ ->keuze
 
 === comment ===
 DIE PADDESTOEL PAST IN DE PALM VAN MIJN HAND, WAT ABSOLUUT WONDERBAARLIJK! AAAAAAH! IK MOET HEM ZIEN!! #speaker:B #emotion:euphoric
     Wat naar...Hij zit volledig zijn vriend zijn emoties te negeren... Als ik aan hem duidelijk kan maken dat Gus verdrietig is...
-    ->keuze
+->keuze
     
  === keuze ===   
     Hoe kan ik Jani de hamster benaderen?

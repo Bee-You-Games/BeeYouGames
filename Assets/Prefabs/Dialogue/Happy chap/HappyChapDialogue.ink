@@ -13,9 +13,15 @@ VAR emotion = ""
     -else:
     ->comment
 }
-
 === continue ===
+    HEY!!#speaker:B #emotion:euphoric
+    ~ DialogueSuccess()
+    OH WAUW!!!!
+-> END
+
+=== keuze ===
 Weeee, kijk naar deze prachtige paddestoelen! Ik voel alsof ik het hele bos kan vullen met geluk en de liefde met iedereen kan delen!! Spring, geniet en dans! #speaker:B #emotion:euphoric
+    
     Hmm, welke emotie voelt de hamster? #speaker:A #emotion:neutral
 *   [Blij] Hallo daar! Ik voel dat de paddestoelen jou enorm veel blijdschap geven en ik moet zeggen, ik voel het ook helemaal! Zijn deze paddestoelen magisch?  #speaker:A #emotion:happy #xp:10
     ~ emotion = "Blij"
@@ -33,7 +39,7 @@ Weeee, kijk naar deze prachtige paddestoelen! Ik voel alsof ik het hele bos kan 
 === blij ===
 Oh mijn vrolijke vriend, mijn paddestoel kameraad, jij voelt het nu ook! Deze paddestoelen... Ze vullen mijn hart met bodemloze blijdschap en genot. Ik voel alsof ik deze vrolijkheid met iedereen moet delen! #speaker:B #emotion:happy
     Dat kan ik zien ja, de paddestoelen zien er zeker magisch uit #speaker:A #emotion:happy
-    ~ DialogueSuccess()
+    ~DialogueSuccess()
 -> END
 
 === verkeerd ===
@@ -55,9 +61,9 @@ Kom, laten we samen ons geluk delen. #speaker:B #emotion:happy
 === vreugdnaam  ===   
 Ik heet Jani! Oh, jij bent hier ook om van de paddestoel hemel te genieten! Wat een vreugd, wat een plezier! Mijn buik ontploft van de pret en de paddestoelen!!! #speaker:B #emotion:euphoric
  Wow, deze hamster is enorm opgewonden zeg! Ik kan helaas niet echt een gesprek met hem aan gaan, hij is te vrolijk om mij op te merken. #speaker:A #emotion:surprised
-    misschien moet ik met de andere hamster gaan praten. #speaker:A #emotion:neutral
+    (Hmm, Empati had het over het begrijpen van emoties van anderen. Laten we proberen zijn emoties te achterhalen.) #speaker:A #emotion:neutral
     
-->END
+->keuze
 
 === vreugd  ===
 Oh wat een vreugde!!! Paddestoelen en blijdschap! Blijdschap en paddestoelen! Kan jij het ook voelen? Wat een genot! Laten we draaien tot we omvallen! #speaker:B #emotion:euphoric

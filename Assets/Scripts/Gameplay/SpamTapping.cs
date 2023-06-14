@@ -66,6 +66,7 @@ public class SpamTapping : MonoBehaviour, ITapping, IInteractable
             OnComplete.Invoke();
             IsComplete = true;
             hasStarted = false;
+            Destroy(this.gameObject);
             return true;
         }
         else

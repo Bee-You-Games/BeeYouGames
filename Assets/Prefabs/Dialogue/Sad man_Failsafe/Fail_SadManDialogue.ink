@@ -8,7 +8,7 @@ VAR emotion = ""
 === main ===
 {
     - progress:
-    ->continue
+    ->dismiss
     
     -else:
     ->comment
