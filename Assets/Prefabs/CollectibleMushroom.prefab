@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
       propertyPath: m_Name
-      value: Collectible (3)
+      value: CollectibleMushroom
       objectReference: {fileID: 0}
     - target: {fileID: 3951069330082425819, guid: 75b2d221333c3234285c22ac5bf642e8, type: 3}
       propertyPath: m_Layer
@@ -171,26 +171,6 @@ MonoBehaviour:
   OnFailure:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &338717904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881525990490675060}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad334ad5d58e0249b2729ba000127a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueSuccessEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  actorRole: 1
-  senderID: 0
-  receiverID: 3
-  wallMovement: 0
-  movementTime: 4
 --- !u!114 &338717905
 MonoBehaviour:
   m_ObjectHideFlags: 0

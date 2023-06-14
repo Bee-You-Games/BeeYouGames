@@ -16,7 +16,7 @@ VAR emotion = ""
 === continue ===
     HEY!!#speaker:B #emotion:euphoric
     ~ DialogueSuccess()
-    OH WAUW!!!! #speaker:B #emotion:euphoric
+    OH WAUW!!!!
 -> END
 
 === keuze ===

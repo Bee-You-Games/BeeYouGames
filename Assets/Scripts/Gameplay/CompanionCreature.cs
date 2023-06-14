@@ -18,6 +18,12 @@ public class CompanionCreature : AEventAgent, IInteractable
 
 	private void Start()
 	{
+        if(PlayerPrefs.GetInt("CreatureUnlocked", 0) == 1)
+        {
+            Follow();
+            return;
+        }
+        else
 		Available = true;
         if (creatureDialogue != null)
             creatureDialogue.parentAgent = this;
@@ -60,8 +66,16 @@ public class CompanionCreature : AEventAgent, IInteractable
 
 	public override void DialogueSuccess()
 	{
+        PlayerPrefs.SetInt("CreatureUnlocked", 1);
+        Follow();
+    }
+
+    private void Follow(){
         following = true;
         Available = false;
         gameObject.layer = 0;
+
+        if(!EventManager.Instance.ProgressionCheck(senderID))
+            EventManager.Instance.TriggerProgression(senderID);
     }
 }
