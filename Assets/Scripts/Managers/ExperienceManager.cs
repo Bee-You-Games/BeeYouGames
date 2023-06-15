@@ -21,8 +21,11 @@ public class ExperienceManager : MonoBehaviour
 
     public event Action<int> OnExperienceChange;
 
+    private List<string> rewardedText;
+
     private void Awake()
     {
+        rewardedText = new List<string>();
         if (Instance == null)
             Instance = this;
         else
@@ -60,14 +63,19 @@ public class ExperienceManager : MonoBehaviour
         return level;
     }
 
-    public void AddExperience(int pXP)
+    public void AddExperience(int pXP, string rewardText = null)
     {
+        if (rewardText != null && rewardedText.Contains(rewardText))
+            return;
         Debug.Log("Adding XP");
         currentExperience += pXP;
 
         PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
 
         OnExperienceChange?.Invoke(currentExperience);
+
+        if (rewardText != null)
+            rewardedText.Add(rewardText);
     }
 
     public void RemoveExperience(int pXP)
