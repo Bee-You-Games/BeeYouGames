@@ -3,40 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Collider))]
-public class HintTrigger : MonoBehaviour
+public class HintTrigger : AreaTrigger
 {
-    Collider triggerCollider;
     [SerializeField]
     private Image hintImage;
-    private bool IsDisplayed = false;
     [SerializeField]
     private float fadeTime = 0.5f;
+    private bool isDisplayed = false;
+
     void Start()
     {
-        triggerCollider = GetComponent<Collider>();
-        triggerCollider.isTrigger = true;
+        Setup();
 
         if(hintImage == null)
             Debug.Log("No image set for " + gameObject.name);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void Activate()
     {
-        if (other.CompareTag("Player") && IsDisplayed == false)
-        {
-            DisplayHint();
-        }
-    }
-
-    private void DisplayHint()
-    {
+        if(isDisplayed)
+            return;
+        
         hintImage.gameObject.SetActive(true);
         hintImage.color = new Color(hintImage.color.r, hintImage.color.g, hintImage.color.b, 0f);
         LeanTween.alpha(hintImage.rectTransform, 1f, fadeTime);
-        IsDisplayed = true;
+        isDisplayed = true;
     }
-
+    
     public void HideHint()
     {
         hintImage.color = new Color(hintImage.color.r, hintImage.color.g, hintImage.color.b, 1f);
