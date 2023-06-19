@@ -20,6 +20,6 @@ VAR progress = false
  -> END
 
 === continue ===
-Zeg hallo daar, niet-paddestoel vriend. #speaker:B #emotion:neutral
+Zeg hallo daar, niet-paddestoel vriend. #speaker:B #emotion:neutral #xp:20
     ~ DialogueSuccess()
 ->END

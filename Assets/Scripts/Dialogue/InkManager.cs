@@ -152,7 +152,7 @@ public class InkManager : MonoBehaviour
                 case XP_TAG:
                     if(dialogue.XPTriggered == false){
                         dialogue.XPTriggered = true;
-                        ExperienceManager.Instance.AddExperience((GetXPTagValue(tag)));
+                        ExperienceManager.Instance.AddExperience((GetXPTagValue(tag)), story.currentText);
                     }
                     else
                         Debug.Log("XP reward already triggered for this dialogue");
