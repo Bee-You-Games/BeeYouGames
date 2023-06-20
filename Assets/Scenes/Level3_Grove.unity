@@ -764,7 +764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 46716933}
   - component: {fileID: 46716932}
-  - component: {fileID: 46716931}
+  - component: {fileID: 46716934}
   m_Layer: 0
   m_Name: Layer1_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -772,18 +772,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &46716931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46716930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &46716932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -851,6 +839,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &46716934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46716930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &69679438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177743043}
   - component: {fileID: 177743042}
-  - component: {fileID: 177743041}
+  - component: {fileID: 177743044}
   m_Layer: 0
   m_Name: Layer5_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -1387,18 +1392,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &177743041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177743040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &177743042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1466,6 +1459,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &177743044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177743040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &179991202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409279046}
   - component: {fileID: 409279045}
-  - component: {fileID: 409279044}
+  - component: {fileID: 409279047}
   m_Layer: 0
   m_Name: Layer9_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -2541,18 +2551,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &409279044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409279043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &409279045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2620,6 +2618,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &409279047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409279043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &424438809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,7 +2645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424438812}
   - component: {fileID: 424438811}
-  - component: {fileID: 424438810}
+  - component: {fileID: 424438813}
   m_Layer: 0
   m_Name: Layer3_SET_Paralex
   m_TagString: ParallaxLayer
@@ -2638,18 +2653,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &424438810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424438809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &424438811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2717,6 +2720,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424438813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424438809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &461097743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,7 +3319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621716983}
   - component: {fileID: 621716982}
-  - component: {fileID: 621716981}
+  - component: {fileID: 621716984}
   m_Layer: 0
   m_Name: Layer6_SET
   m_TagString: ParallaxLayer
@@ -3307,18 +3327,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &621716981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621716980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &621716982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3386,6 +3394,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621716984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621716980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1001 &659208165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4548,7 +4573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 983531733}
   - component: {fileID: 983531732}
-  - component: {fileID: 983531731}
+  - component: {fileID: 983531734}
   m_Layer: 0
   m_Name: Layer4_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -4556,18 +4581,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &983531731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983531730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &983531732
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4635,6 +4648,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983531734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983531730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &999719002
 GameObject:
   m_ObjectHideFlags: 0
@@ -5086,7 +5116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139540870}
   - component: {fileID: 1139540869}
-  - component: {fileID: 1139540868}
+  - component: {fileID: 1139540871}
   m_Layer: 0
   m_Name: Layer7_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -5094,18 +5124,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1139540868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139540867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1139540869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5173,6 +5191,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139540871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139540867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1141928282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,7 +5345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1228753860}
   - component: {fileID: 1228753859}
-  - component: {fileID: 1228753858}
+  - component: {fileID: 1228753861}
   m_Layer: 0
   m_Name: Layer2_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -5318,18 +5353,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1228753858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228753857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1228753859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5397,6 +5420,23 @@ Transform:
   m_Father: {fileID: 142069489}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1228753861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228753857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1231296444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,7 +5957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1339370019}
   - component: {fileID: 1339370018}
-  - component: {fileID: 1339370017}
+  - component: {fileID: 1339370020}
   m_Layer: 0
   m_Name: Layer10_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -5925,18 +5965,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1339370017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339370016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1339370018
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6004,6 +6032,23 @@ Transform:
   m_Father: {fileID: 1812893410}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1339370020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339370016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1349490865
 GameObject:
   m_ObjectHideFlags: 0
@@ -7703,7 +7748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754854444}
   - component: {fileID: 1754854443}
-  - component: {fileID: 1754854442}
+  - component: {fileID: 1754854445}
   m_Layer: 0
   m_Name: Layer8_Repeatable_Paralex
   m_TagString: ParallaxLayer
@@ -7711,18 +7756,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1754854442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754854441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84038ef6417accf4ca4c78b41a56efbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1754854443
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7790,6 +7823,23 @@ Transform:
   m_Father: {fileID: 1812893410}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754854445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754854441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1758299943
 GameObject:
   m_ObjectHideFlags: 0
