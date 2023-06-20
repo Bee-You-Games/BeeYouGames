@@ -50,21 +50,21 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: b861700114254ea4e95dcd3147efaad6, type: 3}
   - {fileID: 21300000, guid: 6bf96391c18a89441bab71aff5231269, type: 3}
-  - {fileID: 21300000, guid: e65378828515e434b8df7e1b315e6c48, type: 3}
-  - {fileID: 21300000, guid: 4c04703564671f941ac50db7ed7a182c, type: 3}
-  - {fileID: 21300000, guid: 5edd6ef73dd3fd342bfe52de500c2ff3, type: 3}
-  - {fileID: 21300000, guid: b57e84d800912a844bb0576ab66d1d22, type: 3}
-  - {fileID: 21300000, guid: aeccbbeb94a1aef4e872a511ac478952, type: 3}
+  - {fileID: 21300000, guid: 16bf0c55de88f6b4bb73f2956bae2083, type: 3}
+  - {fileID: 21300000, guid: 35dd992764a0c87428113c9a128d8b2d, type: 3}
+  - {fileID: 21300000, guid: 496289dd3d2b2ed4ca83bbc8e52067ed, type: 3}
   - {fileID: 21300000, guid: 856e4bdd8b90410448f310bd0f87ea28, type: 3}
+  - {fileID: 21300000, guid: 9038bb8e36cc6d34eb5e70b348df6f42, type: 3}
   m_PackedSpriteNamesToIndex:
-  - angry
-  - surprised
   - troubled
-  - neutral
-  - happy
+  - angry
   - caring
+  - happy
+  - surprised
   - sad
+  - neutral
   m_RenderDataMap: {}
   m_Tag: Main Character
   m_IsVariant: 0
