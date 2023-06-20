@@ -63,7 +63,17 @@ public class ExperienceManager : MonoBehaviour
         return level;
     }
 
-    public void AddExperience(int pXP, string rewardText = null)
+    public void AddExperience(int pXP)
+    {
+        Debug.Log("Adding XP");
+        currentExperience += pXP;
+
+        PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
+
+        OnExperienceChange?.Invoke(currentExperience);
+    }
+
+    public void AddDialogueExperience(int pXP, string rewardText = null)
     {
         if (rewardText != null && rewardedText.Contains(rewardText))
             return;
