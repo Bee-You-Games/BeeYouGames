@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Level3_Lane1.unity
-    guid: 7a065d23405693042bfdf1e39af4e6f5
-  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 1a6a90923c8862c438ff668b31f23341
+  - enabled: 1
+    path: Assets/Scenes/Level3_Lane1.unity
+    guid: 7a065d23405693042bfdf1e39af4e6f5
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 3a4f5b8536bdf7b438a6b7166fd253b3
@@ -41,4 +41,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1_UndergroundTest.unity
     guid: 55fb45c359cff16499156c7ad4473462
+  - enabled: 1
+    path: Assets/Scenes/Level3_Lane2.unity
+    guid: e0eec1d93cfd7b7468e78bf020f30726
+  - enabled: 1
+    path: Assets/Scenes/Level3_Detour.unity
+    guid: 5e1777d49061db141b5d1e2dfbcb5d65
+  - enabled: 1
+    path: Assets/Scenes/Level3_Grove.unity
+    guid: b618104ad717e51468321345fe6fefb4
   m_configObjects: {}
