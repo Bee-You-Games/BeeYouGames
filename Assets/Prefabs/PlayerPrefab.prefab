@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213556554888161307}
   - component: {fileID: 4335654545977067532}
+  - component: {fileID: 8295541690078724011}
   - component: {fileID: 1213556554888161304}
   - component: {fileID: 1213556554888161305}
   - component: {fileID: 1213556554888161302}
@@ -279,6 +280,26 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &8295541690078724011
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213556554888161303}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &1213556554888161304
 CapsuleCollider:
   m_ObjectHideFlags: 0
