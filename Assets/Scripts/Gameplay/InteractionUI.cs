@@ -22,8 +22,11 @@ public class InteractionUI : MonoBehaviour
         panelGroup.alpha = 0;
     }
 
-    public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget)
+    public void SetUp(string pPrompt, Vector3 pPosition, IInteractable pTarget, GameObject pTargetObj)
     {
+        var renderer = pTargetObj.GetComponent<Renderer>();
+        Vector3 bounds = renderer.bounds.extents;
+
         Target = pTarget;
         Vector3 interactablePos = pPosition;
         interactablePos.y += promptHeight;

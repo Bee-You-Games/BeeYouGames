@@ -47,11 +47,15 @@ public class PlayerInteractor : MonoBehaviour
                 closestTarget = colliders[0];
 
             interactable = closestTarget.GetComponent<IInteractable>();
-            Vector3 interactablePosition = closestTarget.gameObject.transform.position;
+
+            var renderer = closestTarget.GetComponent<Renderer>();
+            Vector3 bounds = renderer.bounds.extents;
+
+            Vector3 interactablePosition = closestTarget.gameObject.transform.position + new Vector3(0, bounds.y, 0);
             if (interactable != null && interactable.Available == true)
             {
                 //checks if either UI is inactive, or if the new target is a different interactable than the current interactionUI's target
-                if (!interactionUI.IsDisplayed || interactionUI.Target != interactable) interactionUI.SetUp(interactable.Prompt, interactablePosition, interactable);
+                if (!interactionUI.IsDisplayed || interactionUI.Target != interactable) interactionUI.SetUp(interactable.Prompt, interactablePosition, interactable, closestTarget.gameObject);
             }
         }
         else
