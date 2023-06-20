@@ -6233,9 +6233,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1339370016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3c34eee9864ea4da3a2ec44a7cbc92, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1349490865
 GameObject:
   m_ObjectHideFlags: 0
@@ -8024,9 +8029,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754854441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3c34eee9864ea4da3a2ec44a7cbc92, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b92beca84546c40b54f332ff870cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  isRepeating: 1
+  isRepeatingRandom: 0
+  MinimumHeight: 0
+  MaximumHeight: 0
 --- !u!1 &1772156116
 GameObject:
   m_ObjectHideFlags: 0
