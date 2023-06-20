@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoading : MonoBehaviour, ISceneLoading
 {
+    public static string PREVIOUS_SCENE_KEY { get; private set; } = "PrevScene";
 
     private void Start()
     {

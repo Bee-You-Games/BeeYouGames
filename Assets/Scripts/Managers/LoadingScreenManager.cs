@@ -18,6 +18,8 @@ public class LoadingScreenManager : MonoBehaviour
 
     private Scene lastLoadedScene;
 
+    public string PreviousLevel { get; private set; }
+
     public static LoadingScreenManager Instance { get; private set; }
 
     private void Awake()
@@ -38,6 +40,7 @@ public class LoadingScreenManager : MonoBehaviour
 
     private IEnumerator ILoadScene(string pSceneName)
     {
+        PreviousLevel = StringUtils.GetCurrentLevel(pSceneName);
         anim.SetTrigger("Start");
 
         yield return new WaitForSeconds(1f);
@@ -52,10 +55,11 @@ public class LoadingScreenManager : MonoBehaviour
 
     private IEnumerator ILoadScene(int pSceneIndex)
     {
+        PreviousLevel = StringUtils.GetCurrentLevel(SceneManager.GetSceneByBuildIndex(pSceneIndex).name);
         anim.SetTrigger("Start");
 
         yield return new WaitForSeconds(1f);
-
+        
         scenesLoading.Add(SceneManager.UnloadSceneAsync(lastLoadedScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(pSceneIndex, LoadSceneMode.Additive));
 
