@@ -23,9 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1_Test.unity
     guid: 87f8e8b101aa1784695b8e54fdc062f3
-  - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: b1606bc477e4a494d9703514f1aae6a8
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: b7d8d05dfcfd0744288a7365fb732716
@@ -41,4 +41,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1_UndergroundTest.unity
     guid: 55fb45c359cff16499156c7ad4473462
+  - enabled: 1
+    path: Assets/Scenes/Level2_Start.unity
+    guid: 8ccf8449786a1bf4dbe48615217c7d7a
+  - enabled: 1
+    path: Assets/Scenes/Level2_IceGame.unity
+    guid: 058ca0cf5abc3674292ce02c2ebc357a
+  - enabled: 1
+    path: Assets/Scenes/Level2_Bowling.unity
+    guid: c25c1a7583983584381e66d06d72885d
+  - enabled: 1
+    path: Assets/Scenes/Level2_BeforeBoss.unity
+    guid: 9fb3b468c02ca0b4494fbcf1e076a101
   m_configObjects: {}
