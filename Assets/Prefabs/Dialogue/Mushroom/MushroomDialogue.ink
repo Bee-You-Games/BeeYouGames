@@ -14,9 +14,11 @@ VAR progress = false
 }
     
 === mushroom === 
-...#speaker:B #emotion:idle  
-    Deze paddestoel ziet er anders uit dan de andere? #speaker:A #emotion:neutral
-    Ik dacht toch echt dat ik hem zag bewegen...#speaker:A #emotion:neutral
+    Jeetje, dat gemene konijn heeft de hele boom om laten vallen! #speaker:A #emotion:troubled
+Ja Pila heeft er een rotzooi van gemaakt oke. Je zal een omweg moeten vinden wil je daar doorheen moeten. #speaker:B #emotion:empty
+     Pardon… Wie zij dat? #speaker:A #emotion:surprised
+Hierzo voor je, verloren ziel #speaker:B #emotion:neutral
+    Een...pratende paddestoel? #speaker:A #emotion:surprised
     ~ ProgressionEvent()
  -> END
 

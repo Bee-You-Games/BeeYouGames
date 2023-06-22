@@ -39,8 +39,10 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 0ab0ccc375710ff48ae58c1e8b079f71, type: 3}
+  - {fileID: 21300000, guid: a9d82bcae3a11294cb07e907c233fe97, type: 3}
   m_PackedSpriteNamesToIndex:
   - neutral
+  - empty
   m_RenderDataMap: {}
   m_Tag: Mushrum_portraits
   m_IsVariant: 0
