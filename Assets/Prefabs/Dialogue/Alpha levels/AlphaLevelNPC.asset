@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfaa6aa02c56ce841a6ef4cd3e97d5de, type: 3}
-  m_Name: MyBaddie
+  m_Name: AlphaLevelNPC
   m_EditorClassIdentifier: 
   parentAgent: {fileID: 0}
   triggerDialogueSuccess: 0
-  DialogueFile: {fileID: 4900000, guid: 83ce6c33f6f98134db6614712c0253bd, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 403467d6e5f6ee2459e5c5d7f5a10727, type: 3}
   CharacterAName: Speler
   CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
-  CharacterBName: Pila
-  CharacterBSprite: {fileID: 4343727234628468602, guid: eca5df878efca2a4a9200b61c06dd69c, type: 2}
+  CharacterBName: NPC
+  CharacterBSprite: {fileID: 4343727234628468602, guid: 9a0fb3d8d5042304a87dd95319ce6d1f, type: 2}
   XPTriggered: 0
