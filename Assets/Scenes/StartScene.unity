@@ -477,6 +477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379246643}
   - component: {fileID: 1379246642}
+  - component: {fileID: 1379246644}
   m_Layer: 0
   m_Name: LoadingScreenManager
   m_TagString: Untagged
@@ -499,10 +500,7 @@ MonoBehaviour:
   StartSceneName: MainMenu
   loadingScreenObj: {fileID: 1103988676}
   canvas: {fileID: 1144562379}
-  image: {fileID: 619729948}
   anim: {fileID: 1144562381}
-  fadeScreen: {fileID: 619729950}
-  isReadyToLoad: 0
 --- !u!4 &1379246643
 Transform:
   m_ObjectHideFlags: 0
@@ -518,6 +516,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379246644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379246641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe8f59d151e3dc42b6d72e6a69dfd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767587920
 GameObject:
   m_ObjectHideFlags: 0
