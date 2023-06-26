@@ -10774,13 +10774,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelDistToDetect: 30
-  UIPanel: {fileID: 0}
+  UIPanel: {fileID: 158496560}
   prompt: Stimulatie Activatie
   targetSwipeAmount: 15
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 158496560}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -10792,7 +10792,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 34310797}
         m_TargetAssemblyTypeName: ExperienceManager, Assembly-CSharp
         m_MethodName: AddExperience
         m_Mode: 3
@@ -10800,6 +10800,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1820189573}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10878,7 +10890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820189573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: -2.37, z: 0.86}
+  m_LocalPosition: {x: 8.78, y: -2.37, z: 0.86}
   m_LocalScale: {x: 5.0313835, y: 2.7224555, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
