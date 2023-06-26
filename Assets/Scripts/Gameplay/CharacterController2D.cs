@@ -17,12 +17,14 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody playerBody;
     private PlayerInput playerInput;
     private PlayerInteractor interactor;
+    private Animator animator;
     // Start is called before the first frame update
 	private void Awake()
 	{
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<PlayerInteractor>();
+        animator = GetComponent<Animator>();
     }
 
 	void Update()
@@ -35,12 +37,16 @@ public class CharacterController2D : MonoBehaviour
             {
                 Vector3 velocity = new Vector3(input.x, 0, input.y);
                 Movement(velocity);
+            }else
+            {
+                animator.SetBool("walking", false);
             }
         }
     }
 
     private void Movement(Vector3 pMovementVelocity)
     {
+        animator.SetBool("walking", true);
         playerBody.velocity = pMovementVelocity * speed;
 
         //Rotation with movement

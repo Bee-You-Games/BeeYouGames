@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class BossHealth : MonoBehaviour, IHealth
@@ -10,7 +11,11 @@ public class BossHealth : MonoBehaviour, IHealth
     public UnityEvent OnDeath; 
     public UnityEvent OnDamage; 
     public UnityEvent OnHeal; 
+    [SerializeField]
+    private float fadeTime = 1f;
 
+    [SerializeField]
+    private Image winUI;
     public void DealDamage(int pDamage)
     {
         if (pDamage < 0)
@@ -23,9 +28,13 @@ public class BossHealth : MonoBehaviour, IHealth
 
         if (Health <= 0)
         {
-            Debug.Log("No heath left, baddie dead");
+            Debug.Log("No health left, baddie dead");
             Health = 0;
             OnDeath?.Invoke();
+            winUI.gameObject.SetActive(true);
+            winUI.color = new Color(winUI.color.r, winUI.color.g, winUI.color.b, 0f);
+            LeanTween.alpha(winUI.rectTransform, 1f, fadeTime);
+            GameStateManager.Instance.SetState(GameState.Dialogue);
         }
     }
 
@@ -38,4 +47,10 @@ public class BossHealth : MonoBehaviour, IHealth
         OnHeal?.Invoke();
     }
     public float GetDamage() => Health;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+            DealDamage(10);
+    }
 }
