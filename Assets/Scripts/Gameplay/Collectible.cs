@@ -7,7 +7,11 @@ public class Collectible : MonoBehaviour, IInteractable
     private int experienceValue;
     [SerializeField] private string prompt;
 
-    // 0 = false, 1 = true
+    private SpamTapping spamTapping;
+
+    /// <summary>
+    /// 0 = false, 1 = true
+    /// </summary>
     private const string IsCollectedPrefKey = "Collected";
 
     public string Prompt => prompt;
@@ -17,46 +21,21 @@ public class Collectible : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        spamTapping = GetComponent<SpamTapping>();
+        spamTapping.OnComplete.AddListener(delegate { SetIsCollected(); });
         CheckIfAvailable();
     }
 
     private void CheckIfAvailable()
     {
-        if (LoadingScreenManager.Instance != null)
-        {
-            if (!PlayerPrefs.HasKey(IsCollectedPrefKey))
-                PlayerPrefs.SetInt(IsCollectedPrefKey, 0);
+        if (!PlayerPrefs.HasKey(IsCollectedPrefKey)) return;
 
-            if (LoadingScreenManager.Instance.PreviousLevel == StringUtils.GetCurrentLevel() && PlayerPrefs.GetInt(IsCollectedPrefKey) == 1)
-            {
-                Available = false;
-                PlayerPrefs.SetInt(IsCollectedPrefKey, 1);
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                PlayerPrefs.SetInt(IsCollectedPrefKey, 0);
-                Available = true;
-            }
-        }
-        else
-        {
-            if (!PlayerPrefs.HasKey(IsCollectedPrefKey))
-                PlayerPrefs.SetInt(IsCollectedPrefKey, 0);
-
-            if (!PlayerPrefs.HasKey(SceneLoading.PREVIOUS_SCENE_KEY)) return;
-
-            if (PlayerPrefs.GetString(SceneLoading.PREVIOUS_SCENE_KEY) == StringUtils.GetCurrentLevel() &&
-                PlayerPrefs.GetInt(IsCollectedPrefKey) == 1)
-            {
-
-            }
-
-
-        }
+        if (PlayerPrefs.GetInt(IsCollectedPrefKey) == 0) return;
+        else if (PlayerPrefs.GetInt(IsCollectedPrefKey) == 1) Destroy(this.gameObject);
+        else Debug.LogError("IsCollected player pref is " + PlayerPrefs.GetInt(IsCollectedPrefKey) + " Value needs to be either 0 or 1", this);
     }
 
-    public void SetIsCollected(bool pIsCollected)
+    public void SetIsCollected(bool pIsCollected = true)
     {
         IsCollected = pIsCollected;
 
