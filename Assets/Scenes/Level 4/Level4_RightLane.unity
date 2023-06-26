@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 270707701}
   - component: {fileID: 270707700}
   - component: {fileID: 270707699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1725,7 +1725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478743362}
   - component: {fileID: 478743363}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leaf Blowing Minigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1790,6 +1790,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 478743361}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2786,7 +2798,7 @@ GameObject:
   - component: {fileID: 943381105}
   - component: {fileID: 943381104}
   - component: {fileID: 943381103}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3510,7 +3522,7 @@ GameObject:
   - component: {fileID: 1036157883}
   - component: {fileID: 1036157882}
   - component: {fileID: 1036157881}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thorn Cutting Minigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3556,6 +3568,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1036157880}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6364,7 +6388,7 @@ GameObject:
   - component: {fileID: 1815943084}
   - component: {fileID: 1815943083}
   - component: {fileID: 1815943082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6884,7 +6908,7 @@ GameObject:
   - component: {fileID: 2042071254}
   - component: {fileID: 2042071253}
   - component: {fileID: 2042071252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

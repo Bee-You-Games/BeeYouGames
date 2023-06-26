@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 1a6a90923c8862c438ff668b31f23341
   - enabled: 1
-    path: Assets/Scenes/Level3_Lane1.unity
+    path: Assets/Scenes/Level 3/Level3_Lane1.unity
     guid: 7a065d23405693042bfdf1e39af4e6f5
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
@@ -36,18 +36,51 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: 1756f9a6946f2104aa6546bbba940699
   - enabled: 1
-    path: Assets/Scenes/Level3_ForestPlane.unity
+    path: Assets/Scenes/Level 1/Level1_Lane1.unity
+    guid: d651ad1356a056947b2c0d3738b9203f
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Level1_Lane2.unity
+    guid: b79acaff3d2d2bf4ea5d1a0c9b7f599e
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Level1_Baddie.unity
+    guid: bfd805b15ccbb7d45bbd99fe860fb835
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Level3_ForestPlane.unity
     guid: 5d717277260e60e4394f0d2162eae905
   - enabled: 1
     path: Assets/Scenes/Level1_UndergroundTest.unity
     guid: 55fb45c359cff16499156c7ad4473462
   - enabled: 1
-    path: Assets/Scenes/Level3_Lane2.unity
+    path: Assets/Scenes/Level 3/Level3_Lane2.unity
     guid: e0eec1d93cfd7b7468e78bf020f30726
   - enabled: 1
-    path: Assets/Scenes/Level3_Detour.unity
+    path: Assets/Scenes/Level 3/Level3_Detour.unity
     guid: 5e1777d49061db141b5d1e2dfbcb5d65
   - enabled: 1
-    path: Assets/Scenes/Level3_Grove.unity
-    guid: b618104ad717e51468321345fe6fefb4
+    path: Assets/Scenes/Level 3/Level3_Grove.unity
+    guid: 3265b248835a8fc40af1ee3d3564211d
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Level3_BaddieAscent.unity
+    guid: d8f3e86f7d4e99c4796b0bb867df326b
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_Begin.unity
+    guid: 43c73f33dde18114ab33d9a28a983d81
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_LeftLane.unity
+    guid: a5be477118f525d4099075d08d7a3f9b
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_RightLane.unity
+    guid: ea2178fb714d8c9429ea79130e83d148
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_BlueNPC.unity
+    guid: 0055a3ec6f55c0d49adb9f3f2bf6e10f
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_GreenNPC.unity
+    guid: 1d19ca7dae6edd349aef5a243fe7c133
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Level4_BaddieFlight.unity
+    guid: 8fd6ce13940231b45825cc75481620d2
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
