@@ -1,6 +1,6 @@
-//EXTERNAL BossDamage(pDamage)
 EXTERNAL ProgressionEvent()
 EXTERNAL DialogueSuccess()
+VAR progress = false
 VAR emotion = ""
 
 -> main
@@ -104,15 +104,3 @@ Misschien heb je gelijk. Ik had geen idee hoe mijn emoties anderen konden beïnv
 Wie ben jij om mij de les te leren?! Ik hoef niet naar jouw onzin te luisteren #speaker:B #emotion:intense
     Oh nee, dat was niet de goede optie... We moeten een stap terug zetten en het opnieuw proberen #speaker:A #emotion:troubled
 ->END
-    
-/*=== Damage ===
-I am the boss and you will listen to me! #speaker:B #emotion:neutral
-* Be nice bitch
-    ->Damage
-* You're a cunt
-    ->Damage
-
-I'm doing damage to you #speaker:A #emotion:neutral #xp:30
-~BossDamage(20)
-->END 
-*/
