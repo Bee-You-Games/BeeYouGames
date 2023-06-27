@@ -34,13 +34,13 @@ public class ExperienceManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey(GetCurrentLevel()))
+        if (PlayerPrefs.HasKey(StringUtils.GetCurrentLevel()))
         {
-            currentExperience = PlayerPrefs.GetInt(GetCurrentLevel());
+            currentExperience = PlayerPrefs.GetInt(StringUtils.GetCurrentLevel());
             OnExperienceChange?.Invoke(currentExperience);
         }
         else
-            PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
+            PlayerPrefs.SetInt(StringUtils.GetCurrentLevel(), currentExperience);
     }
 
     private void Update()
@@ -52,23 +52,14 @@ public class ExperienceManager : MonoBehaviour
             AddExperience(20);
         }
 #endif
-    }
-
-    private string GetCurrentLevel()
-    {
-        string sceneName = SceneManager.GetActiveScene().name;
-        string[] words = sceneName.Split('_');
-        string level = words[0].ToLower();
-
-        return level;
-    }
+    }    
 
     public void AddExperience(int pXP)
     {
         Debug.Log("Adding XP");
         currentExperience += pXP;
 
-        PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
+        PlayerPrefs.SetInt(StringUtils.GetCurrentLevel(), currentExperience);
 
         OnExperienceChange?.Invoke(currentExperience);
     }
@@ -91,7 +82,7 @@ public class ExperienceManager : MonoBehaviour
     public void RemoveExperience(int pXP)
     {
         currentExperience -= pXP;
-        PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
+        PlayerPrefs.SetInt(StringUtils.GetCurrentLevel(), currentExperience);
         OnExperienceChange?.Invoke(currentExperience);
     }
 

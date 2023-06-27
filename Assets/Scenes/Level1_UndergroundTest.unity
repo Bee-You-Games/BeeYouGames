@@ -1329,6 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bc5de6e0c9e7e4e86966426ec9b9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxValue: 100
 --- !u!1 &965039993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: Enter here
-  sceneName: Level2
+  sceneName: Level1_Test
   WaitTimeInSeconds: 0.5
 --- !u!212 &1035605531
 SpriteRenderer:

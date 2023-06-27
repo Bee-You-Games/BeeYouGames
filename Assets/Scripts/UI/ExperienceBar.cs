@@ -33,9 +33,7 @@ public class ExperienceBar : MonoBehaviour
         foreach (Ability ability in abilityButtons)
         {
             if (slider.value >= ability.ExperienceNeeded && !ability.isUnlocked)
-            {
                 ability.Unlock();
-            }
         }
     }
 
