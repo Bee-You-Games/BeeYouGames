@@ -71,7 +71,7 @@ public class ExperienceManager : MonoBehaviour
         Debug.Log("Adding XP");
         currentExperience += pXP;
 
-        PlayerPrefs.SetInt(GetCurrentLevel(), currentExperience);
+        PlayerPrefs.SetInt(StringUtils.GetCurrentLevel(), currentExperience);
 
         OnExperienceChange?.Invoke(currentExperience);
 
