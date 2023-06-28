@@ -45,10 +45,10 @@ public class SwipeMiniGame : ASwipe, IInteractable
         if(isActive)
         {
 #if UNITY_EDITOR
-        if (swipeCount >= targetSwipeAmount)
+        if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
         {
-            OnComplete.Invoke();
-            isActive = false;
+            swipeCount++;
+            Debug.Log(swipeCount);
 
             if (swipeCount >= targetSwipeAmount)
                 GameOver();
