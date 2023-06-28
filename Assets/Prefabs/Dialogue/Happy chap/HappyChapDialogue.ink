@@ -16,7 +16,7 @@ VAR emotion = ""
 === continue ===
     HEY!!#speaker:B #emotion:euphoric
     ~ DialogueSuccess()
-    OH WAUW!!!!
+    OH WAUW!!!! #speaker:B #emotion:euphoric
 -> END
 
 === keuze ===
@@ -71,7 +71,3 @@ Oh wat een vreugde!!! Paddestoelen en blijdschap! Blijdschap en paddestoelen! Ka
     misschien moet ik met de andere hamster gaan praten. #speaker:A #emotion:neutral
   //~ ProgressionEvent()
 ->END
-
-i eat it alright.
-ye lets go
-broodje pindakaas

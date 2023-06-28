@@ -48,7 +48,7 @@ Ik zie...In dat geval, er zijn meerdere paddestoelen zoals die verspreidt over h
 === schuldig ===
 Geen angst nieuwe vriend. Sterker nog, je mag van mij ze plukken hoeveel je wilt! #speaker:B #emotion:neutral
 Waarschijnlijk heb je ze nodig voor die hamster knakkers terug in het bos. #speaker:B #emotion:neutral
-    Oh uhm, mooi! #speaker:A #emotion:suprised
+    Oh uhm, mooi! #speaker:A #emotion:surprised
     Jij weet van de hamsters af? #speaker:A #emotion:neutral
 Ja natuurlijk, de meeste in het bos kennen ze nu wel. Er is iets raars aan de hand met die twee. Hun emoties zijn een beetje doorgeslagen. #speaker:B #emotion:neutral
 En een heeft een vreemde liefde voor alle paddestoelen...#speaker:B #emotion:neutral
