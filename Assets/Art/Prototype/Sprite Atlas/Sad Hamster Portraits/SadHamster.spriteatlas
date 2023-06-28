@@ -50,13 +50,13 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 33ed924066fe7df4aad9a1bff9ae9373, type: 3}
-  - {fileID: 21300000, guid: b540e28572522a54c83e401bb170275e, type: 3}
-  - {fileID: 21300000, guid: bd36afd9d3ba28945ae799eea78dfc85, type: 3}
+  - {fileID: 21300000, guid: 1b2c1fb638f80e345b4ea998c444d597, type: 3}
+  - {fileID: 21300000, guid: ac319d9b3a047c641810a1b6bc530324, type: 3}
+  - {fileID: 21300000, guid: 07bd4c3d8b5126e4bbff77d541cacefe, type: 3}
   m_PackedSpriteNamesToIndex:
+  - relieved
   - crying
   - sad
-  - relieved
   m_RenderDataMap: {}
   m_Tag: SadHamster
   m_IsVariant: 0

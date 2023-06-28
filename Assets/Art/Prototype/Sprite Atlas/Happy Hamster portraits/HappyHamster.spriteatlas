@@ -50,13 +50,13 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 3075fcc001f35ed4583e3c74ad15866d, type: 3}
-  - {fileID: 21300000, guid: 993c0bf1c87c23841bd8a173b6adf617, type: 3}
-  - {fileID: 21300000, guid: 5b3ce067b6374e147a0ca6ea7fe9571f, type: 3}
+  - {fileID: 21300000, guid: 13c8f1e6105fe154c94f495c12d759bc, type: 3}
+  - {fileID: 21300000, guid: 695f0f5be85f89243a7d4a303ed46018, type: 3}
+  - {fileID: 21300000, guid: 25ed8dccbc0ec05498a90d5b8f0071a5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - concerned
   - euphoric
   - happy
-  - concerned
   m_RenderDataMap: {}
   m_Tag: HappyHamster
   m_IsVariant: 0

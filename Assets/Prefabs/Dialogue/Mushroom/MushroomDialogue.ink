@@ -14,7 +14,7 @@ VAR progress = false
 }
     
 === mushroom === 
-    Jeetje, dat gemene konijn heeft de hele boom om laten vallen! #speaker:A #emotion:troubled
+    Jeetje, dat gemene konijn heeft de hele boom om laten vallen! #speaker:A #emotion:troubled #speaker:B #emotion:empty
 Ja Pila heeft er een rotzooi van gemaakt oke. Je zal een omweg moeten vinden wil je daar doorheen moeten. #speaker:B #emotion:empty
      Pardon… Wie zij dat? #speaker:A #emotion:surprised
 Hierzo voor je, verloren ziel #speaker:B #emotion:neutral

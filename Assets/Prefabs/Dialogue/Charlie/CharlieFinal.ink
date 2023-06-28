@@ -35,7 +35,7 @@ Uh..ja..ik voel me nogal ongerust. Ik was gescheiden van mijn vrienden Jani en G
 Charlie: Echt waar? Oh dank je! Ik was er zo ongerust over! #speaker:B #emotion:neutral
 …Sorry dat ik voor je wegrende, ik had het idee dat ik dat je me pijn ging doen om een of andere reden… #speaker:B #emotion:neutral
 Maar ik kan nu zien hoe vriendelijk jij bent!
-#speaker:B #emotion:scared2
+#speaker:B #emotion:neutral
     Het is volkomen begrijpelijk om zo bang en onzeker te zijn wanneer je gescheiden bent van je vrienden. #speaker:A #emotion:neutral
     Ik ben blij dat wij je hebben kunnen helpen! #speaker:A #emotion:happy
 ->END

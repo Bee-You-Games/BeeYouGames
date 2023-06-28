@@ -1,4 +1,4 @@
-EXTERNAL BossDamage(pDamage)
+//EXTERNAL BossDamage(pDamage)
 EXTERNAL ProgressionEvent()
 EXTERNAL DialogueSuccess()
 VAR emotion = ""

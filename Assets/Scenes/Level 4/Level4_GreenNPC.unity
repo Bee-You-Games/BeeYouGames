@@ -5177,7 +5177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelDistToDetect: 20
-  UIPanel: {fileID: 0}
+  UIPanel: {fileID: 566816050}
   prompt: Blow those leaves
   targetSwipeAmount: 5
   OnComplete:
