@@ -61,12 +61,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapGoal: 10
-  UIPanel: {fileID: 8442264383848599225, guid: 0d448c40b4f2d4640848687b948baa05, type: 3}
+  UIPanel: {fileID: 0}
   prompt: Een paddestoel?
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8442264383848599225, guid: 0d448c40b4f2d4640848687b948baa05, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -78,9 +78,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11500000, guid: 29bc5de6e0c9e7e4e86966426ec9b9df, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExperienceManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: AddExperience
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
