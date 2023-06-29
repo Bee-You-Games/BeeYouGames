@@ -15,8 +15,8 @@ MonoBehaviour:
   parentAgent: {fileID: 0}
   triggerDialogueSuccess: 0
   DialogueFile: {fileID: 4900000, guid: e23c6c7401eca754eb744c7b42e7c813, type: 3}
-  CharacterAName: Player
+  CharacterAName: Speler
   CharacterASprite: {fileID: 4343727234628468602, guid: a3389a49fa79621408aa66467590ae95, type: 2}
-  CharacterBName: Funguy
+  CharacterBName: Peter
   CharacterBSprite: {fileID: 4343727234628468602, guid: a3a3314643f7cfa47a06fbbf6f20ee7a, type: 2}
-  XPTriggered: 0
+  XPTriggered: 1
