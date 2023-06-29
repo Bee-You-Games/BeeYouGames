@@ -6,7 +6,7 @@ public abstract class ASwipe : MonoBehaviour
 {
     [SerializeField]
     protected int pixelDistToDetect = 20;
-    protected bool isActive;
+    protected bool isActive = false;
 
     protected bool isFingerDown = false;
 
@@ -58,7 +58,8 @@ public abstract class ASwipe : MonoBehaviour
 
         if (Input.touchCount > 0)
             touch = Input.touches[0];
-
+        else
+            return Vector2.zero;
         if (!isFingerDown && touch.phase == TouchPhase.Began)
         {
             startPos = Input.touches[0].position;

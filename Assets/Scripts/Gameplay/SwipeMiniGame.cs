@@ -42,11 +42,13 @@ public class SwipeMiniGame : ASwipe, IInteractable
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
-        if (swipeCount >= targetSwipeAmount)
+        if(isActive)
         {
-            OnComplete.Invoke();
-            isActive = false;
+#if UNITY_EDITOR
+        if (GetSwipeOnPC().magnitude >= pixelDistToDetect)
+        {
+            swipeCount++;
+            Debug.Log(swipeCount);
 
             if (swipeCount >= targetSwipeAmount)
                 GameOver();
@@ -74,6 +76,7 @@ public class SwipeMiniGame : ASwipe, IInteractable
                     GameOver();
             }
 #endif
+        }
     }
 
     private void GameOver()
