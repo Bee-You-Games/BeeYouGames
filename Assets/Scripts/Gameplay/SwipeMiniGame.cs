@@ -85,6 +85,7 @@ public class SwipeMiniGame : ASwipe, IInteractable
         isActive = false;
 
         UIPanel.SetActive(false);
+        OnComplete.Invoke();
     }
 
     private void TrailFollowTouch()
