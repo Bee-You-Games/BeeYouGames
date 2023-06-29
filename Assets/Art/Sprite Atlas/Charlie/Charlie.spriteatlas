@@ -38,17 +38,13 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 91b4c4b19f600654c809aaebe2848d07, type: 3}
   - {fileID: 21300000, guid: 819cce28409ba3b4ca904e4b587c85b6, type: 3}
   - {fileID: 21300000, guid: 8260adf8028a0f445869a401ed1292a4, type: 3}
   - {fileID: 21300000, guid: 3e46344daf263224b8f33b32d505ce7f, type: 3}
-  - {fileID: 21300000, guid: 0ff57ace74b162b469729d8cf7a89364, type: 3}
   m_PackedSpriteNamesToIndex:
-  - scared2
   - neutral
   - empty
   - scared
-  - neutral
   m_RenderDataMap: {}
   m_Tag: Charlie
   m_IsVariant: 0
