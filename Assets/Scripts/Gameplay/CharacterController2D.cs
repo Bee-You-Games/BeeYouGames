@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody playerBody;
     private PlayerInput playerInput;
     private PlayerInteractor interactor;
+    [SerializeField]
     private Animator animator;
     // Start is called before the first frame update
 	private void Awake()
@@ -24,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<PlayerInteractor>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
 	void Update()
@@ -39,14 +40,14 @@ public class CharacterController2D : MonoBehaviour
                 Movement(velocity);
             }else
             {
-                animator.SetBool("walking", false);
+                animator.SetBool("isWalking", false);
             }
         }
     }
 
     private void Movement(Vector3 pMovementVelocity)
     {
-        animator.SetBool("walking", true);
+        animator.SetBool("isWalking", true);
         playerBody.velocity = pMovementVelocity * speed;
 
         //Rotation with movement
